@@ -1,6 +1,6 @@
 package nl.hsleiden.svdj8.models;
 
-    public class SampleResponse {
+    public class Voorbeeld {
         private String message;
         private long id;
 
