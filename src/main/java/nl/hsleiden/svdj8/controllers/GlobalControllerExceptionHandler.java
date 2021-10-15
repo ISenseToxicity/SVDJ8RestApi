@@ -13,32 +13,29 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class GlobalControllerExceptionHandler {
 
-    //todo rework so it is proper oo
+
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<ExceptionReturnObject> handleNoSuchElementFoundException(NoSuchElementException e) {
-
-        ExceptionReturnObject exceptionReturnObject = new ExceptionReturnObject(e.getMessage(),"no additional information");
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .body(exceptionReturnObject);
+           return makeResponseEntity(HttpStatus.NOT_FOUND,e.getMessage(),"No additional information");
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST) //400
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ExceptionReturnObject> handleBadRequest(BadRequestException e){
 
-        ExceptionReturnObject exceptionReturnObject = new ExceptionReturnObject(e.getMessage(),"no additional information");
-        return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(exceptionReturnObject);
+        return makeResponseEntity(HttpStatus.BAD_REQUEST,e.getMessage(),"No additional information");
     }
     @ResponseStatus(HttpStatus.UNAUTHORIZED) //401
     @ExceptionHandler(UnauthorizedException.class)
     public ResponseEntity<ExceptionReturnObject> handleRequest(UnauthorizedException e){
+        return makeResponseEntity(HttpStatus.UNAUTHORIZED,e.getMessage(),"No additional information");
+    }
 
-        ExceptionReturnObject exceptionReturnObject = new ExceptionReturnObject(e.getMessage(),"no additional information");
+
+    public ResponseEntity<ExceptionReturnObject> makeResponseEntity(HttpStatus httpStatus, String userMessage,String applicationMessage){
+        ExceptionReturnObject exceptionReturnObject = new ExceptionReturnObject(userMessage,applicationMessage);
         return ResponseEntity
-                .status(HttpStatus.UNAUTHORIZED)
+                .status(httpStatus)
                 .body(exceptionReturnObject);
     }
 }
