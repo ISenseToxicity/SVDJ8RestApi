@@ -1,23 +1,32 @@
 package nl.hsleiden.svdj8.models.temp;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.ArrayList;
 
+@Entity
 public class Answer {
-    private String answerID;
+    private @Id @GeneratedValue Long answerID;
     private String answerText;
-    private ArrayList<String > categoryID;
+    private @ElementCollection ArrayList<String > categoryID;
 
-    public Answer(String answerID, String answerText, ArrayList<String> categoryID) {
+    public Answer(Long answerID, String answerText, ArrayList<String> categoryID) {
         this.answerID = answerID;
         this.answerText = answerText;
         this.categoryID = categoryID;
     }
 
-    public String getAnswerID() {
+    public Answer() {
+
+    }
+
+    public Long getAnswerID() {
         return answerID;
     }
 
-    public void setAnswerID(String answerID) {
+    public void setAnswerID(Long answerID) {
         this.answerID = answerID;
     }
 

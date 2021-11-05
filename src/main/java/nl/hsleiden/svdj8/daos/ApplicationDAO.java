@@ -50,17 +50,6 @@ public class ApplicationDAO {
             e.printStackTrace();
         }
     }
-
-    public static void main(String[] args) {
-        connection("CREATE TABLE question(" +
-                "  QuestionID int," +
-                "  QuestionText varchar(255)," +
-                "  AnswerListId int," +
-                "  extraInfoTile varchar(255)," +
-                "  extraInfoDescription varchar(255)" +
-                "); ");
-    }
-
     public boolean sendQuery(String query){
         connection(query);
     return true;

@@ -1,16 +1,21 @@
 package nl.hsleiden.svdj8.models.temp;
 
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.ArrayList;
 
+@Entity
 public class Question {
-    private String questionID;
+    private @Id @GeneratedValue Long questionID;
     private String questionText;
-    private ArrayList<Answer> answers;
+    private @ElementCollection ArrayList<Answer> answers;
     private String extraInfoTile;
     private String extraInfoDescription;
     private String extraInfoVideoURL;
 
-    public Question(String questionID, String questionText, ArrayList<Answer> answers, String extraInfoTile, String extraInfoDescription, String extraInfoVideoURL) {
+    public Question(Long questionID, String questionText, ArrayList<Answer> answers, String extraInfoTile, String extraInfoDescription, String extraInfoVideoURL) {
         this.questionID = questionID;
         this.questionText = questionText;
         this.answers = answers;
@@ -19,22 +24,11 @@ public class Question {
         this.extraInfoVideoURL = extraInfoVideoURL;
     }
 
-    public Question(String questionID, String questionText, ArrayList<Answer> answers, String extraInfoTile, String extraInfoDescription) {
-        this.questionID = questionID;
-        this.questionText = questionText;
-        this.answers = answers;
-        this.extraInfoTile = extraInfoTile;
-        this.extraInfoDescription = extraInfoDescription;
+    public Question() {
+
     }
 
 
-    public String getQuestionID() {
-        return questionID;
-    }
-
-    public void setQuestionID(String questionID) {
-        this.questionID = questionID;
-    }
 
     public String getQuestionText() {
         return questionText;
@@ -76,4 +70,12 @@ public class Question {
         this.extraInfoVideoURL = extraInfoVideoURL;
     }
 
+    public void setQuestionID(Long questionID) {
+        this.questionID = questionID;
+    }
+
+    @Id
+    public Long getQuestionID() {
+        return questionID;
+    }
 }
