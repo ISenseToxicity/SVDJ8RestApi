@@ -1,16 +1,14 @@
-package nl.hsleiden.svdj8.models.temp;
+package nl.hsleiden.svdj8.models.tables;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 
 @Entity
 public class Question {
     private @Id @GeneratedValue Long questionID;
     private String questionText;
-    private @ElementCollection ArrayList<Answer> answers;
+    @OneToMany
+    private ArrayList<Answer> answers;
     private String extraInfoTile;
     private String extraInfoDescription;
     private String extraInfoVideoURL;

@@ -1,18 +1,15 @@
-package nl.hsleiden.svdj8.models.temp;
+package nl.hsleiden.svdj8.models.tables;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 
 @Entity
 public class Answer {
     private @Id @GeneratedValue Long answerID;
     private String answerText;
-    private @ElementCollection ArrayList<String > categoryID;
+    private @ElementCollection ArrayList<Long> categoryID;
 
-    public Answer(Long answerID, String answerText, ArrayList<String> categoryID) {
+    public Answer(Long answerID, String answerText, ArrayList<Long> categoryID) {
         this.answerID = answerID;
         this.answerText = answerText;
         this.categoryID = categoryID;
@@ -38,11 +35,11 @@ public class Answer {
         this.answerText = answerText;
     }
 
-    public ArrayList<String> getCategoryID() {
+    public ArrayList<Long> getCategoryID() {
         return categoryID;
     }
 
-    public void setCategoryID(ArrayList<String> categoryID) {
+    public void setCategoryID(ArrayList<Long> categoryID) {
         this.categoryID = categoryID;
     }
 }

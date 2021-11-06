@@ -1,4 +1,4 @@
-package nl.hsleiden.svdj8.models.temp;
+package nl.hsleiden.svdj8.models;
 
 import java.util.HashMap;
 
