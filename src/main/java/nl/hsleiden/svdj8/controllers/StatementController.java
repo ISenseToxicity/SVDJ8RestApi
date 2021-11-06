@@ -1,16 +1,15 @@
 package nl.hsleiden.svdj8.controllers;
 
-import nl.hsleiden.svdj8.daos.ApplicationDAO;
+import nl.hsleiden.svdj8.daos.QuestionDAO;
 import nl.hsleiden.svdj8.models.Statement;
 
-import nl.hsleiden.svdj8.models.temp.Data;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class StatementController {
     private static StatementController statementController;
-    ApplicationDAO dao = ApplicationDAO.getInstance();
+    QuestionDAO dao = QuestionDAO.getInstance();
 
     Statement statements = new Statement();
 
