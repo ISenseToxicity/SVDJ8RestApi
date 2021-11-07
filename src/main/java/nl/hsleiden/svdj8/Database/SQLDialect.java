@@ -9,6 +9,11 @@ import org.hibernate.dialect.function.VarArgsSQLFunction;
 import org.hibernate.Hibernate;
 import org.hibernate.type.StringType;
 
+/**
+ * All classes and models based on sending  to database (unless said otherwise above)
+ * made by
+ * @author Eefje|AntiEevee
+ */
 public class SQLDialect extends Dialect {
     public SQLDialect() {
         registerColumnType(Types.BIT, "integer");

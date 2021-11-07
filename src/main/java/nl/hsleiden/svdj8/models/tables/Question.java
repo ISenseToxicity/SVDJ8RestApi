@@ -1,19 +1,22 @@
 package nl.hsleiden.svdj8.models.tables;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collection;
 
 @Entity
+@Table(name = "question")
 public class Question {
-    private @Id @GeneratedValue Long questionID;
+    @Id @GeneratedValue
+    private Long questionID;
     private String questionText;
-    @OneToMany
-    private ArrayList<Answer> answers;
+    @OneToMany(mappedBy="answerID")
+    private Long answers;
     private String extraInfoTile;
     private String extraInfoDescription;
     private String extraInfoVideoURL;
 
-    public Question(Long questionID, String questionText, ArrayList<Answer> answers, String extraInfoTile, String extraInfoDescription, String extraInfoVideoURL) {
+    public Question(Long questionID, String questionText, Long answers, String extraInfoTile, String extraInfoDescription, String extraInfoVideoURL) {
         this.questionID = questionID;
         this.questionText = questionText;
         this.answers = answers;
@@ -36,11 +39,11 @@ public class Question {
         this.questionText = questionText;
     }
 
-    public ArrayList<Answer> getAnswers() {
+    public Long getAnswers() {
         return answers;
     }
 
-    public void setAnswers(ArrayList<Answer> answers) {
+    public void setAnswers (Long answers) {
         this.answers = answers;
     }
 

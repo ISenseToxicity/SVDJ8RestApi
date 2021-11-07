@@ -5,7 +5,7 @@ import nl.hsleiden.svdj8.models.tables.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.inject.Scope;
+//import javax.inject.Scope;
 import java.util.Collection;
 
 //@Scope("session")

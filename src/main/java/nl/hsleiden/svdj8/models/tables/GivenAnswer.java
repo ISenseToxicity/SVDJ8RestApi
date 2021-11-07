@@ -3,6 +3,7 @@ package nl.hsleiden.svdj8.models.tables;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "given_answer")
 public class GivenAnswer{
     private @Id @GeneratedValue Long givenAnswerID;
     private int elapsedSeconds;

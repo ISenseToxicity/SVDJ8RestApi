@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
@@ -24,7 +25,7 @@ public class TrafficController {
     @RequestMapping(value = "/question/{id}")
     public Question getQuestion(@PathVariable int id){
         TempQuestionListMaker tempQuestionListMaker = new TempQuestionListMaker();
-        ArrayList<Question> questions = tempQuestionListMaker.makeList().getQuestions();
+        ArrayList<Question> questions = new ArrayList<>(tempQuestionListMaker.makeList().getQuestions());
         if(questions.size() -1 < id)throw new NoSuchElementException("index out of bounds");
         return questions.get(id);
     }

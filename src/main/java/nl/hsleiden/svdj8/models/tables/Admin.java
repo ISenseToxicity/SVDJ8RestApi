@@ -3,8 +3,10 @@ package nl.hsleiden.svdj8.models.tables;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="admin")
 public class Admin {
     private @Id @GeneratedValue Long adminID;
     private String name;

@@ -2,17 +2,20 @@ package nl.hsleiden.svdj8.models.tables;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
+@Table(name = "answer")
 public class Answer {
+    @ManyToOne
     private @Id @GeneratedValue Long answerID;
     private String answerText;
-    private @ElementCollection ArrayList<Long> categoryID;
+    private @ElementCollection Collection<Long> catogoryIds;
 
-    public Answer(Long answerID, String answerText, ArrayList<Long> categoryID) {
+    public Answer(Long answerID, String answerText, ArrayList<Long> catogoryIds) {
         this.answerID = answerID;
         this.answerText = answerText;
-        this.categoryID = categoryID;
+        this.catogoryIds = catogoryIds;
     }
 
     public Answer() {
@@ -35,11 +38,12 @@ public class Answer {
         this.answerText = answerText;
     }
 
-    public ArrayList<Long> getCategoryID() {
-        return categoryID;
+    public Collection<Long> getcatogoryIds() {
+        return catogoryIds;
     }
 
-    public void setCategoryID(ArrayList<Long> categoryID) {
-        this.categoryID = categoryID;
+    public void setcatogoryIds(ArrayList<Long> catogoryIds
+    ) {
+        this.catogoryIds = catogoryIds;
     }
 }

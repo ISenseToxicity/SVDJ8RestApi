@@ -3,8 +3,10 @@ package nl.hsleiden.svdj8.models.tables;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="catogory")
 public class Category {
 
     private @Id @GeneratedValue Long catogoryID;
