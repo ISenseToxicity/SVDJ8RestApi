@@ -18,7 +18,7 @@ public class DecryptService {
                 .build()
                 .parseClaimsJws(token);
 
-        return result.getBody().get("Class", String.class);
+        return result.getBody().get("Json", String.class);
     }
 
     public DecryptService getInstance() {
