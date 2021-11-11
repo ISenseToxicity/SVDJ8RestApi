@@ -7,6 +7,8 @@ import javax.persistence.*;
 public class GivenAnswer{
     private @Id @GeneratedValue Long givenAnswerID;
     private int elapsedSeconds;
+    @ManyToOne
+    private Route routeID;
     private String questionID;
     private String answerID;
 

@@ -1,8 +1,6 @@
 package nl.hsleiden.svdj8.models.tables;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collection;
 
 @Entity
 @Table(name = "question")
@@ -10,8 +8,9 @@ public class Question {
     @Id @GeneratedValue
     private Long questionID;
     private String questionText;
-    @OneToMany(mappedBy="answerID")
+//    private @ElementCollection Collection<Long> answers;
     private Long answers;
+
     private String extraInfoTile;
     private String extraInfoDescription;
     private String extraInfoVideoURL;

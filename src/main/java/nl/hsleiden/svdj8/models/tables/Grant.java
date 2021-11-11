@@ -1,21 +1,28 @@
 package nl.hsleiden.svdj8.models.tables;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "grant")
 public class Grant {
-    private @Id @GeneratedValue Long grantID;
-    private String nameGrant;
-    private String description;
-    private @ElementCollection Collection<String> Keywords;
 
-    public Grant(Long grantID, String nameGrant, String description, Collection<String> keywords) {
+    private @Id @GeneratedValue Long grantID;
+    private String name;
+    private String description;
+    @Column(columnDefinition = "result")
+    @OneToMany(mappedBy = "grant")
+    private Result result;
+    @OneToMany(mappedBy = "grant")
+    private ArrayList<Keyword> keywords;
+
+
+    public Grant(Long grantID, String name, String description, Result result, ArrayList<Keyword> keywords) {
         this.grantID = grantID;
-        this.nameGrant = nameGrant;
+        this.name = name;
         this.description = description;
-        Keywords = keywords;
+        this.result = result;
+        this.keywords = keywords;
     }
     public Grant(){}
 
@@ -30,12 +37,12 @@ public class Grant {
         return grantID;
     }
 
-    public String getNameGrant() {
-        return nameGrant;
+    public String getName() {
+        return name;
     }
 
-    public void setNameGrant(String nameGrant) {
-        this.nameGrant = nameGrant;
+    public void setName(String nameGrant) {
+        this.name = nameGrant;
     }
 
     public String getDescription() {
@@ -46,11 +53,19 @@ public class Grant {
         this.description = description;
     }
 
-    public Collection<String> getKeywords() {
-        return Keywords;
+    public  ArrayList<Keyword> getKeywords() {
+        return keywords;
     }
 
-    public void setKeywords(Collection<String> keywords) {
-        Keywords = keywords;
+    public void setKeywords( ArrayList<Keyword> keywords) {
+        this.keywords = keywords;
+    }
+
+    public Result getResult() {
+        return result;
+    }
+
+    public void setResult(Result result) {
+        this.result = result;
     }
 }
