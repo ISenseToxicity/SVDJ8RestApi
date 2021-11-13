@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="catogory")
+//@Table(name="catogory")
 public class Category {
 
     private @Id @GeneratedValue Long catogoryID;

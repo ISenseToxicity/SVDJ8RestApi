@@ -1,14 +1,20 @@
 package nl.hsleiden.svdj8.models.tables;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "keyword")
 public class Keyword {
     @Id
     @GeneratedValue
+    @Column(name = "keyword_id")
     private Long keywordID;
     private String restriction;
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "grant_and_keyword",
+            joinColumns = @JoinColumn(name = "keyword_id", referencedColumnName = "keyword_id"))
+    private List<Grant> grand;
 
     public Keyword(Long keywordID, String restriction) {
         this.keywordID = keywordID;

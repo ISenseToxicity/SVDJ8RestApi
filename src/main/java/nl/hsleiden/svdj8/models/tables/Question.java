@@ -1,21 +1,24 @@
 package nl.hsleiden.svdj8.models.tables;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "question")
 public class Question {
     @Id @GeneratedValue
+    @Column(name = "question_id")
     private Long questionID;
+    @Column(name = "question_text")
     private String questionText;
-//    private @ElementCollection Collection<Long> answers;
-    private Long answers;
+    @OneToMany(targetEntity=Answer.class,mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Answer> answers;
 
     private String extraInfoTile;
     private String extraInfoDescription;
     private String extraInfoVideoURL;
 
-    public Question(Long questionID, String questionText, Long answers, String extraInfoTile, String extraInfoDescription, String extraInfoVideoURL) {
+    public Question(Long questionID, String questionText, List<Answer> answers, String extraInfoTile, String extraInfoDescription, String extraInfoVideoURL) {
         this.questionID = questionID;
         this.questionText = questionText;
         this.answers = answers;
@@ -38,11 +41,11 @@ public class Question {
         this.questionText = questionText;
     }
 
-    public Long getAnswers() {
+    public List<Answer> getAnswers() {
         return answers;
     }
 
-    public void setAnswers (Long answers) {
+    public void setAnswers (List<Answer> answers) {
         this.answers = answers;
     }
 

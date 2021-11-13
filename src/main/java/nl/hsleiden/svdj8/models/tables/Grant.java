@@ -1,27 +1,26 @@
 package nl.hsleiden.svdj8.models.tables;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "grant")
 public class Grant {
-
-    private @Id @GeneratedValue Long grantID;
+    @Id @GeneratedValue
+    @Column(name = "grant_id")
+    private  Long grantID;
     private String name;
     private String description;
-    @Column(columnDefinition = "result")
-    @OneToMany(mappedBy = "grant")
-    private Result result;
-    @OneToMany(mappedBy = "grant")
-    private ArrayList<Keyword> keywords;
+    @ManyToMany
+    @JoinTable(name = "grant_and_keyword",
+            joinColumns = @JoinColumn(name = "grant_id", referencedColumnName = "grant_id"))
+    private List<Keyword> keywords;
 
 
-    public Grant(Long grantID, String name, String description, Result result, ArrayList<Keyword> keywords) {
+    public Grant(Long grantID, String name, String description, Result result, List<Keyword> keywords) {
         this.grantID = grantID;
         this.name = name;
         this.description = description;
-        this.result = result;
         this.keywords = keywords;
     }
     public Grant(){}
@@ -53,19 +52,12 @@ public class Grant {
         this.description = description;
     }
 
-    public  ArrayList<Keyword> getKeywords() {
+    public List<Keyword> getKeywords() {
         return keywords;
     }
 
-    public void setKeywords( ArrayList<Keyword> keywords) {
+    public void setKeywords(List<Keyword> keywords) {
         this.keywords = keywords;
     }
 
-    public Result getResult() {
-        return result;
-    }
-
-    public void setResult(Result result) {
-        this.result = result;
-    }
 }

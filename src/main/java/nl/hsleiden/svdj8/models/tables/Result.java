@@ -9,15 +9,11 @@ public class Result extends Persistence {
 
 
     private @Id @GeneratedValue Long resultID;
-    @ManyToOne
-    @JoinColumn(name = "grant", referencedColumnName = "grant_id")
-    private Grant grant;
     private int amountQuestions;
     private Time totalTime;
 
-    public Result(Long resultID, Grant grant, int amountQuestions, Time totalTime) {
+    public Result(Long resultID, int amountQuestions, Time totalTime) {
         this.resultID = resultID;
-        this.grant = grant;
         this.amountQuestions = amountQuestions;
         this.totalTime = totalTime;
     }
@@ -33,14 +29,6 @@ public class Result extends Persistence {
     @GeneratedValue
     public Long getResultID() {
         return resultID;
-    }
-
-    public Grant getGrant() {
-        return this.grant;
-    }
-
-    public void setGrant(Grant grant) {
-        this.grant = grant;
     }
 
     public int getAmountQuestions() {

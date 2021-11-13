@@ -5,18 +5,24 @@ import javax.persistence.*;
 @Entity
 @Table(name = "given_answer")
 public class GivenAnswer{
-    private @Id @GeneratedValue Long givenAnswerID;
+    @Id @GeneratedValue
+    @Column(name = "given_answer_id")
+    private Long givenAnswerId;
     private int elapsedSeconds;
     @ManyToOne
-    private Route routeID;
-    private String questionID;
-    private String answerID;
+    private Route routeId;
+    @OneToOne
+    @JoinColumn(name = "question_id",referencedColumnName = "question_id")
+    private Question questionId;
+    @OneToOne
+    @JoinColumn(name = "answer_id",referencedColumnName = "answer_id", insertable = true, updatable = true)
+    private Answer answerId;
 
-    public GivenAnswer(Long givenAnswerID, int elapsedSeconds, String questionID, String answerID) {
-        this.givenAnswerID = givenAnswerID;
+    public GivenAnswer(Long givenAnswerId, int elapsedSeconds, Question questionId, Answer answerId) {
+        this.givenAnswerId = givenAnswerId;
         this.elapsedSeconds = elapsedSeconds;
-        this.questionID = questionID;
-        this.answerID = answerID;
+        this.questionId = questionId;
+        this.answerId = answerId;
     }
 
     public GivenAnswer() {
@@ -25,12 +31,12 @@ public class GivenAnswer{
 
     @Id
     @GeneratedValue
-    public Long getGivenAnswerID() {
-        return givenAnswerID;
+    public Long getGivenAnswerId() {
+        return givenAnswerId;
     }
 
-    public void setGivenAnswerID(Long givenAnswerID) {
-        this.givenAnswerID = givenAnswerID;
+    public void setGivenAnswerId(Long givenAnswerId) {
+        this.givenAnswerId = givenAnswerId;
     }
 
     public int getElapsedSeconds() {
@@ -41,20 +47,20 @@ public class GivenAnswer{
         this.elapsedSeconds = elapsedSeconds;
     }
 
-    public String getQuestionID() {
-        return questionID;
+    public Question getQuestionId() {
+        return questionId;
     }
 
-    public void setQuestionID(String questionID) {
-        this.questionID = questionID;
+    public void setQuestionId(Question questionId) {
+        this.questionId = questionId;
     }
 
-    public String getAnswerID() {
-        return answerID;
+    public Answer getAnswerId() {
+        return answerId;
     }
 
-    public void setAnswerID(String answerID) {
-        this.answerID = answerID;
+    public void setAnswerId(Answer answerId) {
+        this.answerId = answerId;
     }
 
 }
