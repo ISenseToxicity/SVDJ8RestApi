@@ -8,9 +8,10 @@ import java.util.List;
 @Entity
 @Table(name = "grant")
 public class Grant {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "grant_id")
-    private  Long grantID;
+    private Long grantID;
     private String name;
     private String description;
     @ManyToMany
@@ -24,9 +25,11 @@ public class Grant {
         this.description = description;
         this.keywords = keywords;
     }
-    public Grant(){}
 
-    public static Grant from(GrantDto grantDto){
+    public Grant() {
+    }
+
+    public static Grant from(GrantDto grantDto) {
         Grant grant = new Grant();
         grant.setGrantID(grantDto.getId());
         return grant;

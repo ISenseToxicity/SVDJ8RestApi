@@ -13,7 +13,7 @@ public class RouteDto {
     private Result resultId;
     private List<GivenAnswer> givenAnswerList;
 
-    public static RouteDto from(Route route){
+    public static RouteDto from(Route route) {
         RouteDto routeDto = new RouteDto();
         routeDto.setRouteId(route.getRouteId());
         routeDto.setTotalTime(route.getTotalTime());

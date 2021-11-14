@@ -16,32 +16,32 @@ public class GivenAnswerService {
     private final GivenAnswerRepository givenAnswerRepository;
 
     @Autowired
-    public GivenAnswerService(GivenAnswerRepository givenAnswerRepository){
+    public GivenAnswerService(GivenAnswerRepository givenAnswerRepository) {
         this.givenAnswerRepository = givenAnswerRepository;
     }
 
-    public GivenAnswer addGivenAnswer(GivenAnswer givenAnswer){
+    public GivenAnswer addGivenAnswer(GivenAnswer givenAnswer) {
         return givenAnswerRepository.save(givenAnswer);
     }
 
-    public List<GivenAnswer> getGivenAnswers(){
+    public List<GivenAnswer> getGivenAnswers() {
         return StreamSupport
-                .stream(givenAnswerRepository.findAll().spliterator(),false)
+                .stream(givenAnswerRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
     }
 
-    public GivenAnswer getGivenAnswer(Long id){
+    public GivenAnswer getGivenAnswer(Long id) {
         return givenAnswerRepository.findById(id).orElseThrow(() ->
-        new RuntimeException(new NoGivenAnswerFoundException(id)));
+                new RuntimeException(new NoGivenAnswerFoundException(id)));
     }
 
-    public GivenAnswer deleteGivenAnswer(Long id){
+    public GivenAnswer deleteGivenAnswer(Long id) {
         GivenAnswer givenAnswer = getGivenAnswer(id);
         givenAnswerRepository.delete(givenAnswer);
         return givenAnswer;
     }
 
-    public GivenAnswer editGivenAnswer(Long id, GivenAnswer givenAnswer){
+    public GivenAnswer editGivenAnswer(Long id, GivenAnswer givenAnswer) {
         GivenAnswer givenAnswerToEdit = getGivenAnswer(id);
         givenAnswerToEdit.setElapsedSeconds(givenAnswer.getElapsedSeconds());
         return givenAnswer;

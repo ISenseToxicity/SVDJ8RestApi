@@ -14,7 +14,7 @@ public class GrantDto {
     private String description;
     private List<Keyword> keywords;
 
-    public static GrantDto from(Grant grant){
+    public static GrantDto from(Grant grant) {
         GrantDto grantDto = new GrantDto();
         grantDto.setName(grant.getName());
         grantDto.setId(grant.getGrantID());

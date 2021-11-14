@@ -8,12 +8,13 @@ import java.util.List;
 @Entity
 @Table(name = "answer")
 public class Answer {
-    @Id @GeneratedValue(strategy=GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "answer_id")
     private Long answerID;
     private String answerText;
     @ManyToOne
-    @JoinColumn(name="question_id", nullable=false)
+    @JoinColumn(name = "question_id", nullable = false)
     private Question questionId;
     @ManyToMany
     @JoinColumn(name = "keyword", referencedColumnName = "keyword_id")
@@ -28,7 +29,8 @@ public class Answer {
     public Answer() {
 
     }
-    public static Answer from(AnswerDto answerDto){
+
+    public static Answer from(AnswerDto answerDto) {
         Answer answer = new Answer();
         answer.setAnswerID(answerDto.getAnswerID());
         answer.setAnswerText(answerDto.getAnswerText());
@@ -36,14 +38,15 @@ public class Answer {
         answer.setQuestionId(answerDto.getQuestion_id());
         return answer;
     }
-//    Getters Setters
+
+    //    Getters Setters
     public Long getAnswerID() {
         return answerID;
     }
 
-        public void setAnswerID(Long answerID) {
-            this.answerID = answerID;
-        }
+    public void setAnswerID(Long answerID) {
+        this.answerID = answerID;
+    }
 
     public Question getQuestionId() {
         return questionId;

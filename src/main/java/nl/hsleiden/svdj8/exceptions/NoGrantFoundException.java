@@ -8,6 +8,7 @@ import java.text.MessageFormat;
 
 /**
  * All Status Responsesn founded by David
+ *
  * @author David
  */
 @ResponseStatus(value = HttpStatus.NOT_FOUND)

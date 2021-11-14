@@ -16,32 +16,32 @@ public class KeywordService {
     private final KeywordRepository keywordRepository;
 
     @Autowired
-    public KeywordService(KeywordRepository keywordRepository){
+    public KeywordService(KeywordRepository keywordRepository) {
         this.keywordRepository = keywordRepository;
     }
 
-    public Keyword addKeyword(Keyword keyword){
+    public Keyword addKeyword(Keyword keyword) {
         return keywordRepository.save(keyword);
     }
 
-    public List<Keyword> getKeywords(){
+    public List<Keyword> getKeywords() {
         return StreamSupport
-                .stream(keywordRepository.findAll().spliterator(),false)
+                .stream(keywordRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
     }
 
-    public Keyword getKeyword(Long id){
+    public Keyword getKeyword(Long id) {
         return keywordRepository.findById(id).orElseThrow(() ->
-        new RuntimeException(new NoKeywordFoundException(id)));
+                new RuntimeException(new NoKeywordFoundException(id)));
     }
 
-    public Keyword deleteKeyword(Long id){
+    public Keyword deleteKeyword(Long id) {
         Keyword keyword = getKeyword(id);
         keywordRepository.delete(keyword);
         return keyword;
     }
 
-    public Keyword editKeyword(Long id, Keyword keyword){
+    public Keyword editKeyword(Long id, Keyword keyword) {
         Keyword keywordToEdit = getKeyword(id);
         keywordToEdit.setGrant(keywordToEdit.getGrant());
         keywordToEdit.setRestriction(keyword.getRestriction());

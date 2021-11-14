@@ -9,9 +9,10 @@ import java.sql.Time;
 @Table(name = "result")
 public class Result extends Persistence {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "result_id")
-    private  Long resultID;
+    private Long resultID;
     private int amountQuestions;
     private Time totalTime;
     @ManyToOne(targetEntity = Grant.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -24,11 +25,11 @@ public class Result extends Persistence {
         this.grant = grant;
     }
 
-    public Result(){
+    public Result() {
 
     }
 
-    public static Result from(ResultDto resultDto){
+    public static Result from(ResultDto resultDto) {
         Result result = new Result();
         result.setResultID(resultDto.getResultID());
         result.setAmountQuestions(resultDto.getAmountQuestions());
@@ -38,7 +39,7 @@ public class Result extends Persistence {
         return result;
     }
 
-//Getter Setters
+    //Getter Setters
     public void setResultID(Long resultID) {
         this.resultID = resultID;
     }

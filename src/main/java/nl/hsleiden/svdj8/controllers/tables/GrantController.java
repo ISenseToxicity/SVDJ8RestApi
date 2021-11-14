@@ -9,30 +9,31 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/grant",method = RequestMethod.GET)
+@RequestMapping(value = "/grant", method = RequestMethod.GET)
 public class GrantController {
 
     private final GrantService grantService;
 
-            @Autowired
-    public GrantController(GrantService grantService){
+    @Autowired
+    public GrantController(GrantService grantService) {
 
         this.grantService = grantService;
     }
 
     @PostMapping
-    public ResponseEntity<GrantDto> addGrant(@RequestBody final GrantDto grantDto){
+    public ResponseEntity<GrantDto> addGrant(@RequestBody final GrantDto grantDto) {
         Grant grant = grantService.addGrant(Grant.from(grantDto));
         return new ResponseEntity<>(grantDto, HttpStatus.OK);
-              }
+    }
 
     @RequestMapping(value = "/grant/{id}", method = RequestMethod.GET)
-    public ResponseEntity<GrantDto> getItem(@PathVariable final Long id){
-                Grant grant = grantService.getGrant(id);
-                return new ResponseEntity<>(GrantDto.from(grant), HttpStatus.OK);
+    public ResponseEntity<GrantDto> getItem(@PathVariable final Long id) {
+        Grant grant = grantService.getGrant(id);
+        return new ResponseEntity<>(GrantDto.from(grant), HttpStatus.OK);
     }
+
     @DeleteMapping(value = "{id}")
-    public ResponseEntity<GrantDto> deleteGrant(@PathVariable final Long id){
+    public ResponseEntity<GrantDto> deleteGrant(@PathVariable final Long id) {
         Grant grant = grantService.deleteGrant(id);
         return new ResponseEntity<>(GrantDto.from(grant), HttpStatus.OK);
     }

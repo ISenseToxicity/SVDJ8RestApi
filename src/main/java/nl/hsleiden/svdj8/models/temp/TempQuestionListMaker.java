@@ -5,7 +5,7 @@ import nl.hsleiden.svdj8.models.tables.QuestionList;
 import java.util.ArrayList;
 
 public class TempQuestionListMaker {
-    public QuestionList makeList(){
+    public QuestionList makeList() {
 //        ArrayList<String> categoryShizzle = new ArrayList<>();
 //        ArrayList<String> categoryShizzle2 = new ArrayList<>();
 //        categoryShizzle.add("category1");

@@ -15,24 +15,25 @@ public class RouteController {
     private final RouteService routeService;
 
     @Autowired
-    public RouteController(RouteService routeService){
+    public RouteController(RouteService routeService) {
 
         this.routeService = routeService;
     }
 
     @PostMapping
-    public ResponseEntity<RouteDto> addRoute(@RequestBody final RouteDto routeDto){
+    public ResponseEntity<RouteDto> addRoute(@RequestBody final RouteDto routeDto) {
         Route route = routeService.addRoute(Route.from(routeDto));
         return new ResponseEntity<>(routeDto, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/route/{id}", method = RequestMethod.GET)
-    public ResponseEntity<RouteDto> getItem(@PathVariable final Long id){
+    public ResponseEntity<RouteDto> getItem(@PathVariable final Long id) {
         Route route = routeService.getRoute(id);
         return new ResponseEntity<>(RouteDto.from(route), HttpStatus.OK);
     }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<RouteDto> deleteRoute(@PathVariable final Long id){
+    public ResponseEntity<RouteDto> deleteRoute(@PathVariable final Long id) {
         Route route = routeService.deleteRoute(id);
         return new ResponseEntity<>(RouteDto.from(route), HttpStatus.OK);
     }

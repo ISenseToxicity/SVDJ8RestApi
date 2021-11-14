@@ -13,7 +13,7 @@ public class AnswerDto {
     private String answerText;
     private List<Keyword> keywords;
 
-    public static AnswerDto from(Answer answer){
+    public static AnswerDto from(Answer answer) {
         AnswerDto answerDto = new AnswerDto();
         answerDto.setAnswerText(answer.getAnswerText());
         answerDto.setKeywords(answer.getkeywords());

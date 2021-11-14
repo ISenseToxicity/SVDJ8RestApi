@@ -9,9 +9,10 @@ import java.util.List;
 @Entity
 @Table(name = "route")
 public class Route {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "route_id")
-    private  Long routeId;
+    private Long routeId;
     private int totalTime;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "result_id", referencedColumnName = "result_id")
@@ -21,7 +22,7 @@ public class Route {
             cascade = CascadeType.ALL)
     private List<GivenAnswer> givenAnswerList;
 
-    public static Route from(RouteDto routeDto){
+    public static Route from(RouteDto routeDto) {
         Route route = new Route();
         route.setRouteId(routeDto.getRouteId());
         route.setTotalTime(routeDto.getTotalTime());
@@ -160,11 +161,12 @@ public class Route {
             }
         };
     }
+
     public Route() {
 
     }
 
-//    Setters And Getters
+    //    Setters And Getters
     public int getTotalTime() {
         return totalTime;
     }

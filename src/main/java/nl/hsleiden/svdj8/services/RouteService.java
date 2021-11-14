@@ -16,32 +16,32 @@ public class RouteService {
     private final RouteRepository routeRepository;
 
     @Autowired
-    public RouteService(RouteRepository routeRepository){
+    public RouteService(RouteRepository routeRepository) {
         this.routeRepository = routeRepository;
     }
 
-    public Route addRoute(Route route){
+    public Route addRoute(Route route) {
         return routeRepository.save(route);
     }
 
-    public List<Route> getRoutes(){
+    public List<Route> getRoutes() {
         return StreamSupport
-                .stream(routeRepository.findAll().spliterator(),false)
+                .stream(routeRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
     }
 
-    public Route getRoute(Long id){
+    public Route getRoute(Long id) {
         return routeRepository.findById(id).orElseThrow(() ->
-        new RuntimeException(new NoRouteFoundException(id)));
+                new RuntimeException(new NoRouteFoundException(id)));
     }
 
-    public Route deleteRoute(Long id){
+    public Route deleteRoute(Long id) {
         Route route = getRoute(id);
         routeRepository.delete(route);
         return route;
     }
 
-    public Route editRoute(Long id, Route route){
+    public Route editRoute(Long id, Route route) {
         Route routeToEdit = getRoute(id);
         routeToEdit.setTotalTime(routeToEdit.getTotalTime());
         routeToEdit.setGivenAnswerList(route.getGivenAnswerList());

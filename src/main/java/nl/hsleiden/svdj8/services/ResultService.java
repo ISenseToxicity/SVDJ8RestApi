@@ -16,32 +16,32 @@ public class ResultService {
     private final ResultRepository resultRepository;
 
     @Autowired
-    public ResultService(ResultRepository resultRepository){
+    public ResultService(ResultRepository resultRepository) {
         this.resultRepository = resultRepository;
     }
 
-    public Result addResult(Result result){
+    public Result addResult(Result result) {
         return resultRepository.save(result);
     }
 
-    public List<Result> getResults(){
+    public List<Result> getResults() {
         return StreamSupport
-                .stream(resultRepository.findAll().spliterator(),false)
+                .stream(resultRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
     }
 
-    public Result getResult(Long id){
+    public Result getResult(Long id) {
         return resultRepository.findById(id).orElseThrow(() ->
-        new RuntimeException(new NoResultFoundException(id)));
+                new RuntimeException(new NoResultFoundException(id)));
     }
 
-    public Result deleteResult(Long id){
+    public Result deleteResult(Long id) {
         Result result = getResult(id);
         resultRepository.delete(result);
         return result;
     }
 
-    public Result editResult(Long id, Result result){
+    public Result editResult(Long id, Result result) {
         Result resultToEdit = getResult(id);
         resultToEdit.setTotalTime(result.getTotalTime());
         resultToEdit.setGrant(result.getGrant());

@@ -5,11 +5,11 @@ import nl.hsleiden.svdj8.models.tables.Result;
 import java.sql.Time;
 
 public class ResultDto {
-    private  Long resultID;
+    private Long resultID;
     private int amountQuestions;
     private Time totalTime;
 
-    public static ResultDto from(Result result){
+    public static ResultDto from(Result result) {
         ResultDto resultDto = new ResultDto();
         resultDto.setResultID(result.getResultID());
         resultDto.setAmountQuestions(result.getAmountQuestions());

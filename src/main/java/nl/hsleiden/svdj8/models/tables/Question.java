@@ -8,12 +8,13 @@ import java.util.List;
 @Entity
 @Table(name = "question")
 public class Question {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "question_id")
     private Long questionID;
     @Column(name = "question_text")
     private String questionText;
-    @OneToMany(targetEntity=Answer.class,
+    @OneToMany(targetEntity = Answer.class,
             mappedBy = "questionId", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Answer> answers;
@@ -35,7 +36,7 @@ public class Question {
 
     }
 
-    public static Question from(QuestionDto questionDto){
+    public static Question from(QuestionDto questionDto) {
         Question question = new Question();
         question.setQuestionID(questionDto.getQuestionId());
         question.setQuestionText(questionDto.getQuestionText());
@@ -59,7 +60,7 @@ public class Question {
         return answers;
     }
 
-    public void setAnswers (List<Answer> answers) {
+    public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }
 

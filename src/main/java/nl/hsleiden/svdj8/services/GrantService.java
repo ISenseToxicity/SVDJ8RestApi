@@ -32,7 +32,7 @@ public class GrantService {
 
     public Grant getGrant(Long id){
         return grantRepository.findById(id).orElseThrow(() ->
-        new RuntimeException(new NoGrantFoundException(id)));
+                new RuntimeException(new NoGrantFoundException(id)));
     }
 
     public Grant deleteGrant(Long id){

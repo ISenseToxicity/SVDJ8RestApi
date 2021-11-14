@@ -6,13 +6,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="admin")
+@Table(name = "admin")
 public class Admin {
-    private @Id @GeneratedValue Long adminID;
+    private @Id
+    @GeneratedValue
+    Long adminID;
     private String name;
     private String password; //???????????TODO: CHECK DIT NA
 
-    public Admin(){}
+    public Admin() {
+    }
 
     public Admin(Long adminID, String name, String password) {
         this.adminID = adminID;

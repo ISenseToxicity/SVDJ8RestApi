@@ -9,7 +9,9 @@ import javax.persistence.Table;
 //@Table(name="catogory")
 public class Category {
 
-    private @Id @GeneratedValue Long catogoryID;
+    private @Id
+    @GeneratedValue
+    Long catogoryID;
     private String name;
     private String description;
 
@@ -22,7 +24,7 @@ public class Category {
     public Category() {
     }
 
-//    Setters and Getters
+    //    Setters and Getters
     public String getName() {
         return name;
     }

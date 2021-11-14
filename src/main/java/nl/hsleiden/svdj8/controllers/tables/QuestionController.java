@@ -24,7 +24,7 @@ public class QuestionController {
     }
 
     @GetMapping(value = "/all")
-    public ResponseEntity<List<QuestionDto>> getAllQuestions(){
+    public ResponseEntity<List<QuestionDto>> getAllQuestions() {
         List<Question> questions = questionService.getAllquestions();
         List<QuestionDto> questionsDto = new List<QuestionDto>() {
             @Override
@@ -142,24 +142,27 @@ public class QuestionController {
                 return null;
             }
         };
-        for(Question question: questions){
+        for (Question question : questions) {
             questionsDto.add(QuestionDto.from(question));
         }
         return new ResponseEntity<>(questionsDto, HttpStatus.OK);
     }
+
     @PostMapping
-    public ResponseEntity<QuestionDto> addQuestion(@RequestBody final QuestionDto questionDto){
+    public ResponseEntity<QuestionDto> addQuestion(@RequestBody final QuestionDto questionDto) {
 //        Question question = questionService.savequestion(Question.from(questionDto));
 //        questionService.savequestion(Question.from(questionDto));
         return new ResponseEntity<>(questionDto, HttpStatus.OK);
     }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<QuestionDto> getQuestion(@PathVariable final Long id){
+    public ResponseEntity<QuestionDto> getQuestion(@PathVariable final Long id) {
         Question question = questionService.getQuestion(id);
         return new ResponseEntity<>(QuestionDto.from(question), HttpStatus.OK);
     }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<QuestionDto> deleteQuestion(@PathVariable final Long id){
+    public ResponseEntity<QuestionDto> deleteQuestion(@PathVariable final Long id) {
         Question question = questionService.deleteQuestion(id);
         return new ResponseEntity<>(QuestionDto.from(question), HttpStatus.OK);
     }

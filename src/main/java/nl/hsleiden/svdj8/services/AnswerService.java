@@ -16,32 +16,32 @@ public class AnswerService {
     private final AnswerRepository answerRepository;
 
     @Autowired
-    public AnswerService(AnswerRepository answerRepository){
+    public AnswerService(AnswerRepository answerRepository) {
         this.answerRepository = answerRepository;
     }
 
-    public Answer addAnswer(Answer answer){
+    public Answer addAnswer(Answer answer) {
         return answerRepository.save(answer);
     }
 
-    public List<Answer> getAnswers(){
+    public List<Answer> getAnswers() {
         return StreamSupport
-                .stream(answerRepository.findAll().spliterator(),false)
+                .stream(answerRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
     }
 
-    public Answer getAnswer(Long id){
+    public Answer getAnswer(Long id) {
         return answerRepository.findById(id).orElseThrow(() ->
-        new RuntimeException(new NoAnswerFoundException(id)));
+                new RuntimeException(new NoAnswerFoundException(id)));
     }
 
-    public Answer deleteAnswer(Long id){
+    public Answer deleteAnswer(Long id) {
         Answer answer = getAnswer(id);
         answerRepository.delete(answer);
         return answer;
     }
 
-    public Answer editAnswer(Long id, Answer answer){
+    public Answer editAnswer(Long id, Answer answer) {
         Answer answerToEdit = getAnswer(id);
         answerToEdit.setAnswerText(answer.getAnswerText());
         answerToEdit.setkeywords(answer.getkeywords());

@@ -17,7 +17,7 @@ public class GivenAnswerDto {
     private Question questionId;
     private Answer answerId;
 
-    public static GivenAnswerDto from(GivenAnswer givenAnswer){
+    public static GivenAnswerDto from(GivenAnswer givenAnswer) {
         GivenAnswerDto givenAnswerDto = new GivenAnswerDto();
         givenAnswerDto.setAnswerId(givenAnswer.getAnswerId());
         givenAnswerDto.setGivenAnswerId(givenAnswer.getGivenAnswerId());
