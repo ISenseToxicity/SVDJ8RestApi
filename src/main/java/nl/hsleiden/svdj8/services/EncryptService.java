@@ -13,7 +13,7 @@ public class EncryptService {
 
     public String encrypt(String json) {
         Instant now = Instant.now();
-        byte[] thisShouldBeASecretKey = "5HQ0CgAg4Y".getBytes();
+        byte[] thisShouldBeASecretKey = new byte[64];
 
         return Jwts.builder()
                 .setSubject("Backend")

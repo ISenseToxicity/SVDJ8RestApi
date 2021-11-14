@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class DecryptService {
 
     public String decrypt(String token) {
-        byte[] key = "5HQ0CgAg4Y".getBytes();
+        byte[] key = new byte[64];
 
         Jws<Claims> result = Jwts.parserBuilder()
                 .requireAudience("Backend")
