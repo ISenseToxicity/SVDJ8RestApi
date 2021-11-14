@@ -1,18 +1,18 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import java.util.Collection;
+import java.util.List;
 
 public class QuestionList {
-    private Collection<Question> questions;
+    private List<Question> questions;
 
     public QuestionList() {
     }
 
-    public Collection<Question> getQuestions() {
+    public List<Question> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(Collection<Question> questions) {
+    public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
 
