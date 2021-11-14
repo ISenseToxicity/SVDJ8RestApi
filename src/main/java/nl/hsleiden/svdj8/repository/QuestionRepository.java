@@ -8,5 +8,5 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface QuestionRepository  extends CrudRepository<Question, Long> {
-    List<Question> findByAnswers(Answer answers);
+//    List<Question> findByAnswers(Answer answers);
    }

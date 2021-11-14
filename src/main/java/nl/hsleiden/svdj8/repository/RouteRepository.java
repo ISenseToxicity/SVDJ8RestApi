@@ -8,6 +8,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface RouteRepository extends CrudRepository<Route, Long> {
-    List<Route> findByResultID(Result resultID);
-    List<Route> findByGivenAnswerList(GivenAnswer givenAnswerList);
+//    List<Route> findByResultID(Result resultID);
+//    List<Route> findByGivenAnswerList(GivenAnswer givenAnswerList);
 }

@@ -9,5 +9,5 @@ import java.util.Collection;
 import java.util.List;
 
 public interface GrantRepository extends JpaRepository<Grant, Long> {
-    List<Grant> findByKeywords(Keyword keywords);
+//    List<Grant> findByKeywords(Keyword keywords);
    }

@@ -11,17 +11,18 @@ public class Route {
     @Column(name = "route_id")
     private  Long routeId;
     private int totalTime;
-    @OneToMany(targetEntity=GivenAnswer.class,
-            mappedBy = "route_id", fetch = FetchType.LAZY,
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "result_id", referencedColumnName = "result_id")
+    private Result resultId;
+    @OneToMany(targetEntity = GivenAnswer.class,
+            mappedBy = "routeId", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<GivenAnswer> givenAnswerList;
-    @ManyToOne
-    @JoinColumn(name = "result_id", referencedColumnName = "result_id")
-    private Result resultID;
 
-    public Route(int totalTime, Result resultID) {
+
+    public Route(int totalTime, Result resultId) {
         this.totalTime = totalTime;
-        this.resultID = resultID;
+        this.resultId = resultId;
         this.givenAnswerList = new List<GivenAnswer>() {
             @Override
             public int size() {
@@ -153,6 +154,7 @@ public class Route {
 
     }
 
+//    Setters And Getters
     public int getTotalTime() {
         return totalTime;
     }
@@ -169,27 +171,19 @@ public class Route {
         this.givenAnswerList = givenAnswerList;
     }
 
-    public Result getResultID() {
-        return resultID;
+    public Result getResultId() {
+        return resultId;
     }
 
-    public void setResultID(Result resultID) {
-        this.resultID = resultID;
-    }
-
-    public void addGivenAnswer(GivenAnswer givenAnswer) {
-        givenAnswerList.add(givenAnswer);
-    }
-
-    public void removeLastGivenAnswer() {
-        givenAnswerList.remove(givenAnswerList.size()-1);
-    }
-
-    public void setRouteId(Long routeID) {
-        this.routeId = routeID;
+    public void setResultId(Result resultID) {
+        this.resultId = resultID;
     }
 
     public Long getRouteId() {
         return routeId;
+    }
+
+    public void setRouteId(Long routeId) {
+        this.routeId = routeId;
     }
 }

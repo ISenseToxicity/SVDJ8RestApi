@@ -12,7 +12,7 @@ public class Answer {
     private String answerText;
     @ManyToOne
     @JoinColumn(name="question_id", nullable=false)
-    private Question question_id;
+    private Question questionId;
     @ManyToMany
     @JoinColumn(name = "keyword", referencedColumnName = "keyword_id")
     private List<Keyword> keywords;
@@ -35,12 +35,12 @@ public class Answer {
             this.answerID = answerID;
         }
 
-    public Question getQuestion_id() {
-        return question_id;
+    public Question getQuestionId() {
+        return questionId;
     }
 
-    public void setQuestion_id(Question questionID) {
-        this.question_id = questionID;
+    public void setQuestionId(Question questionID) {
+        this.questionId = questionID;
     }
 
     public List<Keyword> getCatogoryIds() {

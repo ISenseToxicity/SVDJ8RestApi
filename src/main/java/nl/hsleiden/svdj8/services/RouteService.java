@@ -45,7 +45,7 @@ public class RouteService {
         Route routeToEdit = getRoute(id);
         routeToEdit.setTotalTime(routeToEdit.getTotalTime());
         routeToEdit.setGivenAnswerList(route.getGivenAnswerList());
-        routeToEdit.setResultID(route.getResultID());
+        routeToEdit.setResultId(route.getResultId());
         return route;
     }
 }

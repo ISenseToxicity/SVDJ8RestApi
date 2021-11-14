@@ -4,9 +4,6 @@ import nl.hsleiden.svdj8.models.tables.Answer;
 import nl.hsleiden.svdj8.models.tables.Keyword;
 import nl.hsleiden.svdj8.models.tables.Question;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import java.util.List;
 
 public class AnswerDto {
@@ -20,7 +17,7 @@ public class AnswerDto {
         AnswerDto answerDto = new AnswerDto();
         answerDto.setAnswerText(answer.getAnswerText());
         answerDto.setKeywords(answer.getkeywords());
-        answerDto.setQuestion_id(answer.getQuestion_id());
+        answerDto.setQuestion_id(answer.getQuestionId());
         answerDto.setAnswerID(answer.getAnswerID());
         return answerDto;
     }

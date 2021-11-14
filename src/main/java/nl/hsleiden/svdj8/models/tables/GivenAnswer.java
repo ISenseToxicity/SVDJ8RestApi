@@ -12,10 +12,10 @@ public class GivenAnswer {
     @Column(name = "given_answer_id")
     private Long givenAnswerId;
     private int elapsedSeconds;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, optional = false, targetEntity = Route.class)
     @JoinColumn(name = "route_id", referencedColumnName = "route_id")
     private Route routeId;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "question_id", referencedColumnName = "question_id")
     private Question questionId;
     @ManyToOne(cascade = CascadeType.ALL)
@@ -77,4 +77,5 @@ public class GivenAnswer {
     public void setRouteId(Route routeId) {
         this.routeId = routeId;
     }
+
 }

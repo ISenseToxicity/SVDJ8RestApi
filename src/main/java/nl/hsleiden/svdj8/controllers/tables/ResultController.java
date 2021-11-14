@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@RestController
+@RequestMapping(value = "/result",method = RequestMethod.GET)
 public class ResultController {
 
     @Autowired
@@ -16,7 +17,6 @@ public class ResultController {
     public ResultController(ResultService resultService) {
         this.resultService = resultService;
     }
-
 
     @PostMapping
     public ResponseEntity<ResultDto> addResult(@RequestBody final ResultDto resultDto){

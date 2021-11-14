@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/grant")
+//@RequestMapping(value = "/grant",method = RequestMethod.GET)
 public class GrantController {
 
     private final GrantService grantService;
@@ -25,7 +25,8 @@ public class GrantController {
         Grant grant = grantService.addGrant(Grant.from(grantDto));
         return new ResponseEntity<>(grantDto, HttpStatus.OK);
               }
-    @GetMapping(value = "{id}")
+
+    @RequestMapping(value = "/grant/{id}", method = RequestMethod.GET)
     public ResponseEntity<GrantDto> getItem(@PathVariable final Long id){
                 Grant grant = grantService.getGrant(id);
                 return new ResponseEntity<>(GrantDto.from(grant), HttpStatus.OK);

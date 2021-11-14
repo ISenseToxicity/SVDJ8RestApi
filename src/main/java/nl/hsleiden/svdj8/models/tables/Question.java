@@ -13,7 +13,9 @@ public class Question {
     private Long questionID;
     @Column(name = "question_text")
     private String questionText;
-    @OneToMany(targetEntity=Answer.class, mappedBy = "question_id", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity=Answer.class,
+            mappedBy = "questionId", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private List<Answer> answers;
 
     private String extraInfoTile;

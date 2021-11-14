@@ -7,5 +7,4 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface KeywordRepository extends CrudRepository<Keyword, Long> {
-    List<Keyword> findByGrand(Grant grand);
 }

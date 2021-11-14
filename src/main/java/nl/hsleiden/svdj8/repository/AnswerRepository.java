@@ -10,6 +10,5 @@ import java.util.List;
 
 @Repository
 public interface AnswerRepository extends CrudRepository<Answer, Long> {
-    List<Answer> findByQuestion_id(Question question_id);
     List<Answer> findByKeywords(Keyword keywords);
 }

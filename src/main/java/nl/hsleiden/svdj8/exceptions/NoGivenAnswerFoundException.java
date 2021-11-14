@@ -1,13 +1,14 @@
 package nl.hsleiden.svdj8.exceptions;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.text.MessageFormat;
 
-public class NoGivenAnswerFoundException extends RuntimeException {
-
-    public NoGivenAnswerFoundException(Long id){
-//        super(MessageFormat.format("Could not find an answer with that Id: {0}"),
-//                id);
-
-    }
-
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+public class NoGivenAnswerFoundException extends ResponseStatusException {
+    public NoGivenAnswerFoundException(Long id) {
+            super(HttpStatus.NOT_FOUND);
+        }
 }
