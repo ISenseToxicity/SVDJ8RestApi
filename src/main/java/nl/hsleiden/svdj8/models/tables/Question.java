@@ -1,5 +1,7 @@
 package nl.hsleiden.svdj8.models.tables;
 
+import nl.hsleiden.svdj8.daos.Dto.QuestionDto;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -31,6 +33,17 @@ public class Question {
 
     }
 
+    public static Question from(QuestionDto questionDto){
+        Question question = new Question();
+        question.setQuestionID(questionDto.getQuestionId());
+        question.setQuestionText(questionDto.getQuestionText());
+        question.setAnswers(questionDto.getAnswers());
+        question.setExtraInfoDescription(questionDto.getExtraInfoDescription());
+        question.setExtraInfoVideoURL(questionDto.getExtraInfoVideoURL());
+        question.setExtraInfoTile(questionDto.getExtraInfoTile());
+
+        return question;
+    }
 
 
     public String getQuestionText() {

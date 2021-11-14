@@ -9,13 +9,16 @@ public class Answer {
     @Id @GeneratedValue
     @Column(name = "answer_id")
     private Long answerID;
+    private String answerText;
     @ManyToOne
     @JoinColumn(name="question_id", nullable=false)
     private Question question_id;
-    private String answerText;
     @ManyToMany
     @JoinColumn(name = "keyword", referencedColumnName = "keyword_id")
     private List<Keyword> keywords;
+
+    @OneToMany(mappedBy = "answerId", orphanRemoval = true)
+    private List<GivenAnswer> givenAnswers;
 
     public Answer(Long answerID, String answerText, List<Keyword> keywords) {
         this.answerID = answerID;
@@ -71,6 +74,14 @@ public class Answer {
 
     @ManyToOne(optional = false)
     private Question question;
+
+    public List<GivenAnswer> getGivenAnswers() {
+        return givenAnswers;
+    }
+
+    public void setGivenAnswers(List<GivenAnswer> givenAnswers) {
+        this.givenAnswers = givenAnswers;
+    }
 
     public Question getQuestion() {
         return question;

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 //import javax.inject.Scope;
-import java.util.Collection;
+import java.util.List;
 
 //@Scope("session")
 @Component(value = "QuestionService")
@@ -22,7 +22,8 @@ public class QuestionService {
         question = new Question();
     }
 
-    public Collection<Question> getAllquestion() {
+    public List<Question> getAllquestions() {
+
         return questionDAO.getAll();
     }
 
@@ -30,6 +31,7 @@ public class QuestionService {
         validate(QuestionService.this.question);
         return questionDAO.save(QuestionService.this.question);
     }
+
 
     private void validate(Question question) {
         // Dont know yet

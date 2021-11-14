@@ -1,21 +1,24 @@
 package nl.hsleiden.svdj8.models.tables;
 
+import nl.hsleiden.svdj8.daos.Dto.GivenAnswerDto;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "given_answer")
-public class GivenAnswer{
-    @Id @GeneratedValue
+public class GivenAnswer {
+    @Id
+    @GeneratedValue
     @Column(name = "given_answer_id")
     private Long givenAnswerId;
     private int elapsedSeconds;
     @ManyToOne
     private Route routeId;
-    @OneToOne
-    @JoinColumn(name = "question_id",referencedColumnName = "question_id")
+    @ManyToOne
+    @JoinColumn(name = "question_id", referencedColumnName = "question_id")
     private Question questionId;
-    @OneToOne
-    @JoinColumn(name = "answer_id",referencedColumnName = "answer_id", insertable = true, updatable = true)
+    @ManyToOne
+    @JoinColumn(name = "answer_id", referencedColumnName = "answer_id", insertable = true, updatable = true)
     private Answer answerId;
 
     public GivenAnswer(Long givenAnswerId, int elapsedSeconds, Question questionId, Answer answerId) {
@@ -26,7 +29,12 @@ public class GivenAnswer{
     }
 
     public GivenAnswer() {
+    }
 
+    public static GivenAnswer from(GivenAnswerDto givenAnswerDto) {
+        GivenAnswer givenAnswer = new GivenAnswer();
+        givenAnswer.setGivenAnswerId(givenAnswerDto.getGivenAnswerId());
+        return givenAnswer;
     }
 
     @Id
@@ -63,4 +71,11 @@ public class GivenAnswer{
         this.answerId = answerId;
     }
 
+    public Route getRouteId() {
+        return routeId;
+    }
+
+    public void setRouteId(Route routeId) {
+        this.routeId = routeId;
+    }
 }

@@ -3,7 +3,7 @@ package nl.hsleiden.svdj8.daos;
 import nl.hsleiden.svdj8.models.tables.Question;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -23,7 +23,7 @@ public class QuestionDAO implements Dao<Question> {
     }
 
     @Override
-    public Collection getAll() {
+    public List<Question> getAll() {
         return null;
     }
 

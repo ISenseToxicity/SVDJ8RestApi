@@ -44,7 +44,7 @@ public class ResultService {
     public Result editResult(Long id, Result result){
         Result resultToEdit = getResult(id);
         resultToEdit.setTotalTime(result.getTotalTime());
-        resultToEdit.setGrants(result.getGrants());
+        resultToEdit.setGrant(result.getGrant());
         resultToEdit.setAmountQuestions(result.getAmountQuestions());
         return result;
     }

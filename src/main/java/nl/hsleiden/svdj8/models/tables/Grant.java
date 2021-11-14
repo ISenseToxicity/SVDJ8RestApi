@@ -1,5 +1,7 @@
 package nl.hsleiden.svdj8.models.tables;
 
+import nl.hsleiden.svdj8.daos.Dto.GrantDto;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,7 +18,6 @@ public class Grant {
             joinColumns = @JoinColumn(name = "grant_id", referencedColumnName = "grant_id"))
     private List<Keyword> keywords;
 
-
     public Grant(Long grantID, String name, String description, Result result, List<Keyword> keywords) {
         this.grantID = grantID;
         this.name = name;
@@ -24,6 +25,12 @@ public class Grant {
         this.keywords = keywords;
     }
     public Grant(){}
+
+    public static Grant from(GrantDto grantDto){
+        Grant grant = new Grant();
+        grant.setGrantID(grantDto.getId());
+        return grant;
+    }
 
     /*Setters Getters*/
     public void setGrantID(Long grantID) {
