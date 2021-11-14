@@ -11,8 +11,6 @@ import java.time.temporal.ChronoUnit;
 @Service
 public class EncryptService {
 
-    EncryptService encryptService;
-
     public String encrypt(String json) {
         Instant now = Instant.now();
         byte[] thisShouldBeASecretKey = "5HQ0CgAg4Y".getBytes();
