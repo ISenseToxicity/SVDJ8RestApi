@@ -1,5 +1,7 @@
 package nl.hsleiden.svdj8.models.tables;
 
+import nl.hsleiden.svdj8.daos.Dto.AnswerDto;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -26,6 +28,14 @@ public class Answer {
     public Answer() {
 
     }
+    public static Answer from(AnswerDto answerDto){
+        Answer answer = new Answer();
+        answer.setAnswerID(answerDto.getAnswerID());
+        answer.setAnswerText(answerDto.getAnswerText());
+        answer.setkeywords(answerDto.getKeywords());
+        answer.setQuestionId(answerDto.getQuestion_id());
+        return answer;
+    }
 //    Getters Setters
     public Long getAnswerID() {
         return answerID;
@@ -43,11 +53,11 @@ public class Answer {
         this.questionId = questionID;
     }
 
-    public List<Keyword> getCatogoryIds() {
+    public List<Keyword> getKeywords() {
         return keywords;
     }
 
-    public void setCatogoryIds(List<Keyword> keywords) {
+    public void setKeywords(List<Keyword> keywords) {
         this.keywords = keywords;
     }
 

@@ -1,7 +1,10 @@
 package nl.hsleiden.svdj8.services;
 
 import nl.hsleiden.svdj8.daos.QuestionDAO;
+import nl.hsleiden.svdj8.exceptions.NoGrantFoundException;
+import nl.hsleiden.svdj8.models.tables.Grant;
 import nl.hsleiden.svdj8.models.tables.Question;
+import nl.hsleiden.svdj8.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +17,8 @@ public class QuestionService {
 
     @Autowired
     private QuestionDAO questionDAO;
+    @Autowired
+    private QuestionRepository questionRepository;
     private Question question = new Question();
 
 
@@ -41,4 +46,14 @@ public class QuestionService {
         return question;
     }
 
+    public Question deleteQuestion(Long id) {
+        Question question = getQuestion(id);
+        questionDAO.delete(QuestionService.this.question);
+        return QuestionService.this.question;
+    }
+
+    public Question getQuestion(Long id) {
+        return questionRepository.findById(id).orElseThrow(() ->
+                new RuntimeException(new NoGrantFoundException(id)));
+    }
 }

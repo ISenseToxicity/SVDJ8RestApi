@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@RestController
+@RequestMapping(value = "/givenAnswer")
 public class GivenAnswerController {
 
     private final GivenAnswerService givenAnswerService;
@@ -22,14 +23,14 @@ public class GivenAnswerController {
         GivenAnswer givenAnswer = givenAnswerService.addGivenAnswer(GivenAnswer.from(givenAnswerDto));
         return new ResponseEntity<>(givenAnswerDto, HttpStatus.OK);
     }
-    @GetMapping(value = "{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<GivenAnswerDto> getItem(@PathVariable final Long id){
         GivenAnswer givenAnswer = givenAnswerService.getGivenAnswer(id);
-        return new ResponseEntity(GivenAnswerDto.from(givenAnswer), HttpStatus.OK);
+        return new ResponseEntity<>(GivenAnswerDto.from(givenAnswer), HttpStatus.OK);
     }
-    @DeleteMapping(value = "{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<GivenAnswerDto> deleteGivenAnswer(@PathVariable final Long id){
         GivenAnswer givenAnswer = givenAnswerService.deleteGivenAnswer(id);
-        return new ResponseEntity(GivenAnswerDto.from(givenAnswer), HttpStatus.OK);
+        return new ResponseEntity<>(GivenAnswerDto.from(givenAnswer), HttpStatus.OK);
     }
 }

@@ -15,15 +15,14 @@ public class QuestionDto {
     private String extraInfoDescription;
     private String extraInfoVideoURL;
 
-    public static Question from(QuestionDto questionDto) {
-        Question question = new Question();
+    public static QuestionDto from(Question question) {
+        QuestionDto questionDto = new QuestionDto();
         questionDto.setQuestionText(question.getQuestionText());
         questionDto.setQuestionId(question.getQuestionID());
         questionDto.setExtraInfoDescription(question.getExtraInfoDescription());
         questionDto.setExtraInfoTile(question.getExtraInfoTile());
         questionDto.setExtraInfoVideoURL(question.getExtraInfoVideoURL());
-
-        return question;
+        return questionDto;
     }
 
     public String getQuestionText() {

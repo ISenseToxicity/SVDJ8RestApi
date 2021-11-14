@@ -45,7 +45,7 @@ public class AnswerService {
         Answer answerToEdit = getAnswer(id);
         answerToEdit.setAnswerText(answer.getAnswerText());
         answerToEdit.setkeywords(answer.getkeywords());
-        answerToEdit.setCatogoryIds(answer.getCatogoryIds());
+        answerToEdit.setQuestionId(answer.getQuestionId());
         return answerToEdit;
     }
 }

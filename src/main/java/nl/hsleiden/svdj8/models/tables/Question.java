@@ -43,7 +43,6 @@ public class Question {
         question.setExtraInfoDescription(questionDto.getExtraInfoDescription());
         question.setExtraInfoVideoURL(questionDto.getExtraInfoVideoURL());
         question.setExtraInfoTile(questionDto.getExtraInfoTile());
-
         return question;
     }
 

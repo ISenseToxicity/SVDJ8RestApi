@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-//@RequestMapping(value = "/grant",method = RequestMethod.GET)
+@RequestMapping(value = "/grant",method = RequestMethod.GET)
 public class GrantController {
 
     private final GrantService grantService;

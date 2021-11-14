@@ -8,6 +8,6 @@ import java.text.MessageFormat;
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class NoGrantFoundException extends ResponseStatusException {
     public NoGrantFoundException(Long id) {
-        super(HttpStatus.NOT_FOUND);
+        super(HttpStatus.I_AM_A_TEAPOT);
     }
 }

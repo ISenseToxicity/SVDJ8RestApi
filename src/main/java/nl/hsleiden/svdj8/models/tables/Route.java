@@ -1,5 +1,7 @@
 package nl.hsleiden.svdj8.models.tables;
 
+import nl.hsleiden.svdj8.daos.Dto.RouteDto;
+
 import javax.persistence.*;
 import java.util.*;
 import java.util.List;
@@ -19,6 +21,14 @@ public class Route {
             cascade = CascadeType.ALL)
     private List<GivenAnswer> givenAnswerList;
 
+    public static Route from(RouteDto routeDto){
+        Route route = new Route();
+        route.setRouteId(routeDto.getRouteId());
+        route.setTotalTime(routeDto.getTotalTime());
+        route.setGivenAnswerList(routeDto.getGivenAnswerList());
+        route.setResultId(routeDto.getResultId());
+        return route;
+    }
 
     public Route(int totalTime, Result resultId) {
         this.totalTime = totalTime;
