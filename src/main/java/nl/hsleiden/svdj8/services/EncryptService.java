@@ -13,7 +13,7 @@ public class EncryptService {
 
     public String encrypt(String json) {
         Instant now = Instant.now();
-        byte[] thisShouldBeASecretKey = new byte[64];
+        byte[] key = new byte[64];
 
         return Jwts.builder()
                 .setSubject("Backend")
@@ -21,7 +21,7 @@ public class EncryptService {
                 .claim("JsonString", json)
                 .setIssuedAt(Date.from(now))
                 .setExpiration(Date.from(now.plus(1, ChronoUnit.MINUTES)))
-                .signWith(Keys.hmacShaKeyFor(thisShouldBeASecretKey))
+                .signWith(Keys.hmacShaKeyFor(key))
                 .compact();
     }
 }
