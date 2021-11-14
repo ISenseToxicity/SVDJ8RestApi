@@ -9,9 +9,11 @@ import java.util.List;
 public class Route {
     @Id @GeneratedValue
     @Column(name = "route_id")
-    private  Long routeID;
+    private  Long routeId;
     private int totalTime;
-    @OneToMany(targetEntity=Answer.class,mappedBy = "route", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(targetEntity=GivenAnswer.class,
+            mappedBy = "route_id", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private List<GivenAnswer> givenAnswerList;
     @ManyToOne
     @JoinColumn(name = "result_id", referencedColumnName = "result_id")
@@ -183,13 +185,11 @@ public class Route {
         givenAnswerList.remove(givenAnswerList.size()-1);
     }
 
-    public void setRouteID(Long routeID) {
-        this.routeID = routeID;
+    public void setRouteId(Long routeID) {
+        this.routeId = routeID;
     }
 
-    @Id
-    @GeneratedValue
-    public Long getRouteID() {
-        return routeID;
+    public Long getRouteId() {
+        return routeId;
     }
 }

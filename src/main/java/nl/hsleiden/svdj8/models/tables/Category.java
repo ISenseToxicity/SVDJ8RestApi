@@ -43,8 +43,6 @@ public class Category {
         this.catogoryID = catogoryID;
     }
 
-    @Id
-    @GeneratedValue
     public Long getCatogoryID() {
         return catogoryID;
     }

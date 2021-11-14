@@ -10,6 +10,7 @@ import java.sql.Time;
 public class Result extends Persistence {
 
     @Id @GeneratedValue
+    @Column(name = "result_id")
     private  Long resultID;
     private int amountQuestions;
     private Time totalTime;
@@ -42,8 +43,6 @@ public class Result extends Persistence {
         this.resultID = resultID;
     }
 
-    @Id
-    @GeneratedValue
     public Long getResultID() {
         return resultID;
     }
@@ -62,17 +61,6 @@ public class Result extends Persistence {
 
     public void setTotalTime(Time totalTime) {
         this.totalTime = totalTime;
-    }
-
-    @ManyToOne(optional = false)
-    private Result results;
-
-    public Result getResults() {
-        return results;
-    }
-
-    public void setResults(Result results) {
-        this.results = results;
     }
 
     public Grant getGrant() {

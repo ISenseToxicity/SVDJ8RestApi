@@ -43,8 +43,6 @@ public class Admin {
         this.adminID = adminID;
     }
 
-    @Id
-    @GeneratedValue
     public Long getAdminID() {
         return adminID;
     }

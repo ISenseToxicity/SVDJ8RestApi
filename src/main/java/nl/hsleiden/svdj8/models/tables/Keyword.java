@@ -14,7 +14,7 @@ public class Keyword {
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "grant_and_keyword",
             joinColumns = @JoinColumn(name = "keyword_id", referencedColumnName = "keyword_id"))
-    private List<Grant> grand;
+    private List<Grant> grant;
 
     public Keyword(Long keywordID, String restriction) {
         this.keywordID = keywordID;
@@ -43,14 +43,11 @@ public class Keyword {
         this.restriction = restriction;
     }
 
-    @ManyToOne(optional = false)
-    private Grant grant;
-
-    public Grant getGrant() {
+    public List<Grant> getGrant() {
         return grant;
     }
 
-    public void setGrant(Grant grant) {
+    public void setGrant(List<Grant> grant) {
         this.grant = grant;
     }
 }

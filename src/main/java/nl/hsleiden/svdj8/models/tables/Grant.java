@@ -37,8 +37,6 @@ public class Grant {
         this.grantID = grantID;
     }
 
-    @Id
-    @GeneratedValue
     public Long getGrantID() {
         return grantID;
     }

@@ -13,11 +13,12 @@ public class GivenAnswer {
     private Long givenAnswerId;
     private int elapsedSeconds;
     @ManyToOne
+    @JoinColumn(name = "route_id", referencedColumnName = "route_id")
     private Route routeId;
     @ManyToOne
     @JoinColumn(name = "question_id", referencedColumnName = "question_id")
     private Question questionId;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "answer_id", referencedColumnName = "answer_id", insertable = true, updatable = true)
     private Answer answerId;
 
@@ -37,8 +38,6 @@ public class GivenAnswer {
         return givenAnswer;
     }
 
-    @Id
-    @GeneratedValue
     public Long getGivenAnswerId() {
         return givenAnswerId;
     }

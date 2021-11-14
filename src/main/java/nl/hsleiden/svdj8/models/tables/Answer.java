@@ -6,7 +6,7 @@ import java.util.List;
 @Entity
 @Table(name = "answer")
 public class Answer {
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "answer_id")
     private Long answerID;
     private String answerText;
@@ -16,9 +16,6 @@ public class Answer {
     @ManyToMany
     @JoinColumn(name = "keyword", referencedColumnName = "keyword_id")
     private List<Keyword> keywords;
-
-    @OneToMany(mappedBy = "answerId", orphanRemoval = true)
-    private List<GivenAnswer> givenAnswers;
 
     public Answer(Long answerID, String answerText, List<Keyword> keywords) {
         this.answerID = answerID;
@@ -30,6 +27,13 @@ public class Answer {
 
     }
 //    Getters Setters
+    public Long getAnswerID() {
+        return answerID;
+    }
+
+        public void setAnswerID(Long answerID) {
+            this.answerID = answerID;
+        }
 
     public Question getQuestion_id() {
         return question_id;
@@ -47,14 +51,6 @@ public class Answer {
         this.keywords = keywords;
     }
 
-    public Long getAnswerID() {
-        return answerID;
-    }
-
-    public void setAnswerID(Long answerID) {
-        this.answerID = answerID;
-    }
-
     public String getAnswerText() {
         return answerText;
     }
@@ -67,27 +63,7 @@ public class Answer {
         return keywords;
     }
 
-    public void setkeywords(List<Keyword> keywords
-    ) {
+    public void setkeywords(List<Keyword> keywords) {
         this.keywords = keywords;
-    }
-
-    @ManyToOne(optional = false)
-    private Question question;
-
-    public List<GivenAnswer> getGivenAnswers() {
-        return givenAnswers;
-    }
-
-    public void setGivenAnswers(List<GivenAnswer> givenAnswers) {
-        this.givenAnswers = givenAnswers;
-    }
-
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(Question question) {
-        this.question = question;
     }
 }
