@@ -1,10 +1,15 @@
 package nl.hsleiden.svdj8.controllers;
 
 import nl.hsleiden.svdj8.models.Data;
+import nl.hsleiden.svdj8.services.ConstructService;
+import nl.hsleiden.svdj8.services.DeconstructService;
 
 import java.util.ArrayList;
 
 public class DataController {
+
+    DeconstructService deconstructService;
+    ConstructService constructService;
 
     public Data convertToNewData(Data oldData) {
         return null;
