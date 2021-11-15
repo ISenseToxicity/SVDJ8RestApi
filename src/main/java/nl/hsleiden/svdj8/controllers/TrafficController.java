@@ -2,14 +2,16 @@ package nl.hsleiden.svdj8.controllers;
 
 import nl.hsleiden.svdj8.exceptions.NoSuchElementException;
 import nl.hsleiden.svdj8.models.ReturnModel;
-import nl.hsleiden.svdj8.models.temp.Question;
+import nl.hsleiden.svdj8.models.tables.Question;
 import nl.hsleiden.svdj8.models.temp.TempQuestionListMaker;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @RestController
+@RequestMapping(value = "/trafic")
 public class TrafficController {
 
     @GetMapping(value = "/questionlist")
@@ -24,7 +26,7 @@ public class TrafficController {
     @GetMapping(value = "/question/{id}")
     public Question getQuestion(@PathVariable int id){
         TempQuestionListMaker tempQuestionListMaker = new TempQuestionListMaker();
-        ArrayList<Question> questions = tempQuestionListMaker.makeList().getQuestions();
+        List<Question> questions = tempQuestionListMaker.makeList().getQuestions();
         if(questions.size() -1 < id)  throw new NoSuchElementException("index out of bounds");
         return questions.get(id);
     }

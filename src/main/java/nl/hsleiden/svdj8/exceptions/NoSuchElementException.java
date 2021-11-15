@@ -8,6 +8,6 @@ import org.springframework.web.server.ResponseStatusException;
 public class NoSuchElementException extends ResponseStatusException {
 
     public NoSuchElementException(String message) {
-        super(HttpStatus.NOT_FOUND,message);
+        super(HttpStatus.NOT_FOUND, message);
     }
 }
