@@ -18,6 +18,7 @@ public class EncryptService {
      * @return jwtToken String
      * @author Rob
      */
+
     public String encrypt(String json) {
         Instant now = Instant.now();
         byte[] key = new byte[64];
