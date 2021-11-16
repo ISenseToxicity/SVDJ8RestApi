@@ -6,15 +6,13 @@ public class Data {
     private String token;
     private char duty;
     private HashMap<String,Object>givenVariables;
-    private boolean isNewData;
 
 //    Constructor
 
-    public Data(String token, char duty, HashMap<String, Object> givenVariables, boolean isNewData) {
+    public Data(String token, char duty, HashMap<String, Object> givenVariables) {
         this.token = token;
         this.duty = duty;
         this.givenVariables = givenVariables;
-        this.isNewData = isNewData;
     }
 
 //    Getters and Setters
@@ -43,11 +41,4 @@ public class Data {
         this.givenVariables = givenVariables;
     }
 
-    public boolean isNewData() {
-        return isNewData;
-    }
-
-    public void setNewData(boolean newData) {
-        isNewData = newData;
-    }
 }

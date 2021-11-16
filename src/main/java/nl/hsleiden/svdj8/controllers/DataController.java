@@ -55,8 +55,7 @@ public class DataController {
         String token = (String) mapData.get("token");
         char duty = (char) mapData.get("duty");
         HashMap<String, Object> givenVariables = (HashMap<String, Object>) mapData.get("givenVariables");
-        boolean isNewData = (boolean) mapData.get("isNewData");
-        return new Data(token, duty, givenVariables, isNewData);
+        return new Data(token, duty, givenVariables);
     }
 
 

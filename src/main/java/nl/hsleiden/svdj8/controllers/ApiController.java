@@ -1,9 +1,12 @@
 package nl.hsleiden.svdj8.controllers;
 
 import nl.hsleiden.svdj8.models.Data;
+import nl.hsleiden.svdj8.models.tables.Question;
 import nl.hsleiden.svdj8.services.AuthenticatingService;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
 import java.util.Map;
 
 @RestController
@@ -18,91 +21,33 @@ public class ApiController {
         return apiController;
     }
 
-    public void deconstructData(String json) {
-        DataController dataController = DataController.getInstance();
-        StatementController statementController = StatementController.getInstance();
-
-        Map<String, Object> deconstructedData = dataController.deconstructOldData(json);
-        Data data = dataController.setData(deconstructedData);
-        checkStatement(data);
+    public boolean newRequest(String json) {
+        Data incomingData = deconstructData(json);
+        return checkStatement(incomingData);
     }
 
-    private void checkStatement(Data data) {
+    public Data deconstructData(String json) {
+        DataController dataController = DataController.getInstance();
+
+        Map<String, Object> deconstructedData = dataController.deconstructOldData(json);
+        return dataController.setData(deconstructedData);
+    }
+
+    private Boolean checkStatement(Data data) {
         StatementController statementController = StatementController.getInstance();
         char statement = data.getDuty();
         switch (statement) {
             case 'C':
-                statementController.getCreateStatement(data);
-                break;
+                return statementController.getCreateStatement(data);
             case 'R':
-                statementController.getReadDataStatement(data);
-                break;
+                return statementController.getReadDataStatement(data);
             case 'U':
-                statementController.getUpdateStatement(data);
-                break;
+                return statementController.getUpdateStatement(data);
             case 'D':
-                statementController.getDeleteStatement(data);
-                break;
+                return statementController.getDeleteStatement(data);
+            default:
+                return null;
         }
-    }
-
-    private boolean checkAuthentication(Data data) {
-        String token = data.getToken();
-//        return authenticatingService.isAdmin(token);
-        return false;
-    }
-
-
-    public Data returnDataStatement(Data oldData) {
-        return null;
-    }
-
-    public void getConstructedNewData(Data newData) {
-
-    }
-
-    public void chooseTable() {
-
-    }
-
-    public Data makeSubsidieStatement(Data oldData) {
-        return null;
-    }
-
-    public Data allQuestionsStatement(Data oldData) {
-        return null;
-    }
-
-    public Data createRouteStatement(Data oldData) {
-        return null;
-    }
-
-    public Data addAnswerStatement(Data oldData) {
-        return null;
-    }
-
-    public String returnQueryAnswer(Data newData) {
-        return null; //JSON
-    }
-
-    public Data questionStatement() {
-        return null;
-    }
-
-    public Data subsidieStatement() {
-        return null;
-    }
-
-    private Data answerToQuestionStatement() {
-        return null;
-    }
-
-    public Data categoryStatement() {
-        return null;
-    }
-
-    public Data setTheme(Data oldData) {
-        return null;
     }
 
 }
