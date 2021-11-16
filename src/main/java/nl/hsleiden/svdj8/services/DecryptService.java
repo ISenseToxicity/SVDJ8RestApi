@@ -9,14 +9,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class DecryptService {
 
-    /**
-     * Creates an Admin even if token is not from an admin.
-     *
-     * @param token string
-     * @return Admin class
-     * @author Rob
-     */
-
     public Admin decrypt(String token) {
         byte[] key = new byte[64];
 
