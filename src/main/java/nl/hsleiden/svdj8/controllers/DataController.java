@@ -5,6 +5,7 @@ import nl.hsleiden.svdj8.services.ConstructService;
 import nl.hsleiden.svdj8.services.DeconstructService;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class DataController {
 
@@ -15,8 +16,8 @@ public class DataController {
         return null;
     }
 
-    public Data deconstructOldData(Data oldData) {
-        return null;
+    public Map<String, Object> deconstructOldData(String json) {
+        return deconstructService.deconstructJson(json);
     }
 
     public Data reconstructOldData(Data oldData) {
@@ -39,6 +40,9 @@ public class DataController {
         return null;
     }
 
+    public Data setData(Map<String, Object> data) {
+        return null;
+    }
 
 
 }
