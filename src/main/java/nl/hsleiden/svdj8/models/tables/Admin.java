@@ -42,9 +42,9 @@ public class Admin {
         this.password = password;
     }
 
-    public void setAdminID(Long adminID) {
-        this.adminID = adminID;
-    }
+//    public void setAdminID(Long adminID) {
+//        this.adminID = adminID;
+//    }
 
     public Long getAdminID() {
         return this.adminID;

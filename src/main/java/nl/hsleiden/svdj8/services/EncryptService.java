@@ -11,6 +11,13 @@ import java.time.temporal.ChronoUnit;
 @Service
 public class EncryptService {
 
+    /**
+     * Feed this methode Admin or a general user as a json string
+     *
+     * @param json String
+     * @return jwtToken String
+     * @author Rob
+     */
     public String encrypt(String json) {
         Instant now = Instant.now();
         byte[] key = new byte[64];
