@@ -36,6 +36,15 @@ public class StatementController {
         return dao.sendQuery(statementCreate);
     }
 
+    public boolean getReadDataStatement(Data data) {
+        String statementGet = "SELECT" + data.getGivenVariables().get("columns")
+                + "FROM" + data.getGivenVariables().get("class");
+        if (data.getGivenVariables().get("where") != null) {
+            statementGet += "WHERE" + data.getGivenVariables().get("where");
+        }
+        return dao.sendQuery(statementGet);
+    }
+
     public boolean getUpdateStatement(Data data) {
         String statementUpdate = "UPDATE FROM" + data.getGivenVariables().get("class")
                 + "WHERE" + data.getGivenVariables().get("where");
@@ -51,15 +60,6 @@ public class StatementController {
 
         statements.setCreateStatement(new StringBuilder(statementUpdate));
         return dao.sendQuery(statementUpdate);
-    }
-
-    public boolean getReadDataStatement(Data data) {
-        String statementGet = "SELECT" + data.getGivenVariables().get("columns")
-                + "FROM" + data.getGivenVariables().get("class");
-        if (data.getGivenVariables().get("where") != null) {
-            statementGet += "WHERE" + data.getGivenVariables().get("where");
-        }
-        return dao.sendQuery(statementGet);
     }
 
 }

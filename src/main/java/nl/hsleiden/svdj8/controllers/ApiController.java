@@ -1,27 +1,57 @@
 package nl.hsleiden.svdj8.controllers;
 
 import nl.hsleiden.svdj8.models.Data;
+import nl.hsleiden.svdj8.services.AuthenticatingService;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
+@RestController
 public class ApiController {
 
-    private void checkAuthentication(Data data) {
+    private static ApiController apiController;
 
+    public static ApiController getInstance() {
+        if(apiController == null) {
+            apiController = new ApiController();
+        }
+        return apiController;
     }
 
     public void deconstructData(String json) {
-        DataController dataController = new DataController();
-        StatementController statementController = new StatementController();
+        DataController dataController = DataController.getInstance();
+        StatementController statementController = StatementController.getInstance();
+
         Map<String, Object> deconstructedData = dataController.deconstructOldData(json);
         Data data = dataController.setData(deconstructedData);
-        Boolean user = true; //TODO: authenticate value isAdmin(); boolean
-        if(user) {
-            statementController.getReadDataStatement(data);
-        }else {
-            statementController.getCreateStatement(data);
+        checkStatement(data);
+    }
+
+    private void checkStatement(Data data) {
+        StatementController statementController = StatementController.getInstance();
+        char statement = data.getDuty();
+        switch (statement) {
+            case 'C':
+                statementController.getCreateStatement(data);
+                break;
+            case 'R':
+                statementController.getReadDataStatement(data);
+                break;
+            case 'U':
+                statementController.getUpdateStatement(data);
+                break;
+            case 'D':
+                statementController.getDeleteStatement(data);
+                break;
         }
     }
+
+    private boolean checkAuthentication(Data data) {
+        String token = data.getToken();
+//        return authenticatingService.isAdmin(token);
+        return false;
+    }
+
 
     public Data returnDataStatement(Data oldData) {
         return null;
