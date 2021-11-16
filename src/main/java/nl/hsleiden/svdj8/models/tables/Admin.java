@@ -27,7 +27,7 @@ public class Admin {
 
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -35,7 +35,7 @@ public class Admin {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -47,6 +47,6 @@ public class Admin {
     }
 
     public Long getAdminID() {
-        return adminID;
+        return this.adminID;
     }
 }
