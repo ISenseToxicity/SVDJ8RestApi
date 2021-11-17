@@ -11,27 +11,27 @@ public class Admin {
     private @Id
     @GeneratedValue
     Long adminID;
-    private String name;
+    private String email;
     private String password; //???????????TODO: CHECK DIT NA
 
     public Admin() {
     }
 
-    public Admin(Long adminID, String name, String password) {
+    public Admin(Long adminID, String email, String password) {
         this.adminID = adminID;
-        this.name = name;
+        this.email = email;
         this.password = password;
     }
 
     // SETTERS AND GETTERS
 
 
-    public String getName() {
-        return name;
+    public String getEmail() {
+        return email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String name) {
+        this.email = name;
     }
 
     public String getPassword() {
