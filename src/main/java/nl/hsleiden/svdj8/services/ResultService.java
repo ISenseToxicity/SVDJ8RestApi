@@ -46,6 +46,6 @@ public class ResultService {
         resultToEdit.setTotalTime(result.getTotalTime());
         resultToEdit.setGrant(result.getGrant());
         resultToEdit.setAmountQuestions(result.getAmountQuestions());
-        return result;
+        return resultToEdit;
     }
 }
