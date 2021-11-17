@@ -160,3 +160,4 @@ build/
 !**/src/test/**/build/
 /svdj8.iml
 /.idea/
+/svdj8.iml

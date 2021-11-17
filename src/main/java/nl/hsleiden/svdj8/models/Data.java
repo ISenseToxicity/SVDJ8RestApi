@@ -3,35 +3,33 @@ package nl.hsleiden.svdj8.models;
 import java.util.HashMap;
 
 public class Data {
-    private int userNr;
-    private String duty;
+    private String token;
+    private char duty;
     private HashMap<String,Object>givenVariables;
-    private boolean isNewData;
 
 //    Constructor
 
-    public Data(int userNr, String duty, HashMap<String, Object> givenVariables, boolean isNewData) {
-        this.userNr = userNr;
+    public Data(String token, char duty, HashMap<String, Object> givenVariables) {
+        this.token = token;
         this.duty = duty;
         this.givenVariables = givenVariables;
-        this.isNewData = isNewData;
     }
 
 //    Getters and Setters
 
-    public int getUserNr() {
-        return userNr;
+    public String getToken() {
+        return token;
     }
 
-    public void setUserNr(int userNr) {
-        this.userNr = userNr;
+    public void setToken(String token) {
+        this.token = token;
     }
 
-    public String getDuty() {
+    public char getDuty() {
         return duty;
     }
 
-    public void setDuty(String duty) {
+    public void setDuty(char duty) {
         this.duty = duty;
     }
 
@@ -43,11 +41,4 @@ public class Data {
         this.givenVariables = givenVariables;
     }
 
-    public boolean isNewData() {
-        return isNewData;
-    }
-
-    public void setNewData(boolean newData) {
-        isNewData = newData;
-    }
 }
