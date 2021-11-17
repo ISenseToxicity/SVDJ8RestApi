@@ -26,7 +26,6 @@ public class VerificationService {
         return code.toString();
     }
 
-    @PostMapping
     public void sendEmail(String email) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom("noreply@svdj.nl");
