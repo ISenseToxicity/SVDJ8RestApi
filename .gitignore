@@ -158,4 +158,5 @@ buildNumber.properties
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
+/svdj8.iml
 /.idea/
