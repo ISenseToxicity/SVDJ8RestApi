@@ -13,6 +13,7 @@ public class Admin {
     Long adminID;
     private String email;
     private String password;
+    private String verificationCode;
 
     public Admin() {
     }
@@ -48,4 +49,13 @@ public class Admin {
     public Long getAdminID() {
         return adminID;
     }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
+    }
+
 }
