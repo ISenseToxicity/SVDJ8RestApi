@@ -12,13 +12,12 @@ public class Admin {
     @GeneratedValue
     Long adminID;
     private String email;
-    private String password; //???????????TODO: CHECK DIT NA
+    private String password;
 
     public Admin() {
     }
 
-    public Admin(Long adminID, String email, String password) {
-        this.adminID = adminID;
+    public Admin(String email, String password) {
         this.email = email;
         this.password = password;
     }
