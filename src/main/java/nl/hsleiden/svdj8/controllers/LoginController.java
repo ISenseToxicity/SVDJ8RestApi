@@ -7,6 +7,7 @@ import nl.hsleiden.svdj8.models.tables.Admin;
 import nl.hsleiden.svdj8.repository.AdminRepository;
 import nl.hsleiden.svdj8.services.EncryptService;
 import nl.hsleiden.svdj8.services.HashService;
+import nl.hsleiden.svdj8.services.VerificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +19,8 @@ import java.util.Map;
 public class LoginController {
     @Autowired
     AdminRepository adminRepository;
+
+    VerificationService verificationService = new VerificationService();
 
 
     @PostMapping("/admin/login")
@@ -40,10 +43,10 @@ public class LoginController {
 
         for (Admin existingAdmin : admins) {
             if (existingAdmin.getEmail().equals(admin.getEmail())) {
-                //TODO: add VerificationService createVerificationCode and Send Email Here ( Curently in different branch)
-                existingAdmin.setVerificationCode("1234 5678"); // Should be from VerificationService
-                // send email
-                return true;
+                String verificationCode = verificationService.createVerificationCode();
+                existingAdmin.setVerificationCode(verificationCode);
+                verificationService.sendEmail(admin.getEmail() ,verificationCode);
+                return true; // Preferably a token but ill add that later. - Brandon
             }
         }
         return false;
