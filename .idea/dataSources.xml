@@ -8,5 +8,17 @@
       <jdbc-url>jdbc:sqlite:C:\SQLLite\java\connect\main</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="nl.hsleiden.svdj8.Database" uuid="27142a25-03b3-451c-b175-ad64b3062d02">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:D:\HogeSchoolLeiden\Hoge School Leiden\Jaar 2\Periode 1\IPSNE2\Applicatie\BackEnd\SVDJ8RestApi\nl.hsleiden.svdj8.Database.main</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.34.0/sqlite-jdbc-3.34.0.jar</url>
+        </library>
+      </libraries>
+    </data-source>
   </component>
 </project>
