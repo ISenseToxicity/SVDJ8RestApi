@@ -1,23 +1,18 @@
-package nl.hsleiden.svdj8.daos.Dto;
+package nl.hsleiden.svdj8.daos.dto;
 
 import nl.hsleiden.svdj8.models.tables.Answer;
-import nl.hsleiden.svdj8.models.tables.Keyword;
 import nl.hsleiden.svdj8.models.tables.Question;
-
-import java.util.List;
 
 public class AnswerDto {
 
     private Long answerID;
-    private Question question_id;
+    private Long questionID;
     private String answerText;
-    private List<Keyword> keywords;
 
     public static AnswerDto from(Answer answer) {
         AnswerDto answerDto = new AnswerDto();
         answerDto.setAnswerText(answer.getAnswerText());
-        answerDto.setKeywords(answer.getkeywords());
-        answerDto.setQuestion_id(answer.getQuestionId());
+        answerDto.setQuestionID(answer.getQuestionID());
         answerDto.setAnswerID(answer.getAnswerID());
         return answerDto;
     }
@@ -30,12 +25,12 @@ public class AnswerDto {
         this.answerID = answerID;
     }
 
-    public Question getQuestion_id() {
-        return question_id;
+    public Long getQuestionID() {
+        return questionID;
     }
 
-    public void setQuestion_id(Question question_id) {
-        this.question_id = question_id;
+    public void setQuestionID(Long questionID) {
+        this.questionID = questionID;
     }
 
     public String getAnswerText() {
@@ -46,11 +41,4 @@ public class AnswerDto {
         this.answerText = answerText;
     }
 
-    public List<Keyword> getKeywords() {
-        return keywords;
-    }
-
-    public void setKeywords(List<Keyword> keywords) {
-        this.keywords = keywords;
-    }
 }

@@ -1,4 +1,4 @@
-package nl.hsleiden.svdj8.daos.Dto;
+package nl.hsleiden.svdj8.daos.dto;
 
 import nl.hsleiden.svdj8.models.tables.Answer;
 import nl.hsleiden.svdj8.models.tables.Question;

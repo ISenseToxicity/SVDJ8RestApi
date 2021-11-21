@@ -1,6 +1,6 @@
 package nl.hsleiden.svdj8.controllers.tables;
 
-import nl.hsleiden.svdj8.daos.Dto.RouteDto;
+import nl.hsleiden.svdj8.daos.dto.RouteDto;
 import nl.hsleiden.svdj8.models.tables.Route;
 import nl.hsleiden.svdj8.services.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;

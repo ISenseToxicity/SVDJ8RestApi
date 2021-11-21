@@ -20,11 +20,11 @@ public class GrantController {
         this.grantService = grantService;
     }
 
-    @PostMapping
-    public ResponseEntity<GrantDto> addGrant(@RequestBody final GrantDto grantDto) {
-        Grant grant = grantService.addGrant(Grant.from(grantDto));
-        return new ResponseEntity<>(grantDto, HttpStatus.OK);
-    }
+//    @PostMapping
+//    public ResponseEntity<GrantDto> addGrant(@RequestBody final GrantDto grantDto) {
+//        Grant grant = grantService.addGrant(Grant.from(grantDto));
+//        return new ResponseEntity<>(grantDto, HttpStatus.OK);
+//    }
 
     @RequestMapping(value = "/grant/{id}", method = RequestMethod.GET)
     public ResponseEntity<GrantDto> getItem(@PathVariable final Long id) {

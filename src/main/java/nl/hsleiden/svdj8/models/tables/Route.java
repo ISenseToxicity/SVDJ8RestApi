@@ -1,6 +1,6 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import nl.hsleiden.svdj8.daos.Dto.RouteDto;
+import nl.hsleiden.svdj8.daos.dto.RouteDto;
 
 import javax.persistence.*;
 import java.util.*;
