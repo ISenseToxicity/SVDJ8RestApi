@@ -23,9 +23,6 @@ public class Admin {
         this.password = password;
     }
 
-    // SETTERS AND GETTERS
-
-
     public String getEmail() {
         return email;
     }

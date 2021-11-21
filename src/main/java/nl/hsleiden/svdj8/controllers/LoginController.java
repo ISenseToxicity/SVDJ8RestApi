@@ -1,11 +1,7 @@
 package nl.hsleiden.svdj8.controllers;
 
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.hsleiden.svdj8.models.tables.Admin;
 import nl.hsleiden.svdj8.repository.AdminRepository;
-import nl.hsleiden.svdj8.services.EncryptService;
 import nl.hsleiden.svdj8.services.HashService;
 import nl.hsleiden.svdj8.services.VerificationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class LoginController {
@@ -24,17 +19,15 @@ public class LoginController {
 
 
     @PostMapping("/admin/login")
-    public String loginUser(@Valid @RequestBody Admin admin) {
+    public boolean loginUser(@Valid @RequestBody Admin admin) {
         List<Admin> admins = (List<Admin>) adminRepository.findAll();
-        EncryptService encryptService = new EncryptService();
 
         for (Admin existingAdmin : admins) {
-
             if (HashService.comparePassword(existingAdmin.getPassword(), admin.getPassword())) {
-                return encryptService.encrypt("{Token: "+admin+"}"); // Should be admin token
+                return true; // Should be admin token or better form for authentication
             }
         }
-        return "Fail";
+        return false;
     }
 
     @PostMapping("/admin/resetpasswordrequest")
@@ -53,18 +46,20 @@ public class LoginController {
     }
 
     @PostMapping("/admin/resetpasswordverify")
-    public boolean resetPasswordVerification(@Valid @RequestBody String json) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> map = objectMapper.convertValue(json, new TypeReference<Map<String, Object>>() {});
-        String email = (String) map.get("email");
-        String verificationCode = (String) map.get("verificationCode");
+    public boolean resetPasswordVerification(@Valid @RequestBody Admin admin) {
+        String email = admin.getEmail();
+        String verificationCode = admin.getVerificationCode();
+
+        if (verificationCode == null) {
+            return false;
+        }
 
         List<Admin> admins = (List<Admin>) adminRepository.findAll();
+        // Would be better for the verification code to be stored as a token with expiration date.
 
         for(Admin existingAdmin : admins) {
             if (existingAdmin.getEmail().equals(email) && existingAdmin.getVerificationCode().equals(verificationCode)) {
-                // verificationCode should be token and not null;
-                return true; // Token would be better
+                return true;
             }
         }
         return false;
@@ -75,10 +70,10 @@ public class LoginController {
         List<Admin> admins = (List<Admin>) adminRepository.findAll();
 
         for(Admin existingAdmin : admins) {
-            // Should be authentication isAdmin();
             if (existingAdmin.getEmail().equals(admin.getEmail())
                     && existingAdmin.getVerificationCode().equals(admin.getVerificationCode())) {
                 existingAdmin.setPassword(admin.getPassword());
+                existingAdmin.setVerificationCode(null);
                 return true;
             }
         }

@@ -26,13 +26,12 @@ public class VerificationService {
         return code.toString();
     }
 
-    public void sendEmail(String email) {
+    public void sendEmail(String email, String verificationCode) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
         simpleMailMessage.setFrom("noreply@svdj.nl");
         simpleMailMessage.setTo(email);
         simpleMailMessage.setSubject("Verificatie code SVDJ admin");
-        String code = createVerificationCode();
-        simpleMailMessage.setText("Gebruik deze code om u identiteit te bevestigen voor de SVDJ admin portal \n" + code + "\n \n- SVDJ");
+        simpleMailMessage.setText("Gebruik deze code om u identiteit te bevestigen voor de SVDJ admin portal \n" + verificationCode + "\n \n- SVDJ");
         javaMailSender.send(simpleMailMessage);
     }
 
