@@ -3,28 +3,20 @@ package nl.hsleiden.svdj8.controllers.tables;
 import nl.hsleiden.svdj8.daos.QuestionDAO;
 import nl.hsleiden.svdj8.daos.dto.QuestionDto;
 import nl.hsleiden.svdj8.models.tables.Question;
-import nl.hsleiden.svdj8.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 @RestController
 @RequestMapping(value = "/question")
 public class QuestionController {
-    @Autowired
-    public final QuestionService questionService;
 
     @Autowired
     public final QuestionDAO questionDAO;
 
-    public QuestionController(QuestionService questionService, QuestionDAO questionDAO) {
-        this.questionService = questionService;
+    public QuestionController(QuestionDAO questionDAO) {
         this.questionDAO = questionDAO;
     }
 
