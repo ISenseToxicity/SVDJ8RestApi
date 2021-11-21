@@ -13,7 +13,7 @@ public class Admin {
     private String name;
     private String password; //???????????TODO: CHECK DIT NA
 
-    private Admin() {
+    public Admin() {
     }
 
     public Admin(Long adminID, String name, String password) {
