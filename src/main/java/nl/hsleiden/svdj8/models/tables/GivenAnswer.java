@@ -1,6 +1,6 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import nl.hsleiden.svdj8.daos.Dto.GivenAnswerDto;
+import nl.hsleiden.svdj8.daos.dto.GivenAnswerDto;
 
 import javax.persistence.*;
 
@@ -11,22 +11,25 @@ public class GivenAnswer {
     @GeneratedValue
     @Column(name = "given_answer_id")
     private Long givenAnswerId;
-    private int elapsedSeconds;
-    @ManyToOne(cascade = CascadeType.ALL, optional = false, targetEntity = Route.class)
-    @JoinColumn(name = "route_id", referencedColumnName = "route_id")
-    private Route routeId;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "question_id", referencedColumnName = "question_id")
-    private Question questionId;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "answer_id", referencedColumnName = "answer_id", insertable = true, updatable = true)
-    private Answer answerId;
 
-    public GivenAnswer(Long givenAnswerId, int elapsedSeconds, Question questionId, Answer answerId) {
+    @Column(name = "elapsed_seconds")
+    private int elapsedSeconds;
+
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Route.class)
+    @JoinColumn(name = "route_id", referencedColumnName = "route_id")
+    private Route route;
+
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Question.class)
+    @JoinColumn(name = "question_id", referencedColumnName = "question_id")
+    private Question question;
+
+    @OneToOne(cascade = CascadeType.ALL, targetEntity = Answer.class)
+    @JoinColumn(name = "answer_id", referencedColumnName = "answer_id")
+    private Answer answer;
+
+    public GivenAnswer(Long givenAnswerId, int elapsedSeconds, Answer answerId) {
         this.givenAnswerId = givenAnswerId;
         this.elapsedSeconds = elapsedSeconds;
-        this.questionId = questionId;
-        this.answerId = answerId;
     }
 
     public GivenAnswer() {
@@ -54,28 +57,28 @@ public class GivenAnswer {
         this.elapsedSeconds = elapsedSeconds;
     }
 
-    public Question getQuestionId() {
-        return questionId;
+    public Question getQuestion() {
+        return question;
     }
 
-    public void setQuestionId(Question questionId) {
-        this.questionId = questionId;
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
-    public Answer getAnswerId() {
-        return answerId;
+    public Answer getAnswer() {
+        return answer;
     }
 
-    public void setAnswerId(Answer answerId) {
-        this.answerId = answerId;
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
     }
 
-    public Route getRouteId() {
-        return routeId;
+    public Route getRoute() {
+        return route;
     }
 
-    public void setRouteId(Route routeId) {
-        this.routeId = routeId;
+    public void setRoute(Route route) {
+        this.route = route;
     }
 
 }

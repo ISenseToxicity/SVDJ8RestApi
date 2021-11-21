@@ -44,8 +44,7 @@ public class AnswerService {
     public Answer editAnswer(Long id, Answer answer) {
         Answer answerToEdit = getAnswer(id);
         answerToEdit.setAnswerText(answer.getAnswerText());
-        answerToEdit.setkeywords(answer.getkeywords());
-        answerToEdit.setQuestionId(answer.getQuestionId());
+//        answerToEdit.setQuestion(answer.getQuestion());
         return answerToEdit;
     }
 }

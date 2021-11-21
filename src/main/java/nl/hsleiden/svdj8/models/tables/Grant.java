@@ -1,6 +1,6 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import nl.hsleiden.svdj8.daos.Dto.GrantDto;
+
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,21 +9,17 @@ import java.util.List;
 @Table(name = "grant")
 public class Grant {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "grant_id")
     private Long grantID;
+
     private String name;
     private String description;
-    @ManyToMany
-    @JoinTable(name = "grant_and_keyword",
-            joinColumns = @JoinColumn(name = "grant_id", referencedColumnName = "grant_id"))
-    private List<Keyword> keywords;
 
-    public Grant(Long grantID, String name, String description, Result result, List<Keyword> keywords) {
+    public Grant(Long grantID, String name, String description) {
         this.grantID = grantID;
         this.name = name;
         this.description = description;
-        this.keywords = keywords;
     }
 
     public Grant() {
@@ -35,7 +31,6 @@ public class Grant {
         return grant;
     }
 
-    /*Setters Getters*/
     public void setGrantID(Long grantID) {
         this.grantID = grantID;
     }
@@ -58,14 +53,6 @@ public class Grant {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<Keyword> getKeywords() {
-        return keywords;
-    }
-
-    public void setKeywords(List<Keyword> keywords) {
-        this.keywords = keywords;
     }
 
 }

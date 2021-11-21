@@ -1,6 +1,6 @@
 package nl.hsleiden.svdj8.controllers.tables;
 
-import nl.hsleiden.svdj8.daos.Dto.GivenAnswerDto;
+import nl.hsleiden.svdj8.daos.dto.GivenAnswerDto;
 import nl.hsleiden.svdj8.models.tables.GivenAnswer;
 import nl.hsleiden.svdj8.services.GivenAnswerService;
 import org.springframework.beans.factory.annotation.Autowired;

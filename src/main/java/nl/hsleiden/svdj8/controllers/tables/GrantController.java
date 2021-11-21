@@ -1,6 +1,6 @@
 package nl.hsleiden.svdj8.controllers.tables;
 
-import nl.hsleiden.svdj8.daos.Dto.GrantDto;
+import nl.hsleiden.svdj8.daos.dto.GrantDto;
 import nl.hsleiden.svdj8.models.tables.Grant;
 import nl.hsleiden.svdj8.services.GrantService;
 import org.springframework.beans.factory.annotation.Autowired;

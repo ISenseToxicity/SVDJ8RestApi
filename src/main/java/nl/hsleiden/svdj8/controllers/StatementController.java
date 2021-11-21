@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class StatementController {
     private static StatementController statementController;
-    QuestionDAO dao = QuestionDAO.getInstance();
+//    QuestionDAO dao = QuestionDAO.getInstance();
 
     Statement statements = new Statement();
 
@@ -21,10 +21,10 @@ public class StatementController {
         return statementController;
     }
 
-    @GetMapping("/questions")
-    public void getAllQuestionsForRoute(){
-
-    }
+//    @GetMapping("/questions")
+//    public void getAllQuestionsForRoute(){
+//
+//    }
 
     public boolean getCreateStatement(Data data) {
         String statementCreate = "INSERT INTO" + data.getGivenVariables().get("class")
@@ -33,7 +33,8 @@ public class StatementController {
             statementCreate += "WHERE" + data.getGivenVariables().get("where");
         }
         statements.setCreateStatement(new StringBuilder(statementCreate));
-        return dao.sendQuery(statementCreate);
+//        return dao.sendQuery(statementCreate);
+        return true;
     }
 
     public boolean getReadDataStatement(Data data) {
@@ -42,7 +43,8 @@ public class StatementController {
         if (data.getGivenVariables().get("where") != null) {
             statementGet += "WHERE" + data.getGivenVariables().get("where");
         }
-        return dao.sendQuery(statementGet);
+//        return dao.sendQuery(statementGet);
+        return true;
     }
 
     public boolean getUpdateStatement(Data data) {
@@ -50,7 +52,8 @@ public class StatementController {
                 + "WHERE" + data.getGivenVariables().get("where");
 
         statements.setCreateStatement(new StringBuilder(statementUpdate));
-        return dao.sendQuery(statementUpdate);
+//        return dao.sendQuery(statementUpdate);
+        return true;
     }
 
     public boolean getDeleteStatement(Data data) {
@@ -59,7 +62,8 @@ public class StatementController {
                 + "WHERE" + data.getGivenVariables().get("where");
 
         statements.setCreateStatement(new StringBuilder(statementUpdate));
-        return dao.sendQuery(statementUpdate);
+//        return dao.sendQuery(statementUpdate);
+        return true;
     }
 
 }

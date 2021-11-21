@@ -1,28 +1,34 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import nl.hsleiden.svdj8.daos.Dto.ResultDto;
+import nl.hsleiden.svdj8.daos.dto.ResultDto;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.util.List;
 
 @Entity
 @Table(name = "result")
-public class Result extends Persistence {
+public class Result {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "result_id")
     private Long resultID;
+
+    @Column(name = "amount_questions")
     private int amountQuestions;
+
+    @Column(name = "total_time")
     private Time totalTime;
-    @ManyToOne(targetEntity = Grant.class, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+
+    @ManyToOne
+    @JoinColumn(name = "grant_id", nullable = false, referencedColumnName = "grant_id")
     private Grant grant;
 
-    public Result(Long resultID, int amountQuestions, Time totalTime, Grant grant) {
+    public Result(Long resultID, int amountQuestions, Time totalTime) {
         this.resultID = resultID;
         this.amountQuestions = amountQuestions;
         this.totalTime = totalTime;
-        this.grant = grant;
     }
 
     public Result() {
@@ -34,12 +40,9 @@ public class Result extends Persistence {
         result.setResultID(resultDto.getResultID());
         result.setAmountQuestions(resultDto.getAmountQuestions());
         result.setTotalTime(resultDto.getTotalTime());
-        result.setTotalTime(resultDto.getTotalTime());
-
         return result;
     }
 
-    //Getter Setters
     public void setResultID(Long resultID) {
         this.resultID = resultID;
     }
@@ -68,7 +71,7 @@ public class Result extends Persistence {
         return grant;
     }
 
-    public void setGrant(Grant grant) {
-        this.grant = grant;
-    }
+//    public void setGrant(Grant grant) {
+//        this.grant = grant;
+//    }
 }

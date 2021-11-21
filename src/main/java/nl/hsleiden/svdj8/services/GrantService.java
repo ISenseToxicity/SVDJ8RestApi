@@ -45,7 +45,7 @@ public class GrantService {
         Grant grantToEdit = getGrant(id);
         grantToEdit.setDescription(grant.getDescription());
         grantToEdit.setName(grant.getName());
-        grantToEdit.setKeywords(grant.getKeywords());
+//        grantToEdit.setKeywords(grant.getKeywords());
         return grant;
     }
 }
