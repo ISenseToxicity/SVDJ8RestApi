@@ -14,7 +14,7 @@ public class RouteDto {
 
     public static RouteDto from(Route route) {
         RouteDto routeDto = new RouteDto();
-        routeDto.setRouteId(route.getRouteId());
+//        routeDto.setRouteId(route.getRouteId());
         routeDto.setTotalTime(route.getTotalTime());
 //        routeDto.setResultId(route.getResultId());
 //        routeDto.setGivenAnswerList(route.getGivenAnswerList());

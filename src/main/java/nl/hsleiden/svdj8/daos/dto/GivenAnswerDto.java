@@ -16,7 +16,7 @@ public class GivenAnswerDto {
     public static GivenAnswerDto from(GivenAnswer givenAnswer) {
         GivenAnswerDto givenAnswerDto = new GivenAnswerDto();
 //        givenAnswerDto.setAnswerId(givenAnswer.getAnswerId());
-        givenAnswerDto.setGivenAnswerId(givenAnswer.getGivenAnswerId());
+//        givenAnswerDto.setGivenAnswerId(givenAnswer.getGivenAnswerId());
 //        givenAnswerDto.setRouteId(givenAnswer.getRouteId());
         givenAnswerDto.setElapsedSeconds(givenAnswer.getElapsedSeconds());
 //        givenAnswerDto.setQuestionId(givenAnswer.getQuestionId());

@@ -20,12 +20,6 @@ public class AnswerController {
         this.answerDAO = answerDAO;
     }
 
-//    @PostMapping
-//    public ResponseEntity<AnswerDto> addAnswer(@RequestBody final AnswerDto answerDto) {
-//        Answer answer = answerService.addAnswer(Answer.from(answerDto));
-//        return new ResponseEntity<>(answerDto, HttpStatus.OK);
-//    }
-
     @GetMapping(value = "/all")
     public ResponseEntity<List<Answer>> getAllAnswers() {
         return new ResponseEntity<>(answerDAO.getAll(), HttpStatus.OK);

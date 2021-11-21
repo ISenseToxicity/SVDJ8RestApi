@@ -21,13 +21,13 @@ public class Route {
     @JoinColumn(name = "result_id", referencedColumnName = "result_id")
     private Result result;
 
-    public static Route from(RouteDto routeDto) {
-        Route route = new Route();
-        route.setRouteId(routeDto.getRouteId());
-        route.setTotalTime(routeDto.getTotalTime());
+//    public static Route from(RouteDto routeDto) {
+//        Route route = new Route();
+//        route.setRouteId(routeDto.getRouteId());
+//        route.setTotalTime(routeDto.getTotalTime());
 //        route.setResultId(routeDto.getResultId());
-        return route;
-    }
+//        return route;
+//    }
 
     public Route(int totalTime, Result resultId) {
         this.totalTime = totalTime;
@@ -53,11 +53,11 @@ public class Route {
 //        this.result = result;
 //    }
 
-    public Long getRouteId() {
+    public Long getRouteID() {
         return routeId;
     }
 
-    public void setRouteId(Long routeId) {
+    public void setRouteID(Long routeId) {
         this.routeId = routeId;
     }
 }

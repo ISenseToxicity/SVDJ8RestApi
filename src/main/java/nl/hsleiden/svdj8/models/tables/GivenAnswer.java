@@ -37,15 +37,15 @@ public class GivenAnswer {
 
     public static GivenAnswer from(GivenAnswerDto givenAnswerDto) {
         GivenAnswer givenAnswer = new GivenAnswer();
-        givenAnswer.setGivenAnswerId(givenAnswerDto.getGivenAnswerId());
+        givenAnswer.setGivenAnswerID(givenAnswerDto.getGivenAnswerId());
         return givenAnswer;
     }
 
-    public Long getGivenAnswerId() {
+    public Long getGivenAnswerID() {
         return givenAnswerId;
     }
 
-    public void setGivenAnswerId(Long givenAnswerId) {
+    public void setGivenAnswerID(Long givenAnswerId) {
         this.givenAnswerId = givenAnswerId;
     }
 
