@@ -7,8 +7,8 @@ import javax.persistence.*;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="category_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "category_id")
     private Long categoryID;
 
     private String name;
@@ -23,7 +23,6 @@ public class Category {
     public Category() {
     }
 
-    //    Setters and Getters
     public String getName() {
         return name;
     }

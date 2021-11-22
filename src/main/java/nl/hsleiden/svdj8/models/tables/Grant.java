@@ -1,15 +1,12 @@
 package nl.hsleiden.svdj8.models.tables;
 
-
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "grant")
 public class Grant {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "grant_id")
     private Long grantID;
 

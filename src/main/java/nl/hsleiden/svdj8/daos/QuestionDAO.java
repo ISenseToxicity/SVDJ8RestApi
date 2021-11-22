@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
 
-
 @Component
 public class QuestionDAO {
 
@@ -33,19 +32,5 @@ public class QuestionDAO {
     public Question getById(long id) {
         Optional<Question> optionalQuestion = questionRepository.findById(id);
         return optionalQuestion.orElse(null);
-    }
-
-//    public void saveQuestion(Question question) {
-//        Question toModifyQuestion = getById(question.getQuestionID());
-//        if (toModifyQuestion != null) {
-//            toModifyQuestion.setValue(question.getValue());
-//        } else {
-//            toModifyQuestion = question;
-//        }
-//        questionRepository.save(toModifyQuestion);
-//    }
-
-    public void deleteById(long id) {
-        questionRepository.deleteById(id);
     }
 }

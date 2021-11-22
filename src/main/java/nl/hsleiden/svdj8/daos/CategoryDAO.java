@@ -1,8 +1,6 @@
 package nl.hsleiden.svdj8.daos;
 
 import nl.hsleiden.svdj8.models.tables.Category;
-import nl.hsleiden.svdj8.models.tables.Category;
-import nl.hsleiden.svdj8.repository.CategoryRepository;
 import nl.hsleiden.svdj8.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

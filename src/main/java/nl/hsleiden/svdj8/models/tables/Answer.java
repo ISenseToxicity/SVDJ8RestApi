@@ -1,15 +1,12 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import nl.hsleiden.svdj8.daos.dto.AnswerDto;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "answer")
 public class Answer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "answer_id")
     private Long answerID;
 
@@ -19,7 +16,10 @@ public class Answer {
     @Column(name = "question_id")
     private Long questionID;
 
-//    @ManyToOne
+    @Column(name = "category_id")
+    private Long categoryID;
+
+//    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Question.class)
 //    @JoinColumn(name = "question_id", nullable = false, referencedColumnName = "question_id")
 //    private Question question;
 
@@ -30,14 +30,6 @@ public class Answer {
 
     public Answer() {
 
-    }
-
-    public static Answer from(AnswerDto answerDto) {
-        Answer answer = new Answer();
-        answer.setAnswerID(answerDto.getAnswerID());
-        answer.setAnswerText(answerDto.getAnswerText());
-//        answer.setQuestion(answerDto.getQuestion());
-        return answer;
     }
 
     public Long getAnswerID() {
@@ -54,6 +46,12 @@ public class Answer {
 
     public void setQuestionID(Long questionID) {
         this.questionID = questionID;
+    }
+
+    public Long getCategoryID() { return categoryID; }
+
+    public void setCategoryID(Long categoryID) {
+        this.categoryID = categoryID;
     }
 
     public String getAnswerText() {

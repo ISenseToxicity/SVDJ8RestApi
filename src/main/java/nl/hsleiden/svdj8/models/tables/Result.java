@@ -1,17 +1,14 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import nl.hsleiden.svdj8.daos.dto.ResultDto;
-
 import javax.persistence.*;
 import java.sql.Time;
-import java.util.List;
 
 @Entity
 @Table(name = "result")
 public class Result {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "result_id")
     private Long resultID;
 
@@ -21,7 +18,7 @@ public class Result {
     @Column(name = "total_time")
     private Time totalTime;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST}, targetEntity = Grant.class)
     @JoinColumn(name = "grant_id", nullable = false, referencedColumnName = "grant_id")
     private Grant grant;
 
@@ -33,14 +30,6 @@ public class Result {
 
     public Result() {
 
-    }
-
-    public static Result from(ResultDto resultDto) {
-        Result result = new Result();
-        result.setResultID(resultDto.getResultID());
-        result.setAmountQuestions(resultDto.getAmountQuestions());
-        result.setTotalTime(resultDto.getTotalTime());
-        return result;
     }
 
     public void setResultID(Long resultID) {
@@ -71,7 +60,7 @@ public class Result {
         return grant;
     }
 
-//    public void setGrant(Grant grant) {
-//        this.grant = grant;
-//    }
+    public void setGrant(Grant grant) {
+        this.grant = grant;
+    }
 }

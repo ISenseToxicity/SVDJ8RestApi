@@ -1,7 +1,5 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import nl.hsleiden.svdj8.daos.dto.QuestionDto;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,7 +7,7 @@ import java.util.List;
 @Table(name = "question")
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "question_id")
     private Long questionID;
 
@@ -18,7 +16,7 @@ public class Question {
 
     @OneToMany(targetEntity = Answer.class,
             mappedBy = "questionID", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+            cascade = CascadeType.PERSIST)
     private List<Answer> answers;
 
     @Column(name = "extra_info_tile")
@@ -41,18 +39,6 @@ public class Question {
     public Question() {
 
     }
-
-    public static Question from(QuestionDto questionDto) {
-        Question question = new Question();
-        question.setQuestionID(questionDto.getQuestionId());
-        question.setQuestionText(questionDto.getQuestionText());
-//        question.setAnswers(questionDto.getAnswers());
-        question.setExtraInfoDescription(questionDto.getExtraInfoDescription());
-        question.setExtraInfoVideoURL(questionDto.getExtraInfoVideoURL());
-        question.setExtraInfoTile(questionDto.getExtraInfoTile());
-        return question;
-    }
-
 
     public String getQuestionText() {
         return questionText;
