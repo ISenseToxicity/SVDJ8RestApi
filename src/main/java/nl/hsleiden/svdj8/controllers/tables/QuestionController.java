@@ -23,7 +23,7 @@ public class QuestionController {
         this.questionService = questionService;
     }
 
-    @GetMapping(value = "/all")
+    @GetMapping(value = "question/all")
     public ResponseEntity<List<QuestionDto>> getAllQuestions() {
         List<Question> questions = questionService.getAllquestions();
         List<QuestionDto> questionsDto = new List<QuestionDto>() {
@@ -155,13 +155,13 @@ public class QuestionController {
         return new ResponseEntity<>(questionDto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "question/{id}", method = RequestMethod.GET)
     public ResponseEntity<QuestionDto> getQuestion(@PathVariable final Long id) {
         Question question = questionService.getQuestion(id);
         return new ResponseEntity<>(QuestionDto.from(question), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "question/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<QuestionDto> deleteQuestion(@PathVariable final Long id) {
         Question question = questionService.deleteQuestion(id);
         return new ResponseEntity<>(QuestionDto.from(question), HttpStatus.OK);

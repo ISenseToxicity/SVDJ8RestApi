@@ -32,7 +32,7 @@ public class GrantController {
         return new ResponseEntity<>(GrantDto.from(grant), HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "{id}")
+    @DeleteMapping(value = "grant/{id}")
     public ResponseEntity<GrantDto> deleteGrant(@PathVariable final Long id) {
         Grant grant = grantService.deleteGrant(id);
         return new ResponseEntity<>(GrantDto.from(grant), HttpStatus.OK);
