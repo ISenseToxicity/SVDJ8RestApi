@@ -1,13 +1,9 @@
-package nl.hsleiden.svdj8.daos.Dto;
+package nl.hsleiden.svdj8.daos.dto;
 
 import nl.hsleiden.svdj8.models.tables.Answer;
 import nl.hsleiden.svdj8.models.tables.GivenAnswer;
 import nl.hsleiden.svdj8.models.tables.Question;
 import nl.hsleiden.svdj8.models.tables.Route;
-
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 public class GivenAnswerDto {
 
@@ -19,11 +15,11 @@ public class GivenAnswerDto {
 
     public static GivenAnswerDto from(GivenAnswer givenAnswer) {
         GivenAnswerDto givenAnswerDto = new GivenAnswerDto();
-        givenAnswerDto.setAnswerId(givenAnswer.getAnswerId());
-        givenAnswerDto.setGivenAnswerId(givenAnswer.getGivenAnswerId());
-        givenAnswerDto.setRouteId(givenAnswer.getRouteId());
+//        givenAnswerDto.setAnswerId(givenAnswer.getAnswerId());
+//        givenAnswerDto.setGivenAnswerId(givenAnswer.getGivenAnswerId());
+//        givenAnswerDto.setRouteId(givenAnswer.getRouteId());
         givenAnswerDto.setElapsedSeconds(givenAnswer.getElapsedSeconds());
-        givenAnswerDto.setQuestionId(givenAnswer.getQuestionId());
+//        givenAnswerDto.setQuestionId(givenAnswer.getQuestionId());
         return givenAnswerDto;
     }
 

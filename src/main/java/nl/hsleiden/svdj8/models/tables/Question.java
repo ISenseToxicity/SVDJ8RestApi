@@ -1,6 +1,6 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import nl.hsleiden.svdj8.daos.Dto.QuestionDto;
+import nl.hsleiden.svdj8.daos.dto.QuestionDto;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,24 +9,30 @@ import java.util.List;
 @Table(name = "question")
 public class Question {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "question_id")
     private Long questionID;
+
     @Column(name = "question_text")
     private String questionText;
+
     @OneToMany(targetEntity = Answer.class,
-            mappedBy = "questionId", fetch = FetchType.LAZY,
+            mappedBy = "questionID", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     private List<Answer> answers;
 
+    @Column(name = "extra_info_tile")
     private String extraInfoTile;
+
+    @Column(name = "extra_info_description")
     private String extraInfoDescription;
+
+    @Column(name = "extra_info_video_url")
     private String extraInfoVideoURL;
 
-    public Question(Long questionID, String questionText, List<Answer> answers, String extraInfoTile, String extraInfoDescription, String extraInfoVideoURL) {
+    public Question(Long questionID, String questionText, String extraInfoTile, String extraInfoDescription, String extraInfoVideoURL) {
         this.questionID = questionID;
         this.questionText = questionText;
-        this.answers = answers;
         this.extraInfoTile = extraInfoTile;
         this.extraInfoDescription = extraInfoDescription;
         this.extraInfoVideoURL = extraInfoVideoURL;
@@ -40,7 +46,7 @@ public class Question {
         Question question = new Question();
         question.setQuestionID(questionDto.getQuestionId());
         question.setQuestionText(questionDto.getQuestionText());
-        question.setAnswers(questionDto.getAnswers());
+//        question.setAnswers(questionDto.getAnswers());
         question.setExtraInfoDescription(questionDto.getExtraInfoDescription());
         question.setExtraInfoVideoURL(questionDto.getExtraInfoVideoURL());
         question.setExtraInfoTile(questionDto.getExtraInfoTile());

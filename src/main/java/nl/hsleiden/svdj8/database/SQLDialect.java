@@ -1,4 +1,4 @@
-package nl.hsleiden.svdj8.Database;
+package nl.hsleiden.svdj8.database;
 
 import java.sql.Types;
 

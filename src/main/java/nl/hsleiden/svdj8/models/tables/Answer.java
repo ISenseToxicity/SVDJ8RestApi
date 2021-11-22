@@ -1,6 +1,6 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import nl.hsleiden.svdj8.daos.Dto.AnswerDto;
+import nl.hsleiden.svdj8.daos.dto.AnswerDto;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,18 +12,20 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "answer_id")
     private Long answerID;
-    private String answerText;
-    @ManyToOne
-    @JoinColumn(name = "question_id", nullable = false)
-    private Question questionId;
-    @ManyToMany
-    @JoinColumn(name = "keyword", referencedColumnName = "keyword_id")
-    private List<Keyword> keywords;
 
-    public Answer(Long answerID, String answerText, List<Keyword> keywords) {
+    @Column(name = "answer_text")
+    private String answerText;
+
+    @Column(name = "question_id")
+    private Long questionID;
+
+//    @ManyToOne
+//    @JoinColumn(name = "question_id", nullable = false, referencedColumnName = "question_id")
+//    private Question question;
+
+    public Answer(Long answerID, String answerText) {
         this.answerID = answerID;
         this.answerText = answerText;
-        this.keywords = keywords;
     }
 
     public Answer() {
@@ -34,12 +36,10 @@ public class Answer {
         Answer answer = new Answer();
         answer.setAnswerID(answerDto.getAnswerID());
         answer.setAnswerText(answerDto.getAnswerText());
-        answer.setkeywords(answerDto.getKeywords());
-        answer.setQuestionId(answerDto.getQuestion_id());
+//        answer.setQuestion(answerDto.getQuestion());
         return answer;
     }
 
-    //    Getters Setters
     public Long getAnswerID() {
         return answerID;
     }
@@ -48,20 +48,12 @@ public class Answer {
         this.answerID = answerID;
     }
 
-    public Question getQuestionId() {
-        return questionId;
+    public Long getQuestionID() {
+        return questionID;
     }
 
-    public void setQuestionId(Question questionID) {
-        this.questionId = questionID;
-    }
-
-    public List<Keyword> getKeywords() {
-        return keywords;
-    }
-
-    public void setKeywords(List<Keyword> keywords) {
-        this.keywords = keywords;
+    public void setQuestionID(Long questionID) {
+        this.questionID = questionID;
     }
 
     public String getAnswerText() {
@@ -72,11 +64,4 @@ public class Answer {
         this.answerText = answerText;
     }
 
-    public List<Keyword> getkeywords() {
-        return keywords;
-    }
-
-    public void setkeywords(List<Keyword> keywords) {
-        this.keywords = keywords;
-    }
 }

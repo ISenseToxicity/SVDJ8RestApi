@@ -22,20 +22,20 @@ public class QuestionService {
     private Question question = new Question();
 
 
-    public void save() {
-        questionDAO.save(question);
-        question = new Question();
-    }
+//    public void save() {
+//        questionDAO.save(question);
+//        question = new Question();
+//    }
 
     public List<Question> getAllquestions() {
 
         return questionDAO.getAll();
     }
 
-    public int savequestion(Question question) {
-        validate(QuestionService.this.question);
-        return questionDAO.save(QuestionService.this.question);
-    }
+//    public int savequestion(Question question) {
+//        validate(QuestionService.this.question);
+//        return questionDAO.save(QuestionService.this.question);
+//    }
 
 
     private void validate(Question question) {
@@ -46,11 +46,11 @@ public class QuestionService {
         return question;
     }
 
-    public Question deleteQuestion(Long id) {
-        Question question = getQuestion(id);
-        questionDAO.delete(QuestionService.this.question);
-        return QuestionService.this.question;
-    }
+//    public Question deleteQuestion(Long id) {
+//        Question question = getQuestion(id);
+//        questionDAO.delete(QuestionService.this.question);
+//        return QuestionService.this.question;
+//    }
 
     public Question getQuestion(Long id) {
         return questionRepository.findById(id).orElseThrow(() ->

@@ -1,10 +1,9 @@
-package nl.hsleiden.svdj8.daos.Dto;
+package nl.hsleiden.svdj8.daos.dto;
 
 import nl.hsleiden.svdj8.models.tables.GivenAnswer;
 import nl.hsleiden.svdj8.models.tables.Route;
 import nl.hsleiden.svdj8.models.tables.Result;
 
-import javax.persistence.*;
 import java.util.List;
 
 public class RouteDto {
@@ -15,10 +14,10 @@ public class RouteDto {
 
     public static RouteDto from(Route route) {
         RouteDto routeDto = new RouteDto();
-        routeDto.setRouteId(route.getRouteId());
+//        routeDto.setRouteId(route.getRouteId());
         routeDto.setTotalTime(route.getTotalTime());
-        routeDto.setResultId(route.getResultId());
-        routeDto.setGivenAnswerList(route.getGivenAnswerList());
+//        routeDto.setResultId(route.getResultId());
+//        routeDto.setGivenAnswerList(route.getGivenAnswerList());
         return routeDto;
     }
 

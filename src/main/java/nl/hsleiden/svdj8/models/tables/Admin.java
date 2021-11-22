@@ -1,16 +1,15 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "admin")
 public class Admin {
-    private @Id
-    @GeneratedValue
-    Long adminID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="admin_id")
+    private Long adminID;
+
     private String name;
     private String password; //???????????TODO: CHECK DIT NA
 
@@ -41,10 +40,6 @@ public class Admin {
     public void setPassword(String password) {
         this.password = password;
     }
-
-//    public void setAdminID(Long adminID) {
-//        this.adminID = adminID;
-//    }
 
     public Long getAdminID() {
         return this.adminID;
