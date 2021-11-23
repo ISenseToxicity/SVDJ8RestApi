@@ -1,6 +1,7 @@
 package nl.hsleiden.svdj8.daos;
 
 import nl.hsleiden.svdj8.models.tables.Answer;
+import nl.hsleiden.svdj8.models.tables.Question;
 import nl.hsleiden.svdj8.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,18 +37,24 @@ public class AnswerDAO {
         return resultAnswers;
     }
 
-    public Answer getFirst() {
-        return getAll().get(0);
-    }
-
     public Answer getById(long id) {
         Optional<Answer> optionalAnswer = answerRepository.findById(id);
         return optionalAnswer.orElse(null);
+    }
+    public Optional<Answer> getByIdOptional(long id){
+        Optional<Answer> optionalAnswer = answerRepository.findById(id);
+        return optionalAnswer;
     }
 
     public void deleteByQuestionId(Long questionId) {
         ArrayList<Answer> answers = getByQuestionId(questionId);
         answerRepository.deleteAll(answers);
     }
+    public void deleteByAnswerId(long answerId){
+        answerRepository.deleteById(answerId);
+    }
 
+    public Answer addAnswer(Answer newAnswer){
+        return answerRepository.save(newAnswer);
+    }
 }

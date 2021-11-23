@@ -25,12 +25,19 @@ public class QuestionDAO {
         return questions;
     }
 
-    public Question getFirst() {
-        return getAll().get(0);
-    }
-
     public Question getById(long id) {
         Optional<Question> optionalQuestion = questionRepository.findById(id);
         return optionalQuestion.orElse(null);
+    }
+    public Optional<Question> getByIdOptional(long id){
+        Optional<Question> optionalQuestion = questionRepository.findById(id);
+        return optionalQuestion;
+    }
+    public void deleteQuestion(long id){
+        questionRepository.deleteById(id);
+    }
+
+    public Question addQuestion(Question newQuestion){
+        return questionRepository.save(newQuestion);
     }
 }
