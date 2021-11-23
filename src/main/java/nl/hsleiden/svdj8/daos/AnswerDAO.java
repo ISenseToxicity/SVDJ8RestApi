@@ -26,17 +26,6 @@ public class AnswerDAO {
         return answers;
     }
 
-//    public List<Answer> getByQuestionId(Long questionId) {
-//        ArrayList<Answer> allAnswers = (ArrayList<Answer>) this.answerRepository.findAll();
-//        ArrayList<Answer> resultAnswers = new ArrayList<>();
-//        for (Answer answer: allAnswers) {
-//            if (answer.getQuestionID() == questionId.longValue()) {
-//                resultAnswers.add(answer);
-//            }
-//        }
-//        return resultAnswers;
-//    }
-
     public Answer getById(long id) {
         Optional<Answer> optionalAnswer = answerRepository.findById(id);
         return optionalAnswer.orElse(null);
@@ -45,11 +34,6 @@ public class AnswerDAO {
         Optional<Answer> optionalAnswer = answerRepository.findById(id);
         return optionalAnswer;
     }
-
-//    public void deleteByQuestionId(Long questionId) {
-//        List<Answer> answers = getByQuestionId(questionId);
-//        answerRepository.deleteAll(answers);
-//    }
 
     public void deleteByAnswerId(long answerId){
         answerRepository.deleteById(answerId);

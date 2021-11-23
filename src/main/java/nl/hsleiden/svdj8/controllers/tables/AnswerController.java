@@ -31,10 +31,6 @@ public class AnswerController {
         return answerDAO.getById(id);
     }
 
-//    @GetMapping(value = "/answer/question/{id}")
-//    public List<Answer> getAnswersByQuestionId(@PathVariable Long id){
-//        return answerDAO.getByQuestionId(id);
-//    }
 
     @PutMapping(value = "/answer/{id}")
     public Answer editAnswer(@RequestBody Answer editAnswer, @PathVariable Long id) throws Exception {

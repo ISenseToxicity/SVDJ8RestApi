@@ -33,7 +33,6 @@ public class RouteController {
         return routeDAO.getByIdOptional(id)
                 .map(route -> {
                     route.setTotalTime(editRoute.getTotalTime());
-//                    route.setResult(editRoute.getResult());
                     return routeDAO.addRoute(route);
                 })
                 .orElseThrow(() -> new Exception(

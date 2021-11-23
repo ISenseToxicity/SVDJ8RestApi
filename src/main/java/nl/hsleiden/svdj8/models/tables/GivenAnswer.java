@@ -17,9 +17,6 @@ public class GivenAnswer {
     @Column(name = "route_id")
     private long routeId;
 
-//    @Column(name = "question_id")
-//    private Long question_id;
-
     @OneToOne( targetEntity = Question.class)
     @JoinColumn(name = "question_id", referencedColumnName = "question_id")
     private Question question;
@@ -52,12 +49,6 @@ public class GivenAnswer {
     public void setElapsedSeconds(int elapsedSeconds) {
         this.elapsedSeconds = elapsedSeconds;
     }
-
-//    public Long getQuestion_id() { return question_id; }
-//
-//    public void setQuestion_id(Long question_id) {
-//        this.question_id = question_id;
-//    }
 
     public Question getQuestion() {
         return question;
