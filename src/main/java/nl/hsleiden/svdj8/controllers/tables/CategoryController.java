@@ -16,46 +16,40 @@ public class CategoryController {
     @Autowired
     public final CategoryDAO categoryDAO;
 
-    @Autowired
-    public final CategoryRepository categoryRepository;
-
-    public CategoryController(CategoryDAO categoryDAO, CategoryRepository categoryRepository) {
+    public CategoryController(CategoryDAO categoryDAO) {
         this.categoryDAO = categoryDAO;
-        this.categoryRepository = categoryRepository;
     }
 
-    @RequestMapping(value = "/category/all", method = RequestMethod.GET)
-    public ResponseEntity<List<Category>> getAllCategories() {
-        return new ResponseEntity<>(categoryDAO.getAll(), HttpStatus.OK);
+    @GetMapping(value = "/category/all")
+    public List<Category> getAllCategories() {
+        return categoryDAO.getAll();
     }
 
-    @RequestMapping(value = "/category/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Category> getCategory(@PathVariable final Long id) {
-        return new ResponseEntity<>(categoryDAO.getById(id), HttpStatus.OK);
+    @GetMapping(value = "/category/{id}")
+    public Category getCategory(@PathVariable final Long id) {
+        return categoryDAO.getById(id);
     }
 
-    @RequestMapping(value = "/category/{id}", method = RequestMethod.PUT)
-    Category editCategory(@RequestBody Category editCategory, @PathVariable Long id) throws Exception {
+    @PutMapping(value = "/category/{id}")
+    public Category editCategory(@RequestBody Category editCategory, @PathVariable Long id) throws Exception {
 
-        return categoryRepository.findById(id)
+        return categoryDAO.getByIdOptional(id)
                 .map(category -> {
                     category.setName(editCategory.getName());
                     category.setDescription(editCategory.getDescription());
-                    return categoryRepository.save(category);
+                    return categoryDAO.addCategory(category);
                 })
                 .orElseThrow(() -> new Exception(
                         "No category found with id " + id + "\""));
-
     }
 
-    @RequestMapping(value = "/category", method = RequestMethod.POST)
-    Category addCategory(@RequestBody Category newCategory) {
-        return categoryRepository.save(newCategory);
+    @PostMapping(value = "/category")
+    public Category addCategory(@RequestBody Category newCategory) {
+        return categoryDAO.addCategory(newCategory);
     }
 
     @DeleteMapping("/category/{id}")
-    void deleteCategory(@PathVariable Long id) {
-        categoryRepository.deleteById(id);
+    public void deleteCategory(@PathVariable Long id) {
+        categoryDAO.deleteCategory(id);
     }
-
 }

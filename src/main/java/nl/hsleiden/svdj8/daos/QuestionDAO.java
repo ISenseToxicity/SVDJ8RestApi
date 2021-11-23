@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -19,7 +20,7 @@ public class QuestionDAO {
         this.questionRepository = questionRepository;
     }
 
-    public ArrayList<Question> getAll(){
+    public List<Question> getAll(){
         ArrayList<Question> questions = (ArrayList<Question>) this.questionRepository.findAll();
         questions.sort(Comparator.comparingLong(Question::getQuestionID));
         return questions;

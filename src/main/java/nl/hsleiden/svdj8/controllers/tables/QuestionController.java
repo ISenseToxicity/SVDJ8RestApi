@@ -5,8 +5,6 @@ import nl.hsleiden.svdj8.daos.QuestionDAO;
 import nl.hsleiden.svdj8.models.tables.Answer;
 import nl.hsleiden.svdj8.models.tables.Question;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -24,18 +22,18 @@ public class QuestionController {
         this.answerDAO = answerDAO;
     }
 
-    @RequestMapping(value = "/question/all", method = RequestMethod.GET)
-    public ResponseEntity<List<Question>> getAllQuestions() {
-      return new ResponseEntity<>(questionDAO.getAll(), HttpStatus.OK);
+    @GetMapping(value = "/question/all")
+    public List<Question> getAllQuestions() {
+      return questionDAO.getAll();
     }
 
-    @RequestMapping(value = "/question/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Question> getQuestion(@PathVariable final Long id) {
-       return new ResponseEntity<>(questionDAO.getById(id), HttpStatus.OK);
+    @GetMapping(value = "/question/{id}")
+    public Question getQuestion(@PathVariable final Long id) {
+       return questionDAO.getById(id);
     }
 
-    @RequestMapping(value = "/question/{id}", method = RequestMethod.PUT)
-    Question editQuestion(@RequestBody Question editQuestion, @PathVariable Long id) throws Exception {
+    @PutMapping(value = "/question/{id}")
+    public Question editQuestion(@RequestBody Question editQuestion, @PathVariable Long id) throws Exception {
         Question resultQuestion = questionDAO.getByIdOptional(id)
                 .map(question -> {
                     question.setQuestionText(editQuestion.getQuestionText());
@@ -54,14 +52,13 @@ public class QuestionController {
         return resultQuestion;
     }
 
-    @RequestMapping(value = "/question", method = RequestMethod.POST)
-    Question addQuestion(@RequestBody Question newQuestion) {
+    @PostMapping(value = "/question")
+    public Question addQuestion(@RequestBody Question newQuestion) {
         return questionDAO.addQuestion(newQuestion);
     }
 
     @DeleteMapping("/question/{id}")
-    void deleteQuestion(@PathVariable Long id) {
+    public void deleteQuestion(@PathVariable Long id) {
         questionDAO.deleteQuestion(id);
     }
-
 }

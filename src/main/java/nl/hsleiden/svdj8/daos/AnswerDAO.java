@@ -1,13 +1,13 @@
 package nl.hsleiden.svdj8.daos;
 
 import nl.hsleiden.svdj8.models.tables.Answer;
-import nl.hsleiden.svdj8.models.tables.Question;
 import nl.hsleiden.svdj8.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -20,13 +20,13 @@ public class AnswerDAO {
         this.answerRepository = answerRepository;
     }
 
-    public ArrayList<Answer> getAll(){
+    public List<Answer> getAll(){
         ArrayList<Answer> answers = (ArrayList<Answer>) this.answerRepository.findAll();
         answers.sort(Comparator.comparingLong(Answer::getAnswerID));
         return answers;
     }
 
-    public ArrayList<Answer> getByQuestionId(Long questionId) {
+    public List<Answer> getByQuestionId(Long questionId) {
         ArrayList<Answer> allAnswers = (ArrayList<Answer>) this.answerRepository.findAll();
         ArrayList<Answer> resultAnswers = new ArrayList<>();
         for (Answer answer: allAnswers) {
@@ -47,9 +47,10 @@ public class AnswerDAO {
     }
 
     public void deleteByQuestionId(Long questionId) {
-        ArrayList<Answer> answers = getByQuestionId(questionId);
+        List<Answer> answers = getByQuestionId(questionId);
         answerRepository.deleteAll(answers);
     }
+
     public void deleteByAnswerId(long answerId){
         answerRepository.deleteById(answerId);
     }

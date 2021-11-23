@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -19,7 +20,7 @@ public class ResultDAO {
         this.resultRepository = resultRepository;
     }
 
-    public ArrayList<Result> getAll(){
+    public List<Result> getAll(){
         ArrayList<Result> results = (ArrayList<Result>) this.resultRepository.findAll();
         results.sort(Comparator.comparingLong(Result::getResultID));
         return results;
@@ -34,4 +35,17 @@ public class ResultDAO {
         return optionalResult.orElse(null);
     }
 
+
+    public Optional<Result> getByIdOptional(long id){
+        Optional<Result> optionalResult = resultRepository.findById(id);
+        return optionalResult;
+    }
+
+    public void deleteQuestion(long id){
+        resultRepository.deleteById(id);
+    }
+
+    public Result addQuestion(Result newResult){
+        return resultRepository.save(newResult);
+    }
 }

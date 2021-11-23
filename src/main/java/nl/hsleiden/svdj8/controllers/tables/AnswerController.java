@@ -47,12 +47,12 @@ public class AnswerController {
     }
 
     @PostMapping(value = "/answer")
-    Answer addAnswer(@RequestBody Answer newAnswer) {
+    public Answer addAnswer(@RequestBody Answer newAnswer) {
         return answerDAO.addAnswer(newAnswer);
     }
 
     @DeleteMapping("/answer/{id}")
-    void deleteAnswer(@PathVariable Long id) {
+    public void deleteAnswer(@PathVariable Long id) {
         answerDAO.deleteByAnswerId(id);
     }
 }

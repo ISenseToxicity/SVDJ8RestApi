@@ -38,7 +38,6 @@ public class AdminController {
                 })
                 .orElseThrow(() -> new Exception(
                         "No admin found with id " + id + "\""));
-
     }
 
     @PostMapping(value = "/admin")
