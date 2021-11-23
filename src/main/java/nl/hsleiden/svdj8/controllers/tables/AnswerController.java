@@ -1,6 +1,7 @@
 package nl.hsleiden.svdj8.controllers.tables;
 
 import nl.hsleiden.svdj8.daos.AnswerDAO;
+import nl.hsleiden.svdj8.daos.CategoryDAO;
 import nl.hsleiden.svdj8.models.tables.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +14,11 @@ public class AnswerController {
     @Autowired
     public final AnswerDAO answerDAO;
 
-    public AnswerController(AnswerDAO answerDAO) {
+    public final CategoryDAO categoryDAO;
+
+    public AnswerController(AnswerDAO answerDAO, CategoryDAO categoryDAO) {
         this.answerDAO = answerDAO;
+        this.categoryDAO = categoryDAO;
     }
 
     @GetMapping(value = "/answer/all")
@@ -27,23 +31,24 @@ public class AnswerController {
         return answerDAO.getById(id);
     }
 
-    @GetMapping(value = "/answer/question/{id}")
-    public List<Answer> getAnswersByQuestionId(@PathVariable Long id){
-        return answerDAO.getByQuestionId(id);
-    }
+//    @GetMapping(value = "/answer/question/{id}")
+//    public List<Answer> getAnswersByQuestionId(@PathVariable Long id){
+//        return answerDAO.getByQuestionId(id);
+//    }
 
     @PutMapping(value = "/answer/{id}")
     public Answer editAnswer(@RequestBody Answer editAnswer, @PathVariable Long id) throws Exception {
-
-        return answerDAO.getByIdOptional(id)
+Answer returnAnswer = answerDAO.getByIdOptional(id)
                 .map(answer -> {
                     answer.setAnswerText(editAnswer.getAnswerText());
                     answer.setQuestionID(editAnswer.getQuestionID());
-                    answer.setCategoryID(editAnswer.getCategoryID());
+                    answer.setCategory(editAnswer.getCategory());
                     return answerDAO.addAnswer(answer);
                 })
                 .orElseThrow(() -> new Exception(
                         "No answer found with id " + id + "\""));
+            returnAnswer.setCategory(categoryDAO.getById(returnAnswer.getCategory().getCategoryID()));
+        return returnAnswer;
     }
 
     @PostMapping(value = "/answer")

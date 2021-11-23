@@ -16,12 +16,9 @@ public class Answer {
     @Column(name = "question_id")
     private Long questionID;
 
-    @Column(name = "category_id")
-    private Long categoryID;
-
-//    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Question.class)
-//    @JoinColumn(name = "question_id", nullable = false, referencedColumnName = "question_id")
-//    private Question question;
+    @ManyToOne( targetEntity = Category.class)
+    @JoinColumn(name = "category_id",referencedColumnName = "category_id")
+    private Category category;
 
     public Answer(Long answerID, String answerText) {
         this.answerID = answerID;
@@ -48,10 +45,10 @@ public class Answer {
         this.questionID = questionID;
     }
 
-    public Long getCategoryID() { return categoryID; }
+    public Category getCategory() { return category; }
 
-    public void setCategoryID(Long categoryID) {
-        this.categoryID = categoryID;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getAnswerText() {

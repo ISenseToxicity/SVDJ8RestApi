@@ -13,18 +13,18 @@ public class GivenAnswer {
     @Column(name = "elapsed_seconds")
     private int elapsedSeconds;
 
-    @ManyToOne(cascade = CascadeType.PERSIST, targetEntity = Route.class)
-    @JoinColumn(name = "route_id", referencedColumnName = "route_id")
-    private Route route;
+
+    @Column(name = "route_id")
+    private long routeId;
 
 //    @Column(name = "question_id")
 //    private Long question_id;
 
-    @OneToOne(cascade = CascadeType.PERSIST, targetEntity = Question.class)
+    @OneToOne( targetEntity = Question.class)
     @JoinColumn(name = "question_id", referencedColumnName = "question_id")
     private Question question;
 
-    @OneToOne(cascade = CascadeType.PERSIST, targetEntity = Answer.class)
+    @OneToOne( targetEntity = Answer.class)
     @JoinColumn(name = "answer_id", referencedColumnName = "answer_id")
     private Answer answer;
 
@@ -75,12 +75,12 @@ public class GivenAnswer {
         this.answer = answer;
     }
 
-    public Route getRoute() {
-        return route;
+    public long getRouteId() {
+        return routeId;
     }
 
-    public void setRoute(Route route) {
-        this.route = route;
+    public void setRouteId(long routeId) {
+        this.routeId = routeId;
     }
 
 }

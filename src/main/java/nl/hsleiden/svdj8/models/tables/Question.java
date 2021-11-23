@@ -1,6 +1,7 @@
 package nl.hsleiden.svdj8.models.tables;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,10 +15,8 @@ public class Question {
     @Column(name = "question_text")
     private String questionText;
 
-    @OneToMany(targetEntity = Answer.class,
-            mappedBy = "questionID", fetch = FetchType.LAZY,
-            cascade = CascadeType.PERSIST)
-    private List<Answer> answers;
+    @OneToMany(mappedBy = "questionID", targetEntity = Answer.class)
+    private List<Answer> answers = new ArrayList<>();
 
     @Column(name = "extra_info_tile")
     private String extraInfoTile;
@@ -87,4 +86,5 @@ public class Question {
     public Long getQuestionID() {
         return questionID;
     }
+
 }

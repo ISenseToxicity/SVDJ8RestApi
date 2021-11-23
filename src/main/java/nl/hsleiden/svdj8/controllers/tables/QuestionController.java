@@ -53,8 +53,13 @@ public class QuestionController {
     }
 
     @PostMapping(value = "/question")
-    public Question addQuestion(@RequestBody Question newQuestion) {
-        return questionDAO.addQuestion(newQuestion);
+     public Question addQuestion(@RequestBody Question newQuestion) {
+        Question resultQuestion = questionDAO.addQuestion(newQuestion);
+        for (Answer answer : resultQuestion.getAnswers()) {
+            answer.setQuestionID(resultQuestion.getQuestionID());
+           answerDAO.addAnswer(answer);
+        }
+        return resultQuestion;
     }
 
     @DeleteMapping("/question/{id}")

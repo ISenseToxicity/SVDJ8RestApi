@@ -22,11 +22,6 @@ public class Grant {
     public Grant() {
     }
 
-//    public static Grant from(GrantDto grantDto) {
-//        Grant grant = new Grant();
-//        grant.setGrantID(grantDto.getId());
-//        return grant;
-//    }
 
     public void setGrantID(Long grantID) {
         this.grantID = grantID;

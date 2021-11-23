@@ -1,7 +1,6 @@
 package nl.hsleiden.svdj8.daos;
 
 import nl.hsleiden.svdj8.models.tables.Admin;
-import nl.hsleiden.svdj8.models.tables.Question;
 import nl.hsleiden.svdj8.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
