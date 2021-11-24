@@ -1,14 +1,14 @@
 package nl.hsleiden.svdj8.daos;
 
+import javassist.NotFoundException;
 import nl.hsleiden.svdj8.models.tables.Question;
 import nl.hsleiden.svdj8.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class QuestionDAO {
@@ -28,7 +28,10 @@ public class QuestionDAO {
 
     public Question getById(long id) {
         Optional<Question> optionalQuestion = questionRepository.findById(id);
-        return optionalQuestion.orElse(null);
+        if (optionalQuestion.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Question with the id: " + id + " not found");
+        }
+        return optionalQuestion.get();
     }
 
     public Optional<Question> getByIdOptional(long id) {

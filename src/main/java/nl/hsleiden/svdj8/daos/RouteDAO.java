@@ -1,15 +1,15 @@
 package nl.hsleiden.svdj8.daos;
 
+import javassist.NotFoundException;
 import nl.hsleiden.svdj8.models.tables.Question;
 import nl.hsleiden.svdj8.models.tables.Route;
 import nl.hsleiden.svdj8.repository.RouteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class RouteDAO {
@@ -29,7 +29,10 @@ public class RouteDAO {
 
     public Route getById(long id) {
         Optional<Route> optionalRoute = routeRepository.findById(id);
-        return optionalRoute.orElse(null);
+        if(optionalRoute.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Route with the id: " + id + " not found");
+        }
+        return optionalRoute.get();
     }
 
 
