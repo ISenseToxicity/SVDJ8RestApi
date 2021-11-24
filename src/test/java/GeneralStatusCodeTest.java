@@ -10,7 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -24,68 +24,85 @@ public class GeneralStatusCodeTest {
     private MockMvc mvc;
 
     @Before
-    public void init(){
+    public void init() {
+        endPointList.add("admin");
         endPointList.add("answer");
         endPointList.add("category");
         endPointList.add("givenanswer");
         endPointList.add("grant");
         endPointList.add("question");
         endPointList.add("route");
+        endPointList.add("result");
     }
 
     @Test
-    public void givenQuestions_whenGetQuestion1_thenStatusCode200() throws Exception{
-        for(String endpoint: endPointList){
-            mvc.perform(get("http://localhost:8080/"+endpoint+"/1"))
+    public void givenEndpoints_whenGet1_thenStatusCode200() throws Exception {
+        for (String endpoint : endPointList) {
+            mvc.perform(get("http://localhost:8080/" + endpoint + "/1"))
                     .andExpect(status().isOk());
         }
     }
 
     @Test
-    public void givenQuestions_whenGetAllQuestions_thenStatusCode200() throws Exception{
-        for(String endpoint: endPointList){
-            mvc.perform(get("http://localhost:8080/"+endpoint+"/all"))
+    public void givenEndpoints_whenGetAll_thenStatusCode200() throws Exception {
+        for (String endpoint : endPointList) {
+            mvc.perform(get("http://localhost:8080/" + endpoint + "/all"))
                     .andExpect(status().isOk());
         }
     }
 
     @Test
-    public void givenQuestions_whenGetQuestion5000_thenStatusCode404() throws Exception{
-        for(String endpoint: endPointList){
-            mvc.perform(get("http://localhost:8080/"+endpoint+"/5000000"))
+    public void givenEndpoints_whenGet5000000_thenStatusCode404() throws Exception {
+        for (String endpoint : endPointList) {
+            mvc.perform(get("http://localhost:8080/" + endpoint + "/5000000"))
                     .andExpect(status().is(404));
         }
     }
 
     @Test
-    public void givenQuestions_whenGetQuestionMinusOne_thenStatusCode404() throws Exception{
-        for(String endpoint: endPointList){
-            mvc.perform(get("http://localhost:8080/"+endpoint+"/-1"))
+    public void givenEndpoints_whenGetMinusOne_thenStatusCode404() throws Exception {
+        for (String endpoint : endPointList) {
+            mvc.perform(get("http://localhost:8080/" + endpoint + "/-1"))
                     .andExpect(status().is(404));
         }
     }
 
     @Test
-    public void givenQuestions_whenGetQuestionZero_thenStatusCode404() throws Exception{
-        for(String endpoint: endPointList){
-            mvc.perform(get("http://localhost:8080/"+endpoint+"/0"))
+    public void givenEndpoints_whenGetZero_thenStatusCode404() throws Exception {
+        for (String endpoint : endPointList) {
+            mvc.perform(get("http://localhost:8080/" + endpoint + "/0"))
                     .andExpect(status().is(404));
         }
     }
 
     @Test
-    public void givenQuestions_whenGetQuestionNoInteger_thenStatusCode400() throws Exception{
-        for(String endpoint: endPointList){
-            mvc.perform(get("http://localhost:8080/"+endpoint+"/Z"))
+    public void givenEndpoints_whenGetNoInteger_thenStatusCode400() throws Exception {
+        for (String endpoint : endPointList) {
+            mvc.perform(get("http://localhost:8080/" + endpoint + "/Z"))
                     .andExpect(status().is(400));
         }
     }
 
     @Test
-    public void givenQuestions_whenGetQuestionNoInput_thenStatusCode405() throws Exception{
-        for(String endpoint: endPointList){
-            mvc.perform(get("http://localhost:8080/"+endpoint))
+    public void givenEndpoints_whenGetNoInputGet_thenStatusCode405() throws Exception {
+        for (String endpoint : endPointList) {
+            mvc.perform(get("http://localhost:8080/" + endpoint))
                     .andExpect(status().is(405));
         }
+    }
+
+    @Test
+    public void givenApplication_whenNoEndPoint_thenStatusCode404() throws Exception {
+        mvc.perform(get("http://localhost:8080/"))
+                .andExpect(status().is(404));
+    }
+
+    @Test
+    public void givenEndpoints_whenNoInputPut_thenStatusCode400() throws Exception{
+        for(String endpoint : endPointList){
+            mvc.perform(put("http://localhost:8080/"+endpoint + "/1"))
+                    .andExpect(status().is(400));
+        }
+
     }
 }
