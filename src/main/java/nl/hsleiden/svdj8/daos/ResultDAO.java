@@ -20,7 +20,7 @@ public class ResultDAO {
         this.resultRepository = resultRepository;
     }
 
-    public List<Result> getAll(){
+    public List<Result> getAll() {
         ArrayList<Result> results = (ArrayList<Result>) this.resultRepository.findAll();
         results.sort(Comparator.comparingLong(Result::getResultID));
         return results;
@@ -36,16 +36,16 @@ public class ResultDAO {
     }
 
 
-    public Optional<Result> getByIdOptional(long id){
+    public Optional<Result> getByIdOptional(long id) {
         Optional<Result> optionalResult = resultRepository.findById(id);
         return optionalResult;
     }
 
-    public void deleteQuestion(long id){
+    public void deleteQuestion(long id) {
         resultRepository.deleteById(id);
     }
 
-    public Result addQuestion(Result newResult){
+    public Result addQuestion(Result newResult) {
         return resultRepository.save(newResult);
     }
 }

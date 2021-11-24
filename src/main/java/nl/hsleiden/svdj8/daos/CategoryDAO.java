@@ -20,12 +20,13 @@ public class CategoryDAO {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<Category> getAll(){
+    public List<Category> getAll() {
         ArrayList<Category> categories = (ArrayList<Category>) categoryRepository.findAll();
         categories.sort(Comparator.comparingLong(Category::getCategoryID));
         return categories;
     }
-    public Optional<Category> getByIdOptional(long id){
+
+    public Optional<Category> getByIdOptional(long id) {
         Optional<Category> optionalCategory = categoryRepository.findById(id);
         return optionalCategory;
     }
@@ -35,10 +36,11 @@ public class CategoryDAO {
         return optionalCategory.orElse(null);
     }
 
-    public Category addCategory(Category newCategory){
+    public Category addCategory(Category newCategory) {
         return categoryRepository.save(newCategory);
     }
-    public void deleteCategory(long id){
+
+    public void deleteCategory(long id) {
         categoryRepository.deleteById(id);
     }
 }

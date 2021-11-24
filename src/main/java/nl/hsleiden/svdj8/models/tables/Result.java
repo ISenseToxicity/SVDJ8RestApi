@@ -18,7 +18,7 @@ public class Result {
     @Column(name = "total_time")
     private Time totalTime;
 
-    @ManyToOne( targetEntity = Grant.class)
+    @ManyToOne(targetEntity = Grant.class)
     @JoinColumn(name = "grant_id", nullable = false, referencedColumnName = "grant_id")
     private Grant grant;
 

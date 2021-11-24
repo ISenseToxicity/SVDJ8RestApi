@@ -44,7 +44,7 @@ public class GivenAnswerController {
 
     @PutMapping(value = "/givenanswer/{id}")
     public GivenAnswer editGivenAnswer(@RequestBody GivenAnswer editGivenAnswer, @PathVariable Long id) throws Exception {
-GivenAnswer returnGivenAnswer = givenAnswerDAO.getByIdOptional(id)
+        GivenAnswer returnGivenAnswer = givenAnswerDAO.getByIdOptional(id)
                 .map(givenAnswer -> {
                     givenAnswer.setElapsedSeconds(editGivenAnswer.getElapsedSeconds());
                     givenAnswer.setAnswer(editGivenAnswer.getAnswer());
@@ -56,8 +56,8 @@ GivenAnswer returnGivenAnswer = givenAnswerDAO.getByIdOptional(id)
                 .orElseThrow(() -> new Exception(
                         "No answer found with id " + id + "\""));
 
-                returnGivenAnswer.setAnswer(answerDAO.getById(returnGivenAnswer.getAnswer().getAnswerID()));
-                returnGivenAnswer.setQuestion(questionDAO.getById(returnGivenAnswer.getQuestion().getQuestionID()));
+        returnGivenAnswer.setAnswer(answerDAO.getById(returnGivenAnswer.getAnswer().getAnswerID()));
+        returnGivenAnswer.setQuestion(questionDAO.getById(returnGivenAnswer.getQuestion().getQuestionID()));
 
         return returnGivenAnswer;
 
@@ -70,6 +70,6 @@ GivenAnswer returnGivenAnswer = givenAnswerDAO.getByIdOptional(id)
 
     @DeleteMapping("/givenanswer/{id}")
     public void deleteGivenAnswer(@PathVariable Long id) {
-       givenAnswerDAO.deleteGivenAnswer(id);
+        givenAnswerDAO.deleteGivenAnswer(id);
     }
 }

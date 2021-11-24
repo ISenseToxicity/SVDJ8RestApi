@@ -3,7 +3,7 @@ package nl.hsleiden.svdj8.models.tables;
 import javax.persistence.*;
 
 @Entity
-@Table(name="category")
+@Table(name = "category")
 public class Category {
 
     @Id

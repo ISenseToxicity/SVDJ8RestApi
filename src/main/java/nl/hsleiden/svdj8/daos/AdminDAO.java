@@ -19,7 +19,7 @@ public class AdminDAO {
         this.adminRepository = adminRepository;
     }
 
-    public List<Admin> getAll(){
+    public List<Admin> getAll() {
         ArrayList<Admin> admins = (ArrayList<Admin>) this.adminRepository.findAll();
         admins.sort(Comparator.comparingLong(Admin::getAdminID));
         return admins;
@@ -29,15 +29,17 @@ public class AdminDAO {
         Optional<Admin> optionalAdmin = adminRepository.findById(id);
         return optionalAdmin.orElse(null);
     }
-    public Optional<Admin> getByIdOptional(long id){
+
+    public Optional<Admin> getByIdOptional(long id) {
         Optional<Admin> optionalAdmin = adminRepository.findById(id);
         return optionalAdmin;
     }
 
-    public void deleteAdmin(long id){
+    public void deleteAdmin(long id) {
         adminRepository.deleteById(id);
     }
-    public Admin addAdmin(Admin newAdmin){
+
+    public Admin addAdmin(Admin newAdmin) {
         return adminRepository.save(newAdmin);
     }
 }

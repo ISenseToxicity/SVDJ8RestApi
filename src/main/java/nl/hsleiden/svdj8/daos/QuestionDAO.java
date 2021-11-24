@@ -20,7 +20,7 @@ public class QuestionDAO {
         this.questionRepository = questionRepository;
     }
 
-    public List<Question> getAll(){
+    public List<Question> getAll() {
         ArrayList<Question> questions = (ArrayList<Question>) this.questionRepository.findAll();
         questions.sort(Comparator.comparingLong(Question::getQuestionID));
         return questions;
@@ -30,15 +30,17 @@ public class QuestionDAO {
         Optional<Question> optionalQuestion = questionRepository.findById(id);
         return optionalQuestion.orElse(null);
     }
-    public Optional<Question> getByIdOptional(long id){
+
+    public Optional<Question> getByIdOptional(long id) {
         Optional<Question> optionalQuestion = questionRepository.findById(id);
         return optionalQuestion;
     }
-    public void deleteQuestion(long id){
+
+    public void deleteQuestion(long id) {
         questionRepository.deleteById(id);
     }
 
-    public Question addQuestion(Question newQuestion){
+    public Question addQuestion(Question newQuestion) {
         return questionRepository.save(newQuestion);
     }
 }

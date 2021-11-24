@@ -34,7 +34,7 @@ public class AnswerController {
 
     @PutMapping(value = "/answer/{id}")
     public Answer editAnswer(@RequestBody Answer editAnswer, @PathVariable Long id) throws Exception {
-Answer returnAnswer = answerDAO.getByIdOptional(id)
+        Answer returnAnswer = answerDAO.getByIdOptional(id)
                 .map(answer -> {
                     answer.setAnswerText(editAnswer.getAnswerText());
                     answer.setQuestionID(editAnswer.getQuestionID());
@@ -43,7 +43,7 @@ Answer returnAnswer = answerDAO.getByIdOptional(id)
                 })
                 .orElseThrow(() -> new Exception(
                         "No answer found with id " + id + "\""));
-            returnAnswer.setCategory(categoryDAO.getById(returnAnswer.getCategory().getCategoryID()));
+        returnAnswer.setCategory(categoryDAO.getById(returnAnswer.getCategory().getCategoryID()));
         return returnAnswer;
     }
 

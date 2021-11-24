@@ -19,7 +19,7 @@ public class GivenAnswerDAO {
         this.givenAnswerRepository = givenAnswerRepository;
     }
 
-    public List<GivenAnswer> getAll(){
+    public List<GivenAnswer> getAll() {
         ArrayList<GivenAnswer> givenAnswers = (ArrayList<GivenAnswer>) this.givenAnswerRepository.findAll();
         givenAnswers.sort(Comparator.comparingLong(GivenAnswer::getGivenAnswerID));
         return givenAnswers;
@@ -30,15 +30,16 @@ public class GivenAnswerDAO {
         return optionalGivenAnswer.orElse(null);
     }
 
-    public Optional<GivenAnswer> getByIdOptional(long id){
+    public Optional<GivenAnswer> getByIdOptional(long id) {
         Optional<GivenAnswer> optionalGivenAnswer = givenAnswerRepository.findById(id);
         return optionalGivenAnswer;
     }
 
-    public GivenAnswer addGivenAnswer(GivenAnswer newGivenAnswer){
+    public GivenAnswer addGivenAnswer(GivenAnswer newGivenAnswer) {
         return givenAnswerRepository.save(newGivenAnswer);
     }
-    public void deleteGivenAnswer(long id){
+
+    public void deleteGivenAnswer(long id) {
         givenAnswerRepository.deleteById(id);
     }
 

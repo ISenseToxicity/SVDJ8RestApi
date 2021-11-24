@@ -6,6 +6,7 @@ import nl.hsleiden.svdj8.models.tables.Answer;
 import nl.hsleiden.svdj8.models.tables.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -24,12 +25,12 @@ public class QuestionController {
 
     @GetMapping(value = "/question/all")
     public List<Question> getAllQuestions() {
-      return questionDAO.getAll();
+        return questionDAO.getAll();
     }
 
     @GetMapping(value = "/question/{id}")
     public Question getQuestion(@PathVariable final Long id) {
-       return questionDAO.getById(id);
+        return questionDAO.getById(id);
     }
 
     @PutMapping(value = "/question/{id}")
@@ -53,11 +54,11 @@ public class QuestionController {
     }
 
     @PostMapping(value = "/question")
-     public Question addQuestion(@RequestBody Question newQuestion) {
+    public Question addQuestion(@RequestBody Question newQuestion) {
         Question resultQuestion = questionDAO.addQuestion(newQuestion);
         for (Answer answer : resultQuestion.getAnswers()) {
             answer.setQuestionID(resultQuestion.getQuestionID());
-           answerDAO.addAnswer(answer);
+            answerDAO.addAnswer(answer);
         }
         return resultQuestion;
     }

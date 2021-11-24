@@ -21,7 +21,7 @@ public class RouteDAO {
         this.routeRepository = routeRepository;
     }
 
-    public List<Route> getAll(){
+    public List<Route> getAll() {
         ArrayList<Route> routes = (ArrayList<Route>) this.routeRepository.findAll();
         routes.sort(Comparator.comparingLong(Route::getRouteID));
         return routes;
@@ -33,15 +33,16 @@ public class RouteDAO {
     }
 
 
-    public Optional<Route> getByIdOptional(long id){
+    public Optional<Route> getByIdOptional(long id) {
         Optional<Route> optionalRoute = routeRepository.findById(id);
         return optionalRoute;
     }
-    public void deleteRoute(long id){
+
+    public void deleteRoute(long id) {
         routeRepository.deleteById(id);
     }
 
-    public Route addRoute(Route newRoute){
+    public Route addRoute(Route newRoute) {
         return routeRepository.save(newRoute);
     }
 }

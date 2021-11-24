@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="admin_id")
+    @Column(name = "admin_id")
     private Long adminID;
 
     private String name;

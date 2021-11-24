@@ -18,10 +18,10 @@ public class GrantDAO {
     private GrantRepository grantRepository;
 
     public GrantDAO(GrantRepository grantRepository) {
-        this. grantRepository = grantRepository;
+        this.grantRepository = grantRepository;
     }
 
-    public List<Grant> getAll(){
+    public List<Grant> getAll() {
         ArrayList<Grant> grants = (ArrayList<Grant>) this.grantRepository.findAll();
         grants.sort(Comparator.comparingLong(Grant::getGrantID));
         return grants;
@@ -31,16 +31,17 @@ public class GrantDAO {
         Optional<Grant> optionalGrant = grantRepository.findById(id);
         return optionalGrant.orElse(null);
     }
-    public Optional<Grant> getByIdOptional(long id){
+
+    public Optional<Grant> getByIdOptional(long id) {
         Optional<Grant> optionalGrant = grantRepository.findById(id);
         return optionalGrant;
     }
 
-    public Grant addGrant(Grant newGrant){
+    public Grant addGrant(Grant newGrant) {
         return grantRepository.save(newGrant);
     }
 
-    public void deleteById(long id){
+    public void deleteById(long id) {
         grantRepository.deleteById(id);
     }
 }

@@ -16,8 +16,8 @@ public class Answer {
     @Column(name = "question_id")
     private Long questionID;
 
-    @ManyToOne( targetEntity = Category.class)
-    @JoinColumn(name = "category_id",referencedColumnName = "category_id")
+    @ManyToOne(targetEntity = Category.class)
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private Category category;
 
     public Answer(Long answerID, String answerText) {
@@ -45,7 +45,9 @@ public class Answer {
         this.questionID = questionID;
     }
 
-    public Category getCategory() { return category; }
+    public Category getCategory() {
+        return category;
+    }
 
     public void setCategory(Category category) {
         this.category = category;

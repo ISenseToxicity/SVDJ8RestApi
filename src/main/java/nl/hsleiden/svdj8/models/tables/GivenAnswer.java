@@ -17,11 +17,11 @@ public class GivenAnswer {
     @Column(name = "route_id")
     private long routeId;
 
-    @OneToOne( targetEntity = Question.class)
+    @OneToOne(targetEntity = Question.class)
     @JoinColumn(name = "question_id", referencedColumnName = "question_id")
     private Question question;
 
-    @OneToOne( targetEntity = Answer.class)
+    @OneToOne(targetEntity = Answer.class)
     @JoinColumn(name = "answer_id", referencedColumnName = "answer_id")
     private Answer answer;
 

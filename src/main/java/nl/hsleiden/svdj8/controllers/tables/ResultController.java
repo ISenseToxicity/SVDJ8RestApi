@@ -18,7 +18,6 @@ public class ResultController {
     public final GrantDAO grantDAO;
 
 
-
     public ResultController(ResultDAO resultDAO, GrantDAO grantDAO) {
         this.resultDAO = resultDAO;
         this.grantDAO = grantDAO;
@@ -36,7 +35,7 @@ public class ResultController {
 
     @PutMapping(value = "/result/{id}")
     public Result editResult(@RequestBody Result editResult, @PathVariable Long id) throws Exception {
-        Result returnResult =  resultDAO.getByIdOptional(id)
+        Result returnResult = resultDAO.getByIdOptional(id)
                 .map(result -> {
                     result.setTotalTime(editResult.getTotalTime());
                     result.setAmountQuestions(editResult.getAmountQuestions());
