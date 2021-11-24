@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
-
 
 @Component
 public class QuestionDAO {
@@ -20,14 +20,10 @@ public class QuestionDAO {
         this.questionRepository = questionRepository;
     }
 
-    public ArrayList<Question> getAll(){
+    public List<Question> getAll() {
         ArrayList<Question> questions = (ArrayList<Question>) this.questionRepository.findAll();
         questions.sort(Comparator.comparingLong(Question::getQuestionID));
         return questions;
-    }
-
-    public Question getFirst() {
-        return getAll().get(0);
     }
 
     public Question getById(long id) {
@@ -35,17 +31,16 @@ public class QuestionDAO {
         return optionalQuestion.orElse(null);
     }
 
-//    public void saveQuestion(Question question) {
-//        Question toModifyQuestion = getById(question.getQuestionID());
-//        if (toModifyQuestion != null) {
-//            toModifyQuestion.setValue(question.getValue());
-//        } else {
-//            toModifyQuestion = question;
-//        }
-//        questionRepository.save(toModifyQuestion);
-//    }
+    public Optional<Question> getByIdOptional(long id) {
+        Optional<Question> optionalQuestion = questionRepository.findById(id);
+        return optionalQuestion;
+    }
 
-    public void deleteById(long id) {
+    public void deleteQuestion(long id) {
         questionRepository.deleteById(id);
+    }
+
+    public Question addQuestion(Question newQuestion) {
+        return questionRepository.save(newQuestion);
     }
 }

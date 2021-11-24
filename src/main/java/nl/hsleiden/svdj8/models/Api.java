@@ -27,5 +27,4 @@ public class Api {
     public void setNewData(Map<String, Object> newData) {
         this.newData = newData;
     }
-
 }

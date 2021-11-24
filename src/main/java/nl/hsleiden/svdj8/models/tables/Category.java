@@ -3,12 +3,12 @@ package nl.hsleiden.svdj8.models.tables;
 import javax.persistence.*;
 
 @Entity
-@Table(name="category")
+@Table(name = "category")
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="category_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "category_id")
     private Long categoryID;
 
     private String name;
@@ -23,7 +23,6 @@ public class Category {
     public Category() {
     }
 
-    //    Setters and Getters
     public String getName() {
         return name;
     }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -18,14 +19,10 @@ public class GivenAnswerDAO {
         this.givenAnswerRepository = givenAnswerRepository;
     }
 
-    public ArrayList<GivenAnswer> getAll(){
+    public List<GivenAnswer> getAll() {
         ArrayList<GivenAnswer> givenAnswers = (ArrayList<GivenAnswer>) this.givenAnswerRepository.findAll();
         givenAnswers.sort(Comparator.comparingLong(GivenAnswer::getGivenAnswerID));
         return givenAnswers;
-    }
-
-    public GivenAnswer getFirst() {
-        return getAll().get(0);
     }
 
     public GivenAnswer getById(long id) {
@@ -33,5 +30,17 @@ public class GivenAnswerDAO {
         return optionalGivenAnswer.orElse(null);
     }
 
+    public Optional<GivenAnswer> getByIdOptional(long id) {
+        Optional<GivenAnswer> optionalGivenAnswer = givenAnswerRepository.findById(id);
+        return optionalGivenAnswer;
+    }
+
+    public GivenAnswer addGivenAnswer(GivenAnswer newGivenAnswer) {
+        return givenAnswerRepository.save(newGivenAnswer);
+    }
+
+    public void deleteGivenAnswer(long id) {
+        givenAnswerRepository.deleteById(id);
+    }
 
 }

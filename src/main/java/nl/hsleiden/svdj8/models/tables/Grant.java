@@ -1,15 +1,12 @@
 package nl.hsleiden.svdj8.models.tables;
 
-
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "grant")
 public class Grant {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "grant_id")
     private Long grantID;
 
@@ -25,11 +22,6 @@ public class Grant {
     public Grant() {
     }
 
-//    public static Grant from(GrantDto grantDto) {
-//        Grant grant = new Grant();
-//        grant.setGrantID(grantDto.getId());
-//        return grant;
-//    }
 
     public void setGrantID(Long grantID) {
         this.grantID = grantID;

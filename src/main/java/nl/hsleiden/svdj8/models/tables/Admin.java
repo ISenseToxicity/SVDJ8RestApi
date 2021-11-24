@@ -6,8 +6,8 @@ import javax.persistence.*;
 @Table(name = "admin")
 public class Admin {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="admin_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "admin_id")
     private Long adminID;
 
     private String name;
@@ -21,9 +21,6 @@ public class Admin {
         this.name = name;
         this.password = password;
     }
-
-    // SETTERS AND GETTERS
-
 
     public String getName() {
         return this.name;
@@ -43,5 +40,9 @@ public class Admin {
 
     public Long getAdminID() {
         return this.adminID;
+    }
+
+    public void setAdminID(Long adminID) {
+        this.adminID = adminID;
     }
 }

@@ -1,15 +1,12 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import nl.hsleiden.svdj8.daos.dto.AnswerDto;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "answer")
 public class Answer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "answer_id")
     private Long answerID;
 
@@ -19,9 +16,9 @@ public class Answer {
     @Column(name = "question_id")
     private Long questionID;
 
-//    @ManyToOne
-//    @JoinColumn(name = "question_id", nullable = false, referencedColumnName = "question_id")
-//    private Question question;
+    @ManyToOne(targetEntity = Category.class)
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
+    private Category category;
 
     public Answer(Long answerID, String answerText) {
         this.answerID = answerID;
@@ -30,14 +27,6 @@ public class Answer {
 
     public Answer() {
 
-    }
-
-    public static Answer from(AnswerDto answerDto) {
-        Answer answer = new Answer();
-        answer.setAnswerID(answerDto.getAnswerID());
-        answer.setAnswerText(answerDto.getAnswerText());
-//        answer.setQuestion(answerDto.getQuestion());
-        return answer;
     }
 
     public Long getAnswerID() {
@@ -54,6 +43,14 @@ public class Answer {
 
     public void setQuestionID(Long questionID) {
         this.questionID = questionID;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getAnswerText() {

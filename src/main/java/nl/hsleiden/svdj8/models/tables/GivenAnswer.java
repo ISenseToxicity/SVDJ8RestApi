@@ -1,51 +1,44 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import nl.hsleiden.svdj8.daos.dto.GivenAnswerDto;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "given_answer")
 public class GivenAnswer {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "given_answer_id")
     private Long givenAnswerId;
 
     @Column(name = "elapsed_seconds")
     private int elapsedSeconds;
 
-    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Route.class)
-    @JoinColumn(name = "route_id", referencedColumnName = "route_id")
-    private Route route;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Question.class)
+    @Column(name = "route_id")
+    private long routeId;
+
+    @OneToOne(targetEntity = Question.class)
     @JoinColumn(name = "question_id", referencedColumnName = "question_id")
     private Question question;
 
-    @OneToOne(cascade = CascadeType.ALL, targetEntity = Answer.class)
+    @OneToOne(targetEntity = Answer.class)
     @JoinColumn(name = "answer_id", referencedColumnName = "answer_id")
     private Answer answer;
 
-    public GivenAnswer(Long givenAnswerId, int elapsedSeconds, Answer answerId) {
+    public GivenAnswer(Long givenAnswerId, int elapsedSeconds, Answer answer) {
         this.givenAnswerId = givenAnswerId;
         this.elapsedSeconds = elapsedSeconds;
+        this.answer = answer;
     }
 
     public GivenAnswer() {
-    }
-
-    public static GivenAnswer from(GivenAnswerDto givenAnswerDto) {
-        GivenAnswer givenAnswer = new GivenAnswer();
-        givenAnswer.setGivenAnswerID(givenAnswerDto.getGivenAnswerId());
-        return givenAnswer;
     }
 
     public Long getGivenAnswerID() {
         return givenAnswerId;
     }
 
-    public void setGivenAnswerID(Long givenAnswerId) {
+    public void setGivenAnswerId(Long givenAnswerId) {
         this.givenAnswerId = givenAnswerId;
     }
 
@@ -73,12 +66,12 @@ public class GivenAnswer {
         this.answer = answer;
     }
 
-    public Route getRoute() {
-        return route;
+    public long getRouteId() {
+        return routeId;
     }
 
-    public void setRoute(Route route) {
-        this.route = route;
+    public void setRouteId(long routeId) {
+        this.routeId = routeId;
     }
 
 }

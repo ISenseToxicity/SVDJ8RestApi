@@ -1,25 +1,22 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import nl.hsleiden.svdj8.daos.dto.QuestionDto;
-
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "question")
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "question_id")
     private Long questionID;
 
     @Column(name = "question_text")
     private String questionText;
 
-    @OneToMany(targetEntity = Answer.class,
-            mappedBy = "questionID", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    private List<Answer> answers;
+    @OneToMany(mappedBy = "questionID", targetEntity = Answer.class)
+    private List<Answer> answers = new ArrayList<>();
 
     @Column(name = "extra_info_tile")
     private String extraInfoTile;
@@ -41,18 +38,6 @@ public class Question {
     public Question() {
 
     }
-
-    public static Question from(QuestionDto questionDto) {
-        Question question = new Question();
-        question.setQuestionID(questionDto.getQuestionId());
-        question.setQuestionText(questionDto.getQuestionText());
-//        question.setAnswers(questionDto.getAnswers());
-        question.setExtraInfoDescription(questionDto.getExtraInfoDescription());
-        question.setExtraInfoVideoURL(questionDto.getExtraInfoVideoURL());
-        question.setExtraInfoTile(questionDto.getExtraInfoTile());
-        return question;
-    }
-
 
     public String getQuestionText() {
         return questionText;
@@ -101,4 +86,5 @@ public class Question {
     public Long getQuestionID() {
         return questionID;
     }
+
 }
