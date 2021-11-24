@@ -39,7 +39,7 @@ public class RouteController {
                         "No route found with id " + id + "\""));
     }
 
-    @GetMapping(value = "/route")
+    @PostMapping(value = "/route")
     public Route addRoute(@RequestBody Route newRoute) {
         return routeDAO.addRoute(newRoute);
     }
