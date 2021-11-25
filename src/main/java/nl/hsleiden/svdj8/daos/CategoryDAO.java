@@ -35,9 +35,9 @@ public class CategoryDAO {
         return getOutOfRepositoryBy(id).get();
     }
 
-    private Optional<Category> getOutOfRepositoryBy(long id){
-        Optional<Category> optionalCategory =categoryRepository.findById(id);
-        if(optionalCategory.isEmpty()){
+    private Optional<Category> getOutOfRepositoryBy(long id) {
+        Optional<Category> optionalCategory = categoryRepository.findById(id);
+        if (optionalCategory.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category with the id: " + id + " not found");
         }
         return optionalCategory;

@@ -28,16 +28,16 @@ public class AnswerDAO {
     }
 
     public Answer getById(long id) {
-       return getOutOfRepositoryBy(id).get();
+        return getOutOfRepositoryBy(id).get();
     }
 
     public Optional<Answer> getByIdOptional(long id) {
         return getOutOfRepositoryBy(id);
     }
 
-    private Optional<Answer> getOutOfRepositoryBy(long id){
+    private Optional<Answer> getOutOfRepositoryBy(long id) {
         Optional<Answer> optionalAnswer = answerRepository.findById(id);
-        if(optionalAnswer.isEmpty()){
+        if (optionalAnswer.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Answer with the id: " + id + " not found");
         }
         return optionalAnswer;

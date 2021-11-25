@@ -27,16 +27,16 @@ public class GrantDAO {
     }
 
     public Grant getById(long id) {
-       return getOutOfRepositoryBy(id).get();
+        return getOutOfRepositoryBy(id).get();
     }
 
     public Optional<Grant> getByIdOptional(long id) {
         return getOutOfRepositoryBy(id);
     }
 
-    private Optional<Grant> getOutOfRepositoryBy(long id){
-        Optional<Grant> optionalGrant =grantRepository.findById(id);
-        if(optionalGrant.isEmpty()){
+    private Optional<Grant> getOutOfRepositoryBy(long id) {
+        Optional<Grant> optionalGrant = grantRepository.findById(id);
+        if (optionalGrant.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Grant with the id: " + id + " not found");
         }
         return optionalGrant;

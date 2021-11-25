@@ -28,7 +28,7 @@ public class AdminController {
     }
 
     @PutMapping(value = "/admin/{id}")
-    public Admin editAdmin(@RequestBody Admin editAdmin, @PathVariable Long id){
+    public Admin editAdmin(@RequestBody Admin editAdmin, @PathVariable Long id) {
 
         return adminDAO.getByIdOptional(id)
                 .map(admin -> {

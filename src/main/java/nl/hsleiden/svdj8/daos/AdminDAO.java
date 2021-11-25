@@ -32,9 +32,9 @@ public class AdminDAO {
         return getOutOfRepositoryBy(id);
     }
 
-    private Optional<Admin> getOutOfRepositoryBy(long id){
+    private Optional<Admin> getOutOfRepositoryBy(long id) {
         Optional<Admin> optionalAdmin = adminRepository.findById(id);
-        if(optionalAdmin.isEmpty()){
+        if (optionalAdmin.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Admin with the id: " + id + " not found");
         }
         return optionalAdmin;
