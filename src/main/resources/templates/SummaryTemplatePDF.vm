@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<body>
+<style>
+    body {
+        background-color: #FFFFFF;
+        font-family: neue-haas-grotesk-display, sans-serif;
+    }
+
+    .grantbox {
+        margin: 50px;
+        padding: 25px;
+        background-color: #f7f7f7;
+    }
+
+    .grantbox > h1 {
+        font-size: 2.5em;
+        font-weight: bold;
+    }
+
+    .grantbox > h2 {
+        font-size: 1.5em;
+        font-weight: normal;
+        margin-top: 0;
+        margin-bottom: 5px;
+    }
+
+    .summarybox {
+        margin: 50px;
+    }
+
+    .summarybox > h3 {
+        width: 150px;
+        border: solid black;
+        border-width: 2px 0 0 2px;
+        padding: 5px 0 0 15px;
+    }
+
+    .questionAnswerbox {
+        border: solid black;
+        border-width: 2px 0 0 0;
+        padding: 15px 0 0 0;
+        margin-bottom: 50px;
+    }
+
+    .questionAnswerbox::after {
+        display: none;
+    }
+
+    .question, .answer {
+        display: block;
+        margin: 0;
+        width: 50%;
+        float: left;
+    }
+
+</style>
+
+<h1>Hello world</h1>
+
+<div class="grantbox">
+    <h1>$grantTitle</h1>
+    <h2><b>Aanvraagperiode:</b></h2>
+    <h2>$grantPeriod</h2>
+
+    <p>$grantDescription</p>
+
+    <a href="$moreInfoLink">Meer informatie</a>
+</div>
+
+<div class="summarybox">
+    <h3>Samenvatting</h3>
+    $submittedAnswers
+</div>
+
+</body>
+</html>

@@ -12,11 +12,13 @@ public class Grant {
 
     private String name;
     private String description;
+    private String period;
 
-    public Grant(Long grantID, String name, String description) {
+    public Grant(Long grantID, String name, String description, String period) {
         this.grantID = grantID;
         this.name = name;
         this.description = description;
+        this.period = period;
     }
 
     public Grant() {
@@ -47,4 +49,11 @@ public class Grant {
         this.description = description;
     }
 
+    public String getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(String period) {
+        this.period = period;
+    }
 }

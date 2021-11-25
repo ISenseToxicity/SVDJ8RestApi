@@ -2,9 +2,14 @@ package nl.hsleiden.svdj8.controllers.tables;
 
 import nl.hsleiden.svdj8.daos.RouteDAO;
 import nl.hsleiden.svdj8.models.tables.Route;
+import nl.hsleiden.svdj8.services.PDFService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 @RestController
@@ -49,5 +54,15 @@ public class RouteController {
         routeDAO.deleteRoute(id);
     }
 
+    @GetMapping("/route/generatepdf/")
+    HttpEntity<byte[]> createPDF(@RequestBody Route route) {
+        ByteArrayOutputStream baos = PDFService.createPDF(route);
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.set(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=result");
+        headers.setContentLength(baos.toByteArray().length);
+        return new HttpEntity<byte[]>(baos.toByteArray(), headers);
+    }
 }
