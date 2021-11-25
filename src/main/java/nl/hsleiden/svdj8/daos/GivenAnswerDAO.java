@@ -2,6 +2,7 @@ package nl.hsleiden.svdj8.daos;
 
 import javassist.NotFoundException;
 import nl.hsleiden.svdj8.models.tables.Answer;
+import nl.hsleiden.svdj8.models.tables.Category;
 import nl.hsleiden.svdj8.models.tables.GivenAnswer;
 import nl.hsleiden.svdj8.repository.GivenAnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,15 +28,18 @@ public class GivenAnswerDAO {
     }
 
     public GivenAnswer getById(long id) {
-        Optional<GivenAnswer> optionalGivenAnswer = givenAnswerRepository.findById(id);
-        if (optionalGivenAnswer.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "GivenAnswer with the id: " + id + " not found");
-        }
-        return optionalGivenAnswer.get();
+       return getOutOfRepositoryBy(id).get();
     }
 
     public Optional<GivenAnswer> getByIdOptional(long id) {
-        Optional<GivenAnswer> optionalGivenAnswer = givenAnswerRepository.findById(id);
+       return getOutOfRepositoryBy(id);
+    }
+
+    private Optional<GivenAnswer> getOutOfRepositoryBy(long id){
+        Optional<GivenAnswer> optionalGivenAnswer =givenAnswerRepository.findById(id);
+        if(optionalGivenAnswer.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "GivenAnswer with the id: " + id + " not found");
+        }
         return optionalGivenAnswer;
     }
 

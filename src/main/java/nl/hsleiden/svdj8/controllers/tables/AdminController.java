@@ -28,16 +28,14 @@ public class AdminController {
     }
 
     @PutMapping(value = "/admin/{id}")
-    public Admin editAdmin(@RequestBody Admin editAdmin, @PathVariable Long id) throws Exception {
+    public Admin editAdmin(@RequestBody Admin editAdmin, @PathVariable Long id){
 
         return adminDAO.getByIdOptional(id)
                 .map(admin -> {
                     admin.setName(editAdmin.getName());
                     admin.setPassword(editAdmin.getPassword());
                     return adminDAO.addAdmin(admin);
-                })
-                .orElseThrow(() -> new Exception(
-                        "No admin found with id " + id + "\""));
+                }).get();
     }
 
     @PostMapping(value = "/admin")

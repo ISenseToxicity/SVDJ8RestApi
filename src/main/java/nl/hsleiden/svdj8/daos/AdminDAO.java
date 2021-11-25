@@ -1,6 +1,5 @@
 package nl.hsleiden.svdj8.daos;
 
-import javassist.NotFoundException;
 import nl.hsleiden.svdj8.models.tables.Admin;
 import nl.hsleiden.svdj8.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +25,18 @@ public class AdminDAO {
     }
 
     public Admin getById(long id) {
-        Optional<Admin> optionalAdmin = adminRepository.findById(id);
-        if (optionalAdmin.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Admin with the id: " + id + " not found");
-        }
-        return optionalAdmin.get();
+        return getOutOfRepositoryBy(id).get();
     }
 
     public Optional<Admin> getByIdOptional(long id) {
+        return getOutOfRepositoryBy(id);
+    }
+
+    private Optional<Admin> getOutOfRepositoryBy(long id){
         Optional<Admin> optionalAdmin = adminRepository.findById(id);
+        if(optionalAdmin.isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Admin with the id: " + id + " not found");
+        }
         return optionalAdmin;
     }
 

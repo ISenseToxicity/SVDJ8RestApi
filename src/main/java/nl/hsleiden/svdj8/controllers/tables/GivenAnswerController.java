@@ -52,9 +52,7 @@ public class GivenAnswerController {
                     givenAnswer.setQuestion(editGivenAnswer.getQuestion());
 
                     return givenAnswerDAO.addGivenAnswer(givenAnswer);
-                })
-                .orElseThrow(() -> new Exception(
-                        "No answer found with id " + id + "\""));
+                }).get();
 
         returnGivenAnswer.setAnswer(answerDAO.getById(returnGivenAnswer.getAnswer().getAnswerID()));
         returnGivenAnswer.setQuestion(questionDAO.getById(returnGivenAnswer.getQuestion().getQuestionID()));

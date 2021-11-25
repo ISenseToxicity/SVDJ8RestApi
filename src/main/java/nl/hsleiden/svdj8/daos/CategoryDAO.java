@@ -28,16 +28,19 @@ public class CategoryDAO {
     }
 
     public Optional<Category> getByIdOptional(long id) {
-        Optional<Category> optionalCategory = categoryRepository.findById(id);
-        return optionalCategory;
+       return getOutOfRepositoryBy(id);
     }
 
     public Category getById(long id) {
-        Optional<Category> optionalCategory = categoryRepository.findById(id);
-        if (optionalCategory.isEmpty()) {
+        return getOutOfRepositoryBy(id).get();
+    }
+
+    private Optional<Category> getOutOfRepositoryBy(long id){
+        Optional<Category> optionalCategory =categoryRepository.findById(id);
+        if(optionalCategory.isEmpty()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category with the id: " + id + " not found");
         }
-        return optionalCategory.get();
+        return optionalCategory;
     }
 
     public Category addCategory(Category newCategory) {

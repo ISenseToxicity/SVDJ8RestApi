@@ -43,9 +43,8 @@ public class QuestionController {
                     question.setExtraInfoVideoURL(editQuestion.getExtraInfoVideoURL());
                     question.setAnswers(editQuestion.getAnswers());
                     return questionDAO.addQuestion(question);
-                })
-                .orElseThrow(() -> new Exception(
-                        "No question found with id " + id + "\""));
+                }).get();
+
         for (Answer answer : resultQuestion.getAnswers()) {
             answer.setQuestionID(resultQuestion.getQuestionID());
             answerDAO.addAnswer(answer);

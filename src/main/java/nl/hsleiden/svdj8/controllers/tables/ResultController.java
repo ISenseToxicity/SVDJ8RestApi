@@ -41,9 +41,8 @@ public class ResultController {
                     result.setAmountQuestions(editResult.getAmountQuestions());
                     result.setGrant(editResult.getGrant());
                     return resultDAO.addQuestion(result);
-                })
-                .orElseThrow(() -> new Exception(
-                        "No result found with id " + id + "\""));
+                }).get();
+
         returnResult.setGrant(grantDAO.getById(returnResult.getGrant().getGrantID()));
         return returnResult;
     }

@@ -2,10 +2,7 @@ package nl.hsleiden.svdj8.controllers.tables;
 
 import nl.hsleiden.svdj8.daos.CategoryDAO;
 import nl.hsleiden.svdj8.models.tables.Category;
-import nl.hsleiden.svdj8.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,9 +35,7 @@ public class CategoryController {
                     category.setName(editCategory.getName());
                     category.setDescription(editCategory.getDescription());
                     return categoryDAO.addCategory(category);
-                })
-                .orElseThrow(() -> new Exception(
-                        "No category found with id " + id + "\""));
+                }).get();
     }
 
     @PostMapping(value = "/category")

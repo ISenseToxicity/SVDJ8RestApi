@@ -40,9 +40,7 @@ public class AnswerController {
                     answer.setQuestionID(editAnswer.getQuestionID());
                     answer.setCategory(editAnswer.getCategory());
                     return answerDAO.addAnswer(answer);
-                })
-                .orElseThrow(() -> new Exception(
-                        "No answer found with id " + id + "\""));
+                }).get();
         returnAnswer.setCategory(categoryDAO.getById(returnAnswer.getCategory().getCategoryID()));
         return returnAnswer;
     }

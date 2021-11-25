@@ -34,9 +34,7 @@ public class RouteController {
                 .map(route -> {
                     route.setTotalTime(editRoute.getTotalTime());
                     return routeDAO.addRoute(route);
-                })
-                .orElseThrow(() -> new Exception(
-                        "No route found with id " + id + "\""));
+                }).get();
     }
 
     @PostMapping(value = "/route")

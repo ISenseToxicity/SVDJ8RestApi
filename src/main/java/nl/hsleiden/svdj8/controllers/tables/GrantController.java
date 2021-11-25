@@ -35,9 +35,7 @@ public class GrantController {
                     grant.setName(editGrant.getName());
                     grant.setDescription(editGrant.getDescription());
                     return grantDAO.addGrant(grant);
-                })
-                .orElseThrow(() -> new Exception(
-                        "No grant found with id " + id + "\""));
+                }).get();
 
     }
 

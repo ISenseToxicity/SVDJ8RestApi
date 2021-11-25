@@ -103,6 +103,11 @@ public class GeneralStatusCodeTest {
             mvc.perform(put("http://localhost:8080/"+endpoint + "/1"))
                     .andExpect(status().is(400));
         }
-
+    }
+    @Test
+    public void givenEndPoints_whenPut5000000_thenStatusCode404() throws Exception{
+        for(String endpoint : endPointList){
+            mvc.perform(put("http://localhost:8080/"+endpoint + "/5000000"));
+        }
     }
 }
