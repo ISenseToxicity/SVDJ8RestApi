@@ -41,7 +41,7 @@ public class GrantController {
 
     }
 
-    @PutMapping(value = "/grant")
+    @PostMapping(value = "/grant")
     public Grant addGrant(@RequestBody Grant newGrant) {
         return grantDAO.addGrant(newGrant);
     }
