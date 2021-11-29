@@ -31,11 +31,7 @@ public class QuestionDAO {
       return getOutOfRepositoryBy(id).get();
     }
 
-    public Optional<Question> getByIdOptional(long id) {
-      return getOutOfRepositoryBy(id);
-    }
-
-    private Optional<Question> getOutOfRepositoryBy(long id) {
+    public Optional<Question> getOutOfRepositoryBy(long id) {
         Optional<Question> optionalQuestion = questionRepository.findById(id);
         if (optionalQuestion.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Question with the id: " + id + " not found");

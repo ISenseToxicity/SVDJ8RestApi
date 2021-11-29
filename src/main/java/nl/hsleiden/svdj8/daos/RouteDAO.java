@@ -32,12 +32,7 @@ public class RouteDAO {
         return getOutOfRepositoryBy(id).get();
     }
 
-
-    public Optional<Route> getByIdOptional(long id) {
-        return getOutOfRepositoryBy(id);
-    }
-
-    private Optional<Route> getOutOfRepositoryBy(long id) {
+    public Optional<Route> getOutOfRepositoryBy(long id) {
         Optional<Route> optionalRoute = routeRepository.findById(id);
         if (optionalRoute.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Route with the id: " + id + " not found");

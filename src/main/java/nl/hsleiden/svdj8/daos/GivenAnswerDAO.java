@@ -31,11 +31,7 @@ public class GivenAnswerDAO {
        return getOutOfRepositoryBy(id).get();
     }
 
-    public Optional<GivenAnswer> getByIdOptional(long id) {
-       return getOutOfRepositoryBy(id);
-    }
-
-    private Optional<GivenAnswer> getOutOfRepositoryBy(long id) {
+    public Optional<GivenAnswer> getOutOfRepositoryBy(long id) {
         Optional<GivenAnswer> optionalGivenAnswer = givenAnswerRepository.findById(id);
         if (optionalGivenAnswer.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "GivenAnswer with the id: " + id + " not found");

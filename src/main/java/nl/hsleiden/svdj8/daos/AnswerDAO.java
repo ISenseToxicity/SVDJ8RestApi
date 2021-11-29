@@ -31,11 +31,7 @@ public class AnswerDAO {
         return getOutOfRepositoryBy(id).get();
     }
 
-    public Optional<Answer> getByIdOptional(long id) {
-        return getOutOfRepositoryBy(id);
-    }
-
-    private Optional<Answer> getOutOfRepositoryBy(long id) {
+    public Optional<Answer> getOutOfRepositoryBy(long id) {
         Optional<Answer> optionalAnswer = answerRepository.findById(id);
         if (optionalAnswer.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Answer with the id: " + id + " not found");

@@ -30,7 +30,7 @@ public class AdminController {
     @PutMapping(value = "/admin/{id}")
     public Admin editAdmin(@RequestBody Admin editAdmin, @PathVariable Long id) {
 
-        return adminDAO.getByIdOptional(id)
+        return adminDAO.getOutOfRepositoryBy(id)
                 .map(admin -> {
                     admin.setName(editAdmin.getName());
                     admin.setPassword(editAdmin.getPassword());

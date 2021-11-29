@@ -30,7 +30,7 @@ public class GrantController {
     @PutMapping(value = "/grant/{id}")
     public Grant editGrant(@RequestBody Grant editGrant, @PathVariable Long id) throws Exception {
 
-        return grantDAO.getByIdOptional(id)
+        return grantDAO.getOutOfRepositoryBy(id)
                 .map(grant -> {
                     grant.setName(editGrant.getName());
                     grant.setDescription(editGrant.getDescription());

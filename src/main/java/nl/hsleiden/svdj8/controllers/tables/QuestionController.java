@@ -34,8 +34,8 @@ public class QuestionController {
     }
 
     @PutMapping(value = "/question/{id}")
-    public Question editQuestion(@RequestBody Question editQuestion, @PathVariable Long id) throws Exception {
-        Question resultQuestion = questionDAO.getByIdOptional(id)
+    public Question editQuestion(@RequestBody Question editQuestion, @PathVariable Long id) {
+        Question resultQuestion = questionDAO.getOutOfRepositoryBy(id)
                 .map(question -> {
                     question.setQuestionText(editQuestion.getQuestionText());
                     question.setExtraInfoTile(editQuestion.getExtraInfoTile());

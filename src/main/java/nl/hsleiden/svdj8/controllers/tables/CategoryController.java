@@ -28,9 +28,9 @@ public class CategoryController {
     }
 
     @PutMapping(value = "/category/{id}")
-    public Category editCategory(@RequestBody Category editCategory, @PathVariable Long id) throws Exception {
+    public Category editCategory(@RequestBody Category editCategory, @PathVariable Long id) {
 
-        return categoryDAO.getByIdOptional(id)
+        return categoryDAO.getOutOfRepositoryBy(id)
                 .map(category -> {
                     category.setName(editCategory.getName());
                     category.setDescription(editCategory.getDescription());

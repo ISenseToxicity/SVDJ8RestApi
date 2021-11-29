@@ -35,12 +35,7 @@ public class ResultDAO {
        return getOutOfRepositoryBy(id).get();
     }
 
-
-    public Optional<Result> getByIdOptional(long id) {
-      return getOutOfRepositoryBy(id);
-    }
-
-    private Optional<Result> getOutOfRepositoryBy(long id) {
+    public Optional<Result> getOutOfRepositoryBy(long id) {
         Optional<Result> optionalResult = resultRepository.findById(id);
         if (optionalResult.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Result with the id: " + id + " not found");

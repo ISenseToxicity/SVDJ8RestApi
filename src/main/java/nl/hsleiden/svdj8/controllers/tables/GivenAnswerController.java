@@ -44,7 +44,7 @@ public class GivenAnswerController {
 
     @PutMapping(value = "/givenanswer/{id}")
     public GivenAnswer editGivenAnswer(@RequestBody GivenAnswer editGivenAnswer, @PathVariable Long id) throws Exception {
-        GivenAnswer returnGivenAnswer = givenAnswerDAO.getByIdOptional(id)
+        GivenAnswer returnGivenAnswer = givenAnswerDAO.getOutOfRepositoryBy(id)
                 .map(givenAnswer -> {
                     givenAnswer.setElapsedSeconds(editGivenAnswer.getElapsedSeconds());
                     givenAnswer.setAnswer(editGivenAnswer.getAnswer());

@@ -33,8 +33,8 @@ public class AnswerController {
 
 
     @PutMapping(value = "/answer/{id}")
-    public Answer editAnswer(@RequestBody Answer editAnswer, @PathVariable Long id) throws Exception {
-        Answer returnAnswer = answerDAO.getByIdOptional(id)
+    public Answer editAnswer(@RequestBody Answer editAnswer, @PathVariable Long id){
+        Answer returnAnswer = answerDAO.getOutOfRepositoryBy(id)
                 .map(answer -> {
                     answer.setAnswerText(editAnswer.getAnswerText());
                     answer.setQuestionID(editAnswer.getQuestionID());

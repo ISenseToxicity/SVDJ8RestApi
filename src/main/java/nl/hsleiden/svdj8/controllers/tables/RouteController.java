@@ -30,7 +30,7 @@ public class RouteController {
     @PutMapping(value = "/route/{id}")
     public Route editRoute(@RequestBody Route editRoute, @PathVariable Long id) throws Exception {
 
-        return routeDAO.getByIdOptional(id)
+        return routeDAO.getOutOfRepositoryBy(id)
                 .map(route -> {
                     route.setTotalTime(editRoute.getTotalTime());
                     return routeDAO.addRoute(route);

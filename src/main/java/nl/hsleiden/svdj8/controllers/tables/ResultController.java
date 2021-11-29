@@ -35,7 +35,7 @@ public class ResultController {
 
     @PutMapping(value = "/result/{id}")
     public Result editResult(@RequestBody Result editResult, @PathVariable Long id) throws Exception {
-        Result returnResult = resultDAO.getByIdOptional(id)
+        Result returnResult = resultDAO.getOutOfRepositoryBy(id)
                 .map(result -> {
                     result.setTotalTime(editResult.getTotalTime());
                     result.setAmountQuestions(editResult.getAmountQuestions());
