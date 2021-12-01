@@ -1,40 +1,53 @@
 package nl.hsleiden.svdj8.controllers.tables;
 
-import nl.hsleiden.svdj8.daos.Dto.GrantDto;
+import nl.hsleiden.svdj8.daos.GrantDAO;
 import nl.hsleiden.svdj8.models.tables.Grant;
-import nl.hsleiden.svdj8.services.GrantService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(value = "/grant", method = RequestMethod.GET)
 public class GrantController {
 
-    private final GrantService grantService;
-
     @Autowired
-    public GrantController(GrantService grantService) {
+    public final GrantDAO grantDAO;
 
-        this.grantService = grantService;
+    public GrantController(GrantDAO grantDAO) {
+        this.grantDAO = grantDAO;
     }
 
-    @PostMapping
-    public ResponseEntity<GrantDto> addGrant(@RequestBody final GrantDto grantDto) {
-        Grant grant = grantService.addGrant(Grant.from(grantDto));
-        return new ResponseEntity<>(grantDto, HttpStatus.OK);
+    @GetMapping(value = "/grant/all")
+    public List<Grant> getAllGrants() {
+        return grantDAO.getAll();
     }
 
-    @RequestMapping(value = "/grant/{id}", method = RequestMethod.GET)
-    public ResponseEntity<GrantDto> getItem(@PathVariable final Long id) {
-        Grant grant = grantService.getGrant(id);
-        return new ResponseEntity<>(GrantDto.from(grant), HttpStatus.OK);
+    @GetMapping(value = "/grant/{id}")
+    public Grant getGrant(@PathVariable final Long id) {
+        return grantDAO.getById(id);
     }
 
-    @DeleteMapping(value = "{id}")
-    public ResponseEntity<GrantDto> deleteGrant(@PathVariable final Long id) {
-        Grant grant = grantService.deleteGrant(id);
-        return new ResponseEntity<>(GrantDto.from(grant), HttpStatus.OK);
+    @PutMapping(value = "/grant/{id}")
+    public Grant editGrant(@RequestBody Grant editGrant, @PathVariable Long id) throws Exception {
+
+        return grantDAO.getByIdOptional(id)
+                .map(grant -> {
+                    grant.setName(editGrant.getName());
+                    grant.setDescription(editGrant.getDescription());
+                    return grantDAO.addGrant(grant);
+                })
+                .orElseThrow(() -> new Exception(
+                        "No grant found with id " + id + "\""));
+
+    }
+
+    @PostMapping(value = "/grant")
+    public Grant addGrant(@RequestBody Grant newGrant) {
+        return grantDAO.addGrant(newGrant);
+    }
+
+    @DeleteMapping("/grant/{id}")
+    public void deleteGrant(@PathVariable Long id) {
+        grantDAO.deleteById(id);
     }
 }

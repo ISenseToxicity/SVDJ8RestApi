@@ -1,40 +1,53 @@
 package nl.hsleiden.svdj8.controllers.tables;
 
-import nl.hsleiden.svdj8.daos.Dto.RouteDto;
+import nl.hsleiden.svdj8.daos.RouteDAO;
 import nl.hsleiden.svdj8.models.tables.Route;
-import nl.hsleiden.svdj8.services.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-//@RequestMapping(value = "/route")
 public class RouteController {
 
-    private final RouteService routeService;
-
     @Autowired
-    public RouteController(RouteService routeService) {
+    public final RouteDAO routeDAO;
 
-        this.routeService = routeService;
+    public RouteController(RouteDAO routeDAO) {
+        this.routeDAO = routeDAO;
     }
 
-    @PostMapping
-    public ResponseEntity<RouteDto> addRoute(@RequestBody final RouteDto routeDto) {
-        Route route = routeService.addRoute(Route.from(routeDto));
-        return new ResponseEntity<>(routeDto, HttpStatus.OK);
+    @GetMapping(value = "/route/all")
+    public List<Route> getAllRoutes() {
+        return routeDAO.getAll();
     }
 
-    @RequestMapping(value = "/route/{id}", method = RequestMethod.GET)
-    public ResponseEntity<RouteDto> getItem(@PathVariable final Long id) {
-        Route route = routeService.getRoute(id);
-        return new ResponseEntity<>(RouteDto.from(route), HttpStatus.OK);
+    @GetMapping(value = "/route/{id}")
+    public Route getRoute(@PathVariable final Long id) {
+        return routeDAO.getById(id);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<RouteDto> deleteRoute(@PathVariable final Long id) {
-        Route route = routeService.deleteRoute(id);
-        return new ResponseEntity<>(RouteDto.from(route), HttpStatus.OK);
+    @PutMapping(value = "/route/{id}")
+    public Route editRoute(@RequestBody Route editRoute, @PathVariable Long id) throws Exception {
+
+        return routeDAO.getByIdOptional(id)
+                .map(route -> {
+                    route.setTotalTime(editRoute.getTotalTime());
+                    return routeDAO.addRoute(route);
+                })
+                .orElseThrow(() -> new Exception(
+                        "No route found with id " + id + "\""));
     }
+
+    @PostMapping(value = "/route")
+    public Route addRoute(@RequestBody Route newRoute) {
+        return routeDAO.addRoute(newRoute);
+    }
+
+    @DeleteMapping("/route/{id}")
+    public void deleteRoute(@PathVariable Long id) {
+        routeDAO.deleteRoute(id);
+    }
+
+
 }

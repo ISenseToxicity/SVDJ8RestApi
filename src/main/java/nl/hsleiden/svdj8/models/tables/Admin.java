@@ -1,16 +1,15 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "admin")
 public class Admin {
-    private @Id
-    @GeneratedValue
-    Long adminID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "admin_id")
+    private Long adminID;
+
     private String name;
     private String password; //???????????TODO: CHECK DIT NA
 
@@ -23,11 +22,8 @@ public class Admin {
         this.password = password;
     }
 
-    // SETTERS AND GETTERS
-
-
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -35,18 +31,18 @@ public class Admin {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setAdminID(Long adminID) {
-        this.adminID = adminID;
+    public Long getAdminID() {
+        return this.adminID;
     }
 
-    public Long getAdminID() {
-        return adminID;
+    public void setAdminID(Long adminID) {
+        this.adminID = adminID;
     }
 }
