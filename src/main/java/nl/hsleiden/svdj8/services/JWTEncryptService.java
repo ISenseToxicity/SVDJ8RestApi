@@ -9,9 +9,9 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
 @Service
-public class EncryptService {
+public class JWTEncryptService {
 
-    public String encrypt(String json) {
+    public String getToken(String json) {
         Instant now = Instant.now();
         byte[] key = new byte[64];
 
@@ -20,7 +20,7 @@ public class EncryptService {
                 .setAudience("Frontend")
                 .claim("JsonString", json)
                 .setIssuedAt(Date.from(now))
-                .setExpiration(Date.from(now.plus(1, ChronoUnit.MINUTES)))
+                .setExpiration(Date.from(now.plus(30, ChronoUnit.MINUTES)))
                 .signWith(Keys.hmacShaKeyFor(key))
                 .compact();
     }

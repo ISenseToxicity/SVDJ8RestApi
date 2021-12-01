@@ -6,9 +6,9 @@ import io.jsonwebtoken.Jwts;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DecryptService {
+public class JWTDecryptService {
 
-    public String decrypt(String token) {
+    public String decryptToken(String token) {
         byte[] key = new byte[64];
 
         Jws<Claims> result = Jwts.parserBuilder()
