@@ -8,19 +8,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthenticatingService {
 
-    private final DecryptService decryptService;
+    private final JWTDecryptService JWTDecryptService;
     private final AdminRepository adminRepository;
 
     @Autowired
     public AuthenticatingService(
-            DecryptService decryptService,
+            JWTDecryptService JWTDecryptService,
             AdminRepository adminRepository) {
-        this.decryptService = decryptService;
+        this.JWTDecryptService = JWTDecryptService;
         this.adminRepository = adminRepository;
     }
 
     public boolean isAdmin(String token) {
-        Admin admin = this.decryptService.decrypt(token);
+        Admin admin = this.JWTDecryptService.decrypt(token);
         return this.adminRepository.existsById(admin.getAdminID());
     }
 
