@@ -43,7 +43,7 @@ public class CategoryController {
                         "No category found with id " + id + "\""));
     }
 
-    @PostMapping(value = "/category")
+    @PutMapping(value = "/category")
     public Category addCategory(@RequestBody Category newCategory) {
         return categoryDAO.addCategory(newCategory);
     }
