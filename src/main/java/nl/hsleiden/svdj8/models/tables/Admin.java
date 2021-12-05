@@ -9,40 +9,49 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "admin_id")
     private Long adminID;
-
-    private String name;
-    private String password; //???????????TODO: CHECK DIT NA
+    private String email;
+    private String password;
+    private String verificationCode;
 
     public Admin() {
     }
 
-    public Admin(Long adminID, String name, String password) {
-        this.adminID = adminID;
-        this.name = name;
+    public Admin(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 
-    public String getName() {
-        return this.name;
+
+    public String getEmail() {
+        return email;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(String name) {
+        this.email = name;
     }
 
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
+
     public Long getAdminID() {
-        return this.adminID;
+        return adminID;
     }
 
     public void setAdminID(Long adminID) {
         this.adminID = adminID;
+    }
+
+    public String getVerificationCode() {
+        return verificationCode;
+    }
+
+    public void setVerificationCode(String verificationCode) {
+        this.verificationCode = verificationCode;
     }
 }
