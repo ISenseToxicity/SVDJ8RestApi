@@ -47,7 +47,7 @@ public class AnswerController {
         return returnAnswer;
     }
 
-    @PostMapping(value = "/answer")
+    @PutMapping(value = "/answer")
     public Answer addAnswer(@RequestBody Answer newAnswer) {
         return answerDAO.addAnswer(newAnswer);
     }
