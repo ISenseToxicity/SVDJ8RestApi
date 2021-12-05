@@ -53,7 +53,7 @@ public class QuestionController {
         return resultQuestion;
     }
 
-    @PostMapping(value = "/question")
+    @PutMapping(value = "/question")
     public Question addQuestion(@RequestBody Question newQuestion) {
         Question resultQuestion = questionDAO.addQuestion(newQuestion);
         for (Answer answer : resultQuestion.getAnswers()) {
