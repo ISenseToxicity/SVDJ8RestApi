@@ -1,44 +1,40 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import nl.hsleiden.svdj8.daos.Dto.GivenAnswerDto;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "given_answer")
 public class GivenAnswer {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "given_answer_id")
     private Long givenAnswerId;
-    private int elapsedSeconds;
-    @ManyToOne(cascade = CascadeType.ALL, optional = false, targetEntity = Route.class)
-    @JoinColumn(name = "route_id", referencedColumnName = "route_id")
-    private Route routeId;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "question_id", referencedColumnName = "question_id")
-    private Question questionId;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "answer_id", referencedColumnName = "answer_id", insertable = true, updatable = true)
-    private Answer answerId;
 
-    public GivenAnswer(Long givenAnswerId, int elapsedSeconds, Question questionId, Answer answerId) {
+    @Column(name = "elapsed_seconds")
+    private int elapsedSeconds;
+
+
+    @Column(name = "route_id")
+    private long routeId;
+
+    @OneToOne(targetEntity = Question.class)
+    @JoinColumn(name = "question_id", referencedColumnName = "question_id")
+    private Question question;
+
+    @OneToOne(targetEntity = Answer.class)
+    @JoinColumn(name = "answer_id", referencedColumnName = "answer_id")
+    private Answer answer;
+
+    public GivenAnswer(Long givenAnswerId, int elapsedSeconds, Answer answer) {
         this.givenAnswerId = givenAnswerId;
         this.elapsedSeconds = elapsedSeconds;
-        this.questionId = questionId;
-        this.answerId = answerId;
+        this.answer = answer;
     }
 
     public GivenAnswer() {
     }
 
-    public static GivenAnswer from(GivenAnswerDto givenAnswerDto) {
-        GivenAnswer givenAnswer = new GivenAnswer();
-        givenAnswer.setGivenAnswerId(givenAnswerDto.getGivenAnswerId());
-        return givenAnswer;
-    }
-
-    public Long getGivenAnswerId() {
+    public Long getGivenAnswerID() {
         return givenAnswerId;
     }
 
@@ -54,27 +50,27 @@ public class GivenAnswer {
         this.elapsedSeconds = elapsedSeconds;
     }
 
-    public Question getQuestionId() {
-        return questionId;
+    public Question getQuestion() {
+        return question;
     }
 
-    public void setQuestionId(Question questionId) {
-        this.questionId = questionId;
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
-    public Answer getAnswerId() {
-        return answerId;
+    public Answer getAnswer() {
+        return answer;
     }
 
-    public void setAnswerId(Answer answerId) {
-        this.answerId = answerId;
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
     }
 
-    public Route getRouteId() {
+    public long getRouteId() {
         return routeId;
     }
 
-    public void setRouteId(Route routeId) {
+    public void setRouteId(long routeId) {
         this.routeId = routeId;
     }
 

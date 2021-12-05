@@ -1,22 +1,21 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-//@Table(name="catogory")
+@Table(name = "category")
 public class Category {
 
-    private @Id
-    @GeneratedValue
-    Long catogoryID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "category_id")
+    private Long categoryID;
+
     private String name;
     private String description;
 
-    public Category(Long catogoryID, String name, String description) {
-        this.catogoryID = catogoryID;
+    public Category(Long categoryID, String name, String description) {
+        this.categoryID = categoryID;
         this.name = name;
         this.description = description;
     }
@@ -24,7 +23,6 @@ public class Category {
     public Category() {
     }
 
-    //    Setters and Getters
     public String getName() {
         return name;
     }
@@ -41,11 +39,11 @@ public class Category {
         this.description = description;
     }
 
-    public void setCatogoryID(Long catogoryID) {
-        this.catogoryID = catogoryID;
+    public void setCategoryID(Long categoryID) {
+        this.categoryID = categoryID;
     }
 
-    public Long getCatogoryID() {
-        return catogoryID;
+    public Long getCategoryID() {
+        return categoryID;
     }
 }

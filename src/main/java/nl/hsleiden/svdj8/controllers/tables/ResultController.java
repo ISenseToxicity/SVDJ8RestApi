@@ -1,39 +1,60 @@
 package nl.hsleiden.svdj8.controllers.tables;
 
-import nl.hsleiden.svdj8.daos.Dto.ResultDto;
+import nl.hsleiden.svdj8.daos.GrantDAO;
+import nl.hsleiden.svdj8.daos.ResultDAO;
 import nl.hsleiden.svdj8.models.tables.Result;
-import nl.hsleiden.svdj8.services.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(value = "/result", method = RequestMethod.GET)
 public class ResultController {
 
     @Autowired
-    public final ResultService resultService;
+    public final ResultDAO resultDAO;
 
-    public ResultController(ResultService resultService) {
-        this.resultService = resultService;
+    @Autowired
+    public final GrantDAO grantDAO;
+
+
+    public ResultController(ResultDAO resultDAO, GrantDAO grantDAO) {
+        this.resultDAO = resultDAO;
+        this.grantDAO = grantDAO;
     }
 
-    @PostMapping
-    public ResponseEntity<ResultDto> addResult(@RequestBody final ResultDto resultDto) {
-        Result result = resultService.addResult(Result.from(resultDto));
-        return new ResponseEntity<>(resultDto, HttpStatus.OK);
+    @GetMapping(value = "/result/all")
+    public List<Result> getAllResults() {
+        return resultDAO.getAll();
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<ResultDto> getItem(@PathVariable final Long id) {
-        Result result = resultService.getResult(id);
-        return new ResponseEntity<>(ResultDto.from(result), HttpStatus.OK);
+    @GetMapping(value = "/result/{id}")
+    public Result getResult(@PathVariable final Long id) {
+        return resultDAO.getById(id);
     }
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<ResultDto> deleteResult(@PathVariable final Long id) {
-        Result result = resultService.deleteResult(id);
-        return new ResponseEntity<>(ResultDto.from(result), HttpStatus.OK);
+    @PutMapping(value = "/result/{id}")
+    public Result editResult(@RequestBody Result editResult, @PathVariable Long id) throws Exception {
+        Result returnResult = resultDAO.getByIdOptional(id)
+                .map(result -> {
+                    result.setTotalTime(editResult.getTotalTime());
+                    result.setAmountQuestions(editResult.getAmountQuestions());
+                    result.setGrant(editResult.getGrant());
+                    return resultDAO.addQuestion(result);
+                })
+                .orElseThrow(() -> new Exception(
+                        "No result found with id " + id + "\""));
+        returnResult.setGrant(grantDAO.getById(returnResult.getGrant().getGrantID()));
+        return returnResult;
+    }
+
+    @PostMapping(value = "/result")
+    public Result addResult(@RequestBody Result newResult) {
+        return resultDAO.addQuestion(newResult);
+    }
+
+    @DeleteMapping("/result/{id}")
+    public void deleteResult(@PathVariable Long id) {
+        resultDAO.deleteQuestion(id);
     }
 }

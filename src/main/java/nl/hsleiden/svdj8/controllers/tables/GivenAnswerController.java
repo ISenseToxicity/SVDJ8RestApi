@@ -1,40 +1,75 @@
 package nl.hsleiden.svdj8.controllers.tables;
 
-import nl.hsleiden.svdj8.daos.Dto.GivenAnswerDto;
+import nl.hsleiden.svdj8.daos.AnswerDAO;
+import nl.hsleiden.svdj8.daos.GivenAnswerDAO;
+import nl.hsleiden.svdj8.daos.QuestionDAO;
+import nl.hsleiden.svdj8.daos.RouteDAO;
 import nl.hsleiden.svdj8.models.tables.GivenAnswer;
-import nl.hsleiden.svdj8.services.GivenAnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(value = "/givenAnswer")
 public class GivenAnswerController {
 
-    private final GivenAnswerService givenAnswerService;
+    @Autowired
+    public final GivenAnswerDAO givenAnswerDAO;
 
     @Autowired
-    public GivenAnswerController(GivenAnswerService givenAnswerService) {
+    public final RouteDAO routeDAO;
 
-        this.givenAnswerService = givenAnswerService;
+    @Autowired
+    public final QuestionDAO questionDAO;
+
+    @Autowired
+    public final AnswerDAO answerDAO;
+
+    public GivenAnswerController(GivenAnswerDAO givenAnswerDAO, RouteDAO routeDAO, QuestionDAO questionDAO, AnswerDAO answerDAO) {
+        this.givenAnswerDAO = givenAnswerDAO;
+        this.routeDAO = routeDAO;
+        this.questionDAO = questionDAO;
+        this.answerDAO = answerDAO;
     }
 
-    @PostMapping
-    public ResponseEntity<GivenAnswerDto> addGivenAnswer(@RequestBody final GivenAnswerDto givenAnswerDto) {
-        GivenAnswer givenAnswer = givenAnswerService.addGivenAnswer(GivenAnswer.from(givenAnswerDto));
-        return new ResponseEntity<>(givenAnswerDto, HttpStatus.OK);
+    @GetMapping(value = "/givenanswer/all")
+    public List<GivenAnswer> getAllGivenAnswers() {
+        return givenAnswerDAO.getAll();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<GivenAnswerDto> getItem(@PathVariable final Long id) {
-        GivenAnswer givenAnswer = givenAnswerService.getGivenAnswer(id);
-        return new ResponseEntity<>(GivenAnswerDto.from(givenAnswer), HttpStatus.OK);
+    @GetMapping(value = "givenanswer/{id}")
+    public GivenAnswer getGivenAnswer(@PathVariable final Long id) {
+        return givenAnswerDAO.getById(id);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<GivenAnswerDto> deleteGivenAnswer(@PathVariable final Long id) {
-        GivenAnswer givenAnswer = givenAnswerService.deleteGivenAnswer(id);
-        return new ResponseEntity<>(GivenAnswerDto.from(givenAnswer), HttpStatus.OK);
+    @PutMapping(value = "/givenanswer/{id}")
+    public GivenAnswer editGivenAnswer(@RequestBody GivenAnswer editGivenAnswer, @PathVariable Long id) throws Exception {
+        GivenAnswer returnGivenAnswer = givenAnswerDAO.getByIdOptional(id)
+                .map(givenAnswer -> {
+                    givenAnswer.setElapsedSeconds(editGivenAnswer.getElapsedSeconds());
+                    givenAnswer.setAnswer(editGivenAnswer.getAnswer());
+                    givenAnswer.setRouteId(editGivenAnswer.getRouteId());
+                    givenAnswer.setQuestion(editGivenAnswer.getQuestion());
+
+                    return givenAnswerDAO.addGivenAnswer(givenAnswer);
+                })
+                .orElseThrow(() -> new Exception(
+                        "No answer found with id " + id + "\""));
+
+        returnGivenAnswer.setAnswer(answerDAO.getById(returnGivenAnswer.getAnswer().getAnswerID()));
+        returnGivenAnswer.setQuestion(questionDAO.getById(returnGivenAnswer.getQuestion().getQuestionID()));
+
+        return returnGivenAnswer;
+
+    }
+
+    @PostMapping(value = "/givenanswer")
+    public GivenAnswer addGivenAnswer(@RequestBody GivenAnswer newGivenAnswer) {
+        return givenAnswerDAO.addGivenAnswer(newGivenAnswer);
+    }
+
+    @DeleteMapping("/givenanswer/{id}")
+    public void deleteGivenAnswer(@PathVariable Long id) {
+        givenAnswerDAO.deleteGivenAnswer(id);
     }
 }

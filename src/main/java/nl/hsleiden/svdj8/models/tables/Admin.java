@@ -1,16 +1,14 @@
 package nl.hsleiden.svdj8.models.tables;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "admin")
 public class Admin {
-    private @Id
-    @GeneratedValue
-    Long adminID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "admin_id")
+    private Long adminID;
     private String email;
     private String password;
     private String verificationCode;
@@ -22,6 +20,7 @@ public class Admin {
         this.email = email;
         this.password = password;
     }
+
 
     public String getEmail() {
         return email;
@@ -39,12 +38,13 @@ public class Admin {
         this.password = password;
     }
 
-    public void setAdminID(Long adminID) {
-        this.adminID = adminID;
-    }
 
     public Long getAdminID() {
         return adminID;
+    }
+
+    public void setAdminID(Long adminID) {
+        this.adminID = adminID;
     }
 
     public String getVerificationCode() {
@@ -54,5 +54,4 @@ public class Admin {
     public void setVerificationCode(String verificationCode) {
         this.verificationCode = verificationCode;
     }
-
 }
