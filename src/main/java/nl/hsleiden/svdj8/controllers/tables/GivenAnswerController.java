@@ -63,7 +63,7 @@ public class GivenAnswerController {
 
     }
 
-    @PostMapping(value = "/givenanswer")
+    @PutMapping(value = "/givenanswer")
     public GivenAnswer addGivenAnswer(@RequestBody GivenAnswer newGivenAnswer) {
         return givenAnswerDAO.addGivenAnswer(newGivenAnswer);
     }
