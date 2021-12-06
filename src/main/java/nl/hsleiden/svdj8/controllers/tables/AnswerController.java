@@ -3,9 +3,11 @@ package nl.hsleiden.svdj8.controllers.tables;
 import nl.hsleiden.svdj8.daos.AnswerDAO;
 import nl.hsleiden.svdj8.daos.CategoryDAO;
 import nl.hsleiden.svdj8.models.tables.Answer;
+import nl.hsleiden.svdj8.models.tables.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -43,7 +45,11 @@ public class AnswerController {
                 })
                 .orElseThrow(() -> new Exception(
                         "No answer found with id " + id + "\""));
-        returnAnswer.setCategory(categoryDAO.getById(returnAnswer.getCategory().getCategoryID()));
+        List<Category> categories = new ArrayList<>();
+        for (Category category : returnAnswer.getCategory()) {
+            categories.add(categoryDAO.getById(category.getCategoryID()));
+        }
+        returnAnswer.setCategory(categories);
         return returnAnswer;
     }
 

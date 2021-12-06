@@ -55,6 +55,26 @@ INSERT INTO "question_and_category" VALUES(2,3);
 INSERT INTO "question_and_category" VALUES(2,4);
 INSERT INTO "question_and_category" VALUES(2,5);
 
+
+CREATE TABLE IF NOT EXISTS "answer_and_category" (
+	"answer_id"	integer NOT NULL,
+	"category_id"	integer NOT NULL,
+	CONSTRAINT "answer_and_category_pk" PRIMARY KEY("answer_id", "category_id"),
+	CONSTRAINT "answer_id_fk" FOREIGN KEY("answer_id") REFERENCES "answer"("answer_id") on update cascade on delete cascade,
+	CONSTRAINT "category_id_fk" FOREIGN KEY("category_id") REFERENCES "category"("category_id") on update cascade on delete cascade
+);
+
+INSERT INTO "answer_and_category" VALUES(1,1);
+INSERT INTO "answer_and_category" VALUES(1,2);
+INSERT INTO "answer_and_category" VALUES(1,3);
+INSERT INTO "answer_and_category" VALUES(1,4);
+INSERT INTO "answer_and_category" VALUES(1,5);
+INSERT INTO "answer_and_category" VALUES(2,1);
+INSERT INTO "answer_and_category" VALUES(2,2);
+INSERT INTO "answer_and_category" VALUES(2,3);
+INSERT INTO "answer_and_category" VALUES(2,4);
+INSERT INTO "answer_and_category" VALUES(2,5);
+
 CREATE TABLE IF NOT EXISTS "grant" (
 	"grant_id"	integer,
 	"name"	varchar NOT NULL UNIQUE,

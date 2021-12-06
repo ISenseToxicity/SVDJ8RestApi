@@ -1,6 +1,8 @@
 package nl.hsleiden.svdj8.models.tables;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "answer")
@@ -16,9 +18,12 @@ public class Answer {
     @Column(name = "question_id")
     private Long questionID;
 
-    @ManyToOne(targetEntity = Category.class)
-    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
-    private Category category;
+    @ManyToMany
+    @JoinTable(
+            name = "answer_and_category",
+            joinColumns = @JoinColumn(name = "answer_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private List<Category> category = new ArrayList<>();
 
     public Answer(Long answerID, String answerText) {
         this.answerID = answerID;
@@ -45,11 +50,11 @@ public class Answer {
         this.questionID = questionID;
     }
 
-    public Category getCategory() {
+    public List<Category> getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(List<Category> category) {
         this.category = category;
     }
 
