@@ -23,7 +23,7 @@ public class Answer {
             name = "answer_and_category",
             joinColumns = @JoinColumn(name = "answer_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private List<Category> category = new ArrayList<>();
+    private List<Category> categories = new ArrayList<>();
 
     public Answer(Long answerID, String answerText) {
         this.answerID = answerID;
@@ -50,12 +50,12 @@ public class Answer {
         this.questionID = questionID;
     }
 
-    public List<Category> getCategory() {
-        return category;
+    public List<Category> getCategories() {
+        return categories;
     }
 
-    public void setCategory(List<Category> category) {
-        this.category = category;
+    public void setCategories(List<Category> category) {
+        this.categories = category;
     }
 
     public String getAnswerText() {

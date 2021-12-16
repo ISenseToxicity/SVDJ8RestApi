@@ -8,7 +8,7 @@ public class Route {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "route_id")
-    private Long routeId;
+    private Long routeID;
 
     @Column(name = "total_time")
     private int totalTime;
@@ -43,10 +43,10 @@ public class Route {
     }
 
     public Long getRouteID() {
-        return routeId;
+        return routeID;
     }
 
     public void setRouteID(Long routeId) {
-        this.routeId = routeId;
+        this.routeID = routeId;
     }
 }

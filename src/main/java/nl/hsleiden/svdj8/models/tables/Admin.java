@@ -11,7 +11,7 @@ public class Admin {
     private Long adminID;
 
     private String name;
-    private String password; //???????????TODO: CHECK DIT NA
+    private String password;
 
     public Admin() {
     }

@@ -40,16 +40,16 @@ public class AnswerController {
                 .map(answer -> {
                     answer.setAnswerText(editAnswer.getAnswerText());
                     answer.setQuestionID(editAnswer.getQuestionID());
-                    answer.setCategory(editAnswer.getCategory());
+                    answer.setCategories(editAnswer.getCategories());
                     return answerDAO.addAnswer(answer);
                 })
                 .orElseThrow(() -> new Exception(
                         "No answer found with id " + id + "\""));
         List<Category> categories = new ArrayList<>();
-        for (Category category : returnAnswer.getCategory()) {
+        for (Category category : returnAnswer.getCategories()) {
             categories.add(categoryDAO.getById(category.getCategoryID()));
         }
-        returnAnswer.setCategory(categories);
+        returnAnswer.setCategories(categories);
         return returnAnswer;
     }
 
