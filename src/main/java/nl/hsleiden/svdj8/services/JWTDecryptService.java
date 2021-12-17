@@ -7,7 +7,7 @@ import nl.hsleiden.svdj8.models.tables.Admin;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DecryptService {
+public class JWTDecryptService {
 
     public Admin decrypt(String token) {
         byte[] key = new byte[64];
