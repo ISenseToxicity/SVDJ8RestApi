@@ -14,7 +14,7 @@ public class AuthenticatingService {
 
     private final DecryptService decryptService;
     private final AdminRepository adminRepository;
-    private final User officalWijzer = new User(1,"ThisIsThe offical Origin");
+    private final User officalWijzer = new User(1L,"ThisIsThe offical Origin", "Tool");
 
     @Autowired
     public AuthenticatingService(
