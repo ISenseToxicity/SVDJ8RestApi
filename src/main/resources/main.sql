@@ -79,6 +79,10 @@ CREATE TABLE IF NOT EXISTS "grant" (
 	"grant_id"	integer,
 	"name"	varchar NOT NULL UNIQUE,
 	"description"	text,
+    "begin_date"  text,
+    "end_date"    text,
+    "advise_url"  text
+);
 	CONSTRAINT "grant_pk" PRIMARY KEY("grant_id")
 );
 INSERT INTO grant(name, description) VALUES("nada niks", "geen subsidie");

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class GrantController {
 
@@ -34,6 +35,9 @@ public class GrantController {
                 .map(grant -> {
                     grant.setName(editGrant.getName());
                     grant.setDescription(editGrant.getDescription());
+                    grant.setBeginDate(editGrant.getBeginDate());
+                    grant.setEndDate(editGrant.getEndDate());
+                    grant.setAdviseURL(editGrant.getAdviseURL());
                     return grantDAO.addGrant(grant);
                 })
                 .orElseThrow(() -> new Exception(
