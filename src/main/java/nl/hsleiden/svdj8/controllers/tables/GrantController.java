@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class GrantController {
 
@@ -18,6 +17,7 @@ public class GrantController {
         this.grantDAO = grantDAO;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/grant/all")
     public List<Grant> getAllGrants() {
         return grantDAO.getAll();
