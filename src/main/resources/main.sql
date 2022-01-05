@@ -85,11 +85,11 @@ CREATE TABLE IF NOT EXISTS "grant" (
 );
 	CONSTRAINT "grant_pk" PRIMARY KEY("grant_id")
 );
-INSERT INTO grant(name, description) VALUES("nada niks", "geen subsidie");
-INSERT INTO grant(name, description) VALUES("name2", "description2");
-INSERT INTO grant(name, description) VALUES("name3", "description3");
-INSERT INTO grant(name, description) VALUES("name4", "description4");
-INSERT INTO grant(name, description) VALUES("name5", "description5");
+INSERT INTO grant(name, description,begin_date,end_date,advise_url) VALUES("nada niks", "geen subsidie","05-02-22","05-07-22","https://www.svdj.nl/regeling/innovatieregeling/");
+INSERT INTO grant(name, description,begin_date,end_date,advise_url) VALUES("name2", "description2","05-02-22","05-07-22","https://www.svdj.nl/regeling/innovatieregeling/");
+INSERT INTO grant(name, description,begin_date,end_date,advise_url) VALUES("name3", "description3","05-01-22","05-09-22","https://www.svdj.nl/regeling/innovatieregeling/");
+INSERT INTO grant(name, description,begin_date,end_date,advise_url) VALUES("name4", "description4","15-02-22","05-07-28","https://www.svdj.nl/regeling/innovatieregeling/");
+INSERT INTO grant(name, description,begin_date,end_date,advise_url) VALUES("name5", "description5","05-02-19","05-07-21","https://www.svdj.nl/regeling/innovatieregeling/");
 
 
 CREATE TABLE IF NOT EXISTS "grant_and_category" (
