@@ -17,6 +17,7 @@ public class GrantController {
         this.grantDAO = grantDAO;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(value = "/grant/all")
     public List<Grant> getAllGrants() {
         return grantDAO.getAll();
@@ -34,6 +35,9 @@ public class GrantController {
                 .map(grant -> {
                     grant.setName(editGrant.getName());
                     grant.setDescription(editGrant.getDescription());
+                    grant.setBeginDate(editGrant.getBeginDate());
+                    grant.setEndDate(editGrant.getEndDate());
+                    grant.setAdviseURL(editGrant.getAdviseURL());
                     return grantDAO.addGrant(grant);
                 })
                 .orElseThrow(() -> new Exception(

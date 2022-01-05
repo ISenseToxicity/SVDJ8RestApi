@@ -13,10 +13,21 @@ public class Grant {
     private String name;
     private String description;
 
-    public Grant(Long grantID, String name, String description) {
+    @Column(name = "begin_date")
+    private String beginDate;
+
+    @Column(name = "end_date")
+    private String endDate;
+    @Column(name = "advise_url")
+    private String adviseURL;
+
+    public Grant(Long grantID, String name, String description, String beginDate, String endDate, String adviseURL) {
         this.grantID = grantID;
         this.name = name;
         this.description = description;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
+        this.adviseURL = adviseURL;
     }
 
     public Grant() {
@@ -47,4 +58,27 @@ public class Grant {
         this.description = description;
     }
 
+    public String getBeginDate() {
+        return beginDate;
+    }
+
+    public void setBeginDate(String beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getAdviseURL() {
+        return adviseURL;
+    }
+
+    public void setAdviseURL(String adviseURL) {
+        this.adviseURL = adviseURL;
+    }
 }
