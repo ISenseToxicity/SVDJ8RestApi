@@ -1,6 +1,7 @@
 package nl.hsleiden.svdj8.models.tables;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "route")
@@ -16,6 +17,9 @@ public class Route {
     @OneToOne(targetEntity = Result.class, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "result_id", referencedColumnName = "result_id")
     private Result result;
+
+    @OneToMany(mappedBy = "routeID", targetEntity = GivenAnswer.class)
+    private List<GivenAnswer> givenAnswers;
 
     public Route(int totalTime, Result result) {
         this.totalTime = totalTime;
@@ -48,5 +52,13 @@ public class Route {
 
     public void setRouteID(Long routeId) {
         this.routeID = routeId;
+    }
+
+    public List<GivenAnswer> getGivenAnswers() {
+        return givenAnswers;
+    }
+
+    public void setGivenAnswers(List<GivenAnswer> givenAnswers) {
+        this.givenAnswers = givenAnswers;
     }
 }
