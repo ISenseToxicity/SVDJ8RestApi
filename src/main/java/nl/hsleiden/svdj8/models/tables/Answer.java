@@ -1,5 +1,7 @@
 package nl.hsleiden.svdj8.models.tables;
 
+import org.springframework.lang.Nullable;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,10 +19,10 @@ public class Answer {
     @Column(name = "question_id")
     private long parentQuestionID;
 
-
+    @Nullable
     @OneToOne(targetEntity = Question.class)
     @JoinColumn(name = "next_question_id", referencedColumnName = "question_id")
-    private long next_question_id;
+    private Question nextQuestionID;
 
     public Answer(java.lang.Long answerID, String answerText) {
         this.answerID = answerID;
@@ -55,11 +57,11 @@ public class Answer {
         this.answerText = answerText;
     }
 
-    public long getNextQuestion() {
-        return next_question_id;
+    public Question getNextQuestion() {
+        return nextQuestionID;
     }
 
-    public void setNextQuestion(long nextQuestion) {
-        this.next_question_id = nextQuestion;
+    public void setNextQuestion(Question nextQuestion) {
+        this.nextQuestionID = nextQuestion;
     }
 }
