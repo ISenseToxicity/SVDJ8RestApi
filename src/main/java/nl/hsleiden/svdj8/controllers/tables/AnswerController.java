@@ -41,6 +41,7 @@ public class AnswerController {
                     answer.setAnswerText(editAnswer.getAnswerText());
                     answer.setParentQuestionID(editAnswer.getParentQuestionID());
                     answer.setNextQuestion(editAnswer.getNextQuestion());
+                    answer.setAdvice(editAnswer.getAdvice());
                     return answerDAO.addAnswer(answer);
                 })
                 .orElseThrow(() -> new Exception(

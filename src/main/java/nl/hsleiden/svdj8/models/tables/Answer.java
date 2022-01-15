@@ -24,6 +24,11 @@ public class Answer {
     @JoinColumn(name = "next_question_id", referencedColumnName = "question_id")
     private Question nextQuestionID;
 
+    @Nullable
+    @OneToOne(targetEntity = Advice.class)
+    @JoinColumn(name = "advice_id", referencedColumnName = "advice_id")
+    private Advice advice;
+
     public Answer(java.lang.Long answerID, String answerText) {
         this.answerID = answerID;
         this.answerText = answerText;
@@ -63,5 +68,14 @@ public class Answer {
 
     public void setNextQuestion(Question nextQuestion) {
         this.nextQuestionID = nextQuestion;
+    }
+
+    @Nullable
+    public Advice getAdvice() {
+        return advice;
+    }
+
+    public void setAdvice(@Nullable Advice advice) {
+        this.advice = advice;
     }
 }

@@ -23,7 +23,7 @@ INSERT INTO advice(description, name) VALUES ("description3", "name3");
 INSERT INTO advice(description, name) VALUES ("description4", "name4");
 INSERT INTO advice(description, name) VALUES ("description5", "name5");
 
-CREATE TABLE IF NOT EXISTS "aQuestion" (
+CREATE TABLE IF NOT EXISTS "question" (
 	"question_id"	integer,
 	"question_text"	text NOT NULL,
 	"extra_info_tile"	text,
@@ -31,11 +31,11 @@ CREATE TABLE IF NOT EXISTS "aQuestion" (
 	"extra_info_video_url"	text,
 	CONSTRAINT "question_pk" PRIMARY KEY("question_id")
 );
-INSERT INTO aQuestion(question_text, extra_info_tile, extra_info_description, extra_info_video_url) VALUES("question_text1", "extra_info_tile1", "extra_info_description1", "extra_info_video_url1");
-INSERT INTO aQuestion(question_text, extra_info_tile, extra_info_description, extra_info_video_url) VALUES("question_text2", "extra_info_tile2", "extra_info_description2", "extra_info_video_url2");
-INSERT INTO aQuestion(question_text, extra_info_tile, extra_info_description, extra_info_video_url) VALUES("question_text3", "extra_info_tile3", "extra_info_description3", "extra_info_video_url3");
-INSERT INTO aQuestion(question_text, extra_info_tile, extra_info_description, extra_info_video_url) VALUES("question_text4", "extra_info_tile4", "extra_info_description4", "extra_info_video_url4");
-INSERT INTO aQuestion(question_text, extra_info_tile, extra_info_description, extra_info_video_url) VALUES("question_text5", "extra_info_tile5", "extra_info_description5", "extra_info_video_url5");
+INSERT INTO question(question_text, extra_info_tile, extra_info_description, extra_info_video_url) VALUES("question_text1", "extra_info_tile1", "extra_info_description1", "extra_info_video_url1");
+INSERT INTO question(question_text, extra_info_tile, extra_info_description, extra_info_video_url) VALUES("question_text2", "extra_info_tile2", "extra_info_description2", "extra_info_video_url2");
+INSERT INTO question(question_text, extra_info_tile, extra_info_description, extra_info_video_url) VALUES("question_text3", "extra_info_tile3", "extra_info_description3", "extra_info_video_url3");
+INSERT INTO question(question_text, extra_info_tile, extra_info_description, extra_info_video_url) VALUES("question_text4", "extra_info_tile4", "extra_info_description4", "extra_info_video_url4");
+INSERT INTO question(question_text, extra_info_tile, extra_info_description, extra_info_video_url) VALUES("question_text5", "extra_info_tile5", "extra_info_description5", "extra_info_video_url5");
 
 CREATE TABLE IF NOT EXISTS "grant" (
 	"grant_id"	integer,
@@ -101,20 +101,22 @@ CREATE TABLE IF NOT EXISTS "answer" (
 	"question_id"	integer NOT NULL,
 	"answer_text"	varchar NOT NULL,
 	"next_question_id"	integer,
+	"advice_id" integer,
 	CONSTRAINT "answer_pk" PRIMARY KEY("answer_id"),
-	CONSTRAINT "answer_to_next_question_fk" FOREIGN KEY("next_question_id") REFERENCES "aQuestion" on update cascade on delete restrict,
-	CONSTRAINT "answer_to_question_fk" FOREIGN KEY("question_id") REFERENCES "aQuestion" on update cascade on delete restrict
+	CONSTRAINT "answer_to_next_question_fk" FOREIGN KEY("next_question_id") REFERENCES "question" on update cascade on delete restrict,
+	CONSTRAINT "answer_to_question_fk" FOREIGN KEY("question_id") REFERENCES "question" on update cascade on delete restrict
+	CONSTRAINT "answer_to_advice_fk" FOREIGN KEY("advice_id") REFERENCES "advice" on update cascade on delete restrict
 );
-INSERT INTO answer(question_id, answer_text, next_question_id) VALUES(1, "answer_text1", 2);
-INSERT INTO answer(question_id, answer_text, next_question_id) VALUES(2, "answer_text2", 3);
-INSERT INTO answer(question_id, answer_text, next_question_id) VALUES(3, "answer_text3", 4);
-INSERT INTO answer(question_id, answer_text, next_question_id) VALUES(4, "answer_text4", 5);
-INSERT INTO answer(question_id, answer_text, next_question_id) VALUES(5, "answer_text5", null);
-INSERT INTO answer(question_id, answer_text, next_question_id) VALUES(1, "answer_text6", null);
-INSERT INTO answer(question_id, answer_text, next_question_id) VALUES(2, "answer_text7", null);
-INSERT INTO answer(question_id, answer_text, next_question_id) VALUES(3, "answer_text8", null);
-INSERT INTO answer(question_id, answer_text, next_question_id) VALUES(4, "answer_text9", null);
-INSERT INTO answer(question_id, answer_text, next_question_id) VALUES(5, "answer_text10", null);
+INSERT INTO answer(question_id, answer_text, next_question_id, advice_id) VALUES(1, "answer_text1", 2, null);
+INSERT INTO answer(question_id, answer_text, next_question_id, advice_id) VALUES(2, "answer_text2", 3, null);
+INSERT INTO answer(question_id, answer_text, next_question_id, advice_id) VALUES(3, "answer_text3", 4, null);
+INSERT INTO answer(question_id, answer_text, next_question_id, advice_id) VALUES(4, "answer_text4", 5, null);
+INSERT INTO answer(question_id, answer_text, next_question_id, advice_id) VALUES(5, "answer_text5", null, 1);
+INSERT INTO answer(question_id, answer_text, next_question_id, advice_id) VALUES(1, "answer_text6", null, null);
+INSERT INTO answer(question_id, answer_text, next_question_id, advice_id) VALUES(2, "answer_text7", null, null);
+INSERT INTO answer(question_id, answer_text, next_question_id, advice_id) VALUES(3, "answer_text8", null, null);
+INSERT INTO answer(question_id, answer_text, next_question_id, advice_id) VALUES(4, "answer_text9", null, null);
+INSERT INTO answer(question_id, answer_text, next_question_id, advice_id) VALUES(5, "answer_text10", null, 2);
 
 CREATE TABLE IF NOT EXISTS "given_answer" (
 	"given_answer_id"	integer,
@@ -123,7 +125,7 @@ CREATE TABLE IF NOT EXISTS "given_answer" (
 	"answer_id"	integer NOT NULL,
 	"route_id"	integer,
 	CONSTRAINT "given_answer_pk" PRIMARY KEY("given_answer_id"),
-	FOREIGN KEY("question_id") REFERENCES "aQuestion" on update cascade on delete cascade,
+	FOREIGN KEY("question_id") REFERENCES "question" on update cascade on delete cascade,
 	FOREIGN KEY("answer_id") REFERENCES "answer" on update cascade on delete restrict,
 	CONSTRAINT "given_answer_route_fk" FOREIGN KEY("route_id") REFERENCES "route" on update cascade on delete restrict
 );
