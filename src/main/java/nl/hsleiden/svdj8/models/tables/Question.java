@@ -1,5 +1,7 @@
 package nl.hsleiden.svdj8.models.tables;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +17,11 @@ public class Question {
     @Column(name = "question_text")
     private String questionText;
 
-    @OneToMany(mappedBy = "questionID", targetEntity = Answer.class)
+    @OneToMany(mappedBy = "parentQuestionID", targetEntity = Answer.class)
     private List<Answer> answers = new ArrayList<>();
 
     @Column(name = "extra_info_tile")
-    private String extraInfoTile;
+    private String extraInfoTitle;
 
     @Column(name = "extra_info_description")
     private String extraInfoDescription;
@@ -27,10 +29,10 @@ public class Question {
     @Column(name = "extra_info_video_url")
     private String extraInfoVideoURL;
 
-    public Question(Long questionID, String questionText, String extraInfoTile, String extraInfoDescription, String extraInfoVideoURL) {
+    public Question(Long questionID, String questionText, String extraInfoTitle, String extraInfoDescription, String extraInfoVideoURL) {
         this.questionID = questionID;
         this.questionText = questionText;
-        this.extraInfoTile = extraInfoTile;
+        this.extraInfoTitle = extraInfoTitle;
         this.extraInfoDescription = extraInfoDescription;
         this.extraInfoVideoURL = extraInfoVideoURL;
     }
@@ -55,12 +57,12 @@ public class Question {
         this.answers = answers;
     }
 
-    public String getExtraInfoTile() {
-        return extraInfoTile;
+    public String getExtraInfoTitle() {
+        return extraInfoTitle;
     }
 
-    public void setExtraInfoTile(String extraInfoTile) {
-        this.extraInfoTile = extraInfoTile;
+    public void setExtraInfoTitle(String extraInfoTile) {
+        this.extraInfoTitle = extraInfoTile;
     }
 
     public String getExtraInfoDescription() {

@@ -15,11 +15,11 @@ public class GivenAnswer {
 
 
     @Column(name = "route_id")
-    private long routeID;
+    private Long routeID;
 
     @OneToOne(targetEntity = Question.class)
     @JoinColumn(name = "question_id", referencedColumnName = "question_id")
-    private Question question;
+    private Question aQuestion;
 
     @OneToOne(targetEntity = Answer.class)
     @JoinColumn(name = "answer_id", referencedColumnName = "answer_id")
@@ -51,11 +51,11 @@ public class GivenAnswer {
     }
 
     public Question getQuestion() {
-        return question;
+        return aQuestion;
     }
 
-    public void setQuestion(Question question) {
-        this.question = question;
+    public void setQuestion(Question aQuestion) {
+        this.aQuestion = aQuestion;
     }
 
     public Answer getAnswer() {
@@ -66,11 +66,11 @@ public class GivenAnswer {
         this.answer = answer;
     }
 
-    public long getRouteId() {
+    public Long getRouteId() {
         return routeID;
     }
 
-    public void setRouteId(long routeId) {
+    public void setRouteId(Long routeId) {
         this.routeID = routeId;
     }
 
