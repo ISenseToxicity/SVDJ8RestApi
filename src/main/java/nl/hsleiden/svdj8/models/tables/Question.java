@@ -12,7 +12,7 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "question_id")
-    private long questionID;
+    private Long questionID;
 
     @Column(name = "question_text")
     private String questionText;
@@ -29,7 +29,7 @@ public class Question {
     @Column(name = "extra_info_video_url")
     private String extraInfoVideoURL;
 
-    public Question(java.lang.Long questionID, String questionText, String extraInfoTitle, String extraInfoDescription, String extraInfoVideoURL) {
+    public Question(Long questionID, String questionText, String extraInfoTitle, String extraInfoDescription, String extraInfoVideoURL) {
         this.questionID = questionID;
         this.questionText = questionText;
         this.extraInfoTitle = extraInfoTitle;
@@ -81,11 +81,11 @@ public class Question {
         this.extraInfoVideoURL = extraInfoVideoURL;
     }
 
-    public void setQuestionID(java.lang.Long questionID) {
+    public void setQuestionID(Long questionID) {
         this.questionID = questionID;
     }
 
-    public java.lang.Long getQuestionID() {
+    public Long getQuestionID() {
         return questionID;
     }
 

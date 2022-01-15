@@ -8,14 +8,14 @@ public class GivenAnswer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "given_answer_id")
-    private java.lang.Long givenAnswerID;
+    private Long givenAnswerID;
 
     @Column(name = "elapsed_seconds")
     private int elapsedSeconds;
 
 
     @Column(name = "route_id")
-    private long routeID;
+    private Long routeID;
 
     @OneToOne(targetEntity = Question.class)
     @JoinColumn(name = "question_id", referencedColumnName = "question_id")
@@ -25,7 +25,7 @@ public class GivenAnswer {
     @JoinColumn(name = "answer_id", referencedColumnName = "answer_id")
     private Answer answer;
 
-    public GivenAnswer(java.lang.Long givenAnswerID, int elapsedSeconds, Answer answer) {
+    public GivenAnswer(Long givenAnswerID, int elapsedSeconds, Answer answer) {
         this.givenAnswerID = givenAnswerID;
         this.elapsedSeconds = elapsedSeconds;
         this.answer = answer;
@@ -34,11 +34,11 @@ public class GivenAnswer {
     public GivenAnswer() {
     }
 
-    public java.lang.Long getGivenAnswerID() {
+    public Long getGivenAnswerID() {
         return givenAnswerID;
     }
 
-    public void setGivenAnswerID(java.lang.Long givenAnswerId) {
+    public void setGivenAnswerID(Long givenAnswerId) {
         this.givenAnswerID = givenAnswerId;
     }
 
@@ -66,11 +66,11 @@ public class GivenAnswer {
         this.answer = answer;
     }
 
-    public long getRouteId() {
+    public Long getRouteId() {
         return routeID;
     }
 
-    public void setRouteId(long routeId) {
+    public void setRouteId(Long routeId) {
         this.routeID = routeId;
     }
 

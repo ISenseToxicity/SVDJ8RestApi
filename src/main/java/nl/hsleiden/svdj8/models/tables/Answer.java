@@ -11,13 +11,13 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @SequenceGenerator(name = "id_Sequence", sequenceName = "ID_SEQ")
     @Column(name = "answer_id")
-    private long answerID;
+    private Long answerID;
 
     @Column(name = "answer_text")
     private String answerText;
 
     @Column(name = "question_id")
-    private long parentQuestionID;
+    private Long parentQuestionID;
 
     @Nullable
     @OneToOne(targetEntity = Question.class)

@@ -14,7 +14,7 @@ public class Advice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "advice_id")
-    private long adviceID;
+    private Long adviceID;
 
     @ManyToMany
     @JoinTable(
@@ -27,7 +27,7 @@ public class Advice {
     private String name;
     private String description;
 
-    public Advice(long adviceID, String name, String description) {
+    public Advice(Long adviceID, String name, String description) {
         this.adviceID = adviceID;
         this.name = name;
         this.description = description;
@@ -52,11 +52,11 @@ public class Advice {
         this.description = description;
     }
 
-    public void setAdviceID(long adviceID) {
+    public void setAdviceID(Long adviceID) {
         this.adviceID = adviceID;
     }
 
-    public long getAdviceID() {
+    public Long getAdviceID() {
         return adviceID;
     }
 

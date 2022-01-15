@@ -10,7 +10,7 @@ public class Result {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "result_id")
-    private long resultID;
+    private Long resultID;
 
     @Column(name = "amount_questions")
     private int amountQuestions;
@@ -22,7 +22,7 @@ public class Result {
     @JoinColumn(name = "advice_id", nullable = false, referencedColumnName = "advice_id")
     private Advice advice;
 
-    public Result(long resultID, int amountQuestions, Time totalTime) {
+    public Result(Long resultID, int amountQuestions, Time totalTime) {
         this.resultID = resultID;
         this.amountQuestions = amountQuestions;
         this.totalTime = totalTime;
@@ -32,11 +32,11 @@ public class Result {
 
     }
 
-    public void setResultID(long resultID) {
+    public void setResultID(Long resultID) {
         this.resultID = resultID;
     }
 
-    public long getResultID() {
+    public Long getResultID() {
         return resultID;
     }
 

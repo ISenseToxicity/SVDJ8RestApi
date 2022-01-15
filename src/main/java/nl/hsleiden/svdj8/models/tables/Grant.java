@@ -8,12 +8,12 @@ public class Grant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "grant_id")
-    private long grantID;
+    private Long grantID;
 
     private String name;
     private String description;
 
-    public Grant(long grantID, String name, String description) {
+    public Grant(Long grantID, String name, String description) {
         this.grantID = grantID;
         this.name = name;
         this.description = description;
@@ -23,11 +23,11 @@ public class Grant {
     }
 
 
-    public void setGrantID(long grantID) {
+    public void setGrantID(Long grantID) {
         this.grantID = grantID;
     }
 
-    public long getGrantID() {
+    public Long getGrantID() {
         return grantID;
     }
 
