@@ -2,7 +2,10 @@
 
 package nl.hsleiden.svdj8.models.tables;
 
+import java.util.Set;
+
 import javax.persistence.*;
+import java.util.HashSet;
 
 @Entity
 @Table(name = "advice")
@@ -12,6 +15,14 @@ public class Advice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "advice_id")
     private long adviceID;
+
+    @ManyToMany
+    @JoinTable(
+            name = "grant_and_advice",
+            joinColumns = @JoinColumn(name = "advice_id"),
+            inverseJoinColumns = @JoinColumn(name = "grant_id")
+    )
+    Set<Grant> grants = new HashSet<>();
 
     private String name;
     private String description;
@@ -47,5 +58,13 @@ public class Advice {
 
     public long getAdviceID() {
         return adviceID;
+    }
+
+    public Set<Grant> getGrants() {
+        return grants;
+    }
+
+    public void setGrants(Set<Grant> grants) {
+        this.grants = grants;
     }
 }
