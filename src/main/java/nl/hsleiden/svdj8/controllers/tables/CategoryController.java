@@ -1,11 +1,8 @@
 package nl.hsleiden.svdj8.controllers.tables;
 
-import nl.hsleiden.svdj8.daos.CategoryDAO;
-import nl.hsleiden.svdj8.models.tables.Category;
-import nl.hsleiden.svdj8.repository.CategoryRepository;
+import nl.hsleiden.svdj8.daos.AdviceDAO;
+import nl.hsleiden.svdj8.models.tables.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,42 +11,42 @@ import java.util.List;
 public class CategoryController {
 
     @Autowired
-    public final CategoryDAO categoryDAO;
+    public final AdviceDAO adviceDAO;
 
-    public CategoryController(CategoryDAO categoryDAO) {
-        this.categoryDAO = categoryDAO;
+    public CategoryController(AdviceDAO adviceDAO) {
+        this.adviceDAO = adviceDAO;
     }
 
     @GetMapping(value = "/category/all")
-    public List<Category> getAllCategories() {
-        return categoryDAO.getAll();
+    public List<Advice> getAllCategories() {
+        return adviceDAO.getAll();
     }
 
     @GetMapping(value = "/category/{id}")
-    public Category getCategory(@PathVariable final Long id) {
-        return categoryDAO.getById(id);
+    public Advice getCategory(@PathVariable final Long id) {
+        return adviceDAO.getById(id);
     }
 
     @PutMapping(value = "/category/{id}")
-    public Category editCategory(@RequestBody Category editCategory, @PathVariable Long id) throws Exception {
+    public Advice editCategory(@RequestBody Advice editAdvice, @PathVariable Long id) throws Exception {
 
-        return categoryDAO.getByIdOptional(id)
-                .map(category -> {
-                    category.setName(editCategory.getName());
-                    category.setDescription(editCategory.getDescription());
-                    return categoryDAO.addCategory(category);
+        return adviceDAO.getByIdOptional(id)
+                .map(advice -> {
+                    advice.setName(editAdvice.getName());
+                    advice.setDescription(editAdvice.getDescription());
+                    return adviceDAO.addCategory(advice);
                 })
                 .orElseThrow(() -> new Exception(
                         "No category found with id " + id + "\""));
     }
 
     @PutMapping(value = "/category")
-    public Category addCategory(@RequestBody Category newCategory) {
-        return categoryDAO.addCategory(newCategory);
+    public Advice addCategory(@RequestBody Advice newAdvice) {
+        return adviceDAO.addCategory(newAdvice);
     }
 
     @DeleteMapping("/category/{id}")
     public void deleteCategory(@PathVariable Long id) {
-        categoryDAO.deleteCategory(id);
+        adviceDAO.deleteCategory(id);
     }
 }

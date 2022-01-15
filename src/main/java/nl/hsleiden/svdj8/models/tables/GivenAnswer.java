@@ -8,7 +8,7 @@ public class GivenAnswer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "given_answer_id")
-    private Long givenAnswerID;
+    private java.lang.Long givenAnswerID;
 
     @Column(name = "elapsed_seconds")
     private int elapsedSeconds;
@@ -19,13 +19,13 @@ public class GivenAnswer {
 
     @OneToOne(targetEntity = Question.class)
     @JoinColumn(name = "question_id", referencedColumnName = "question_id")
-    private Question question;
+    private Question aQuestion;
 
     @OneToOne(targetEntity = Answer.class)
     @JoinColumn(name = "answer_id", referencedColumnName = "answer_id")
     private Answer answer;
 
-    public GivenAnswer(Long givenAnswerID, int elapsedSeconds, Answer answer) {
+    public GivenAnswer(java.lang.Long givenAnswerID, int elapsedSeconds, Answer answer) {
         this.givenAnswerID = givenAnswerID;
         this.elapsedSeconds = elapsedSeconds;
         this.answer = answer;
@@ -34,11 +34,11 @@ public class GivenAnswer {
     public GivenAnswer() {
     }
 
-    public Long getGivenAnswerID() {
+    public java.lang.Long getGivenAnswerID() {
         return givenAnswerID;
     }
 
-    public void setGivenAnswerID(Long givenAnswerId) {
+    public void setGivenAnswerID(java.lang.Long givenAnswerId) {
         this.givenAnswerID = givenAnswerId;
     }
 
@@ -51,11 +51,11 @@ public class GivenAnswer {
     }
 
     public Question getQuestion() {
-        return question;
+        return aQuestion;
     }
 
-    public void setQuestion(Question question) {
-        this.question = question;
+    public void setQuestion(Question aQuestion) {
+        this.aQuestion = aQuestion;
     }
 
     public Answer getAnswer() {

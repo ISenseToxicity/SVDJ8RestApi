@@ -1,6 +1,6 @@
 package nl.hsleiden.svdj8.controllers.tables;
 
-import nl.hsleiden.svdj8.daos.GrantDAO;
+import nl.hsleiden.svdj8.daos.AdviceDAO;
 import nl.hsleiden.svdj8.daos.ResultDAO;
 import nl.hsleiden.svdj8.models.tables.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +15,12 @@ public class ResultController {
     public final ResultDAO resultDAO;
 
     @Autowired
-    public final GrantDAO grantDAO;
+    public final AdviceDAO adviceDAO;
 
 
-    public ResultController(ResultDAO resultDAO, GrantDAO grantDAO) {
+    public ResultController(ResultDAO resultDAO, AdviceDAO adviceDAO) {
         this.resultDAO = resultDAO;
-        this.grantDAO = grantDAO;
+        this.adviceDAO = adviceDAO;
     }
 
     @GetMapping(value = "/result/all")
@@ -39,12 +39,12 @@ public class ResultController {
                 .map(result -> {
                     result.setTotalTime(editResult.getTotalTime());
                     result.setAmountQuestions(editResult.getAmountQuestions());
-                    result.setGrant(editResult.getGrant());
+                    result.setAdvice(editResult.getAdvice());
                     return resultDAO.addQuestion(result);
                 })
                 .orElseThrow(() -> new Exception(
                         "No result found with id " + id + "\""));
-        returnResult.setGrant(grantDAO.getById(returnResult.getGrant().getGrantID()));
+        returnResult.setAdvice(adviceDAO.getById(returnResult.getAdvice().getAdviceID()));
         return returnResult;
     }
 

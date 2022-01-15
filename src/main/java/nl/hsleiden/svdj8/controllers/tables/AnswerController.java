@@ -1,9 +1,9 @@
 package nl.hsleiden.svdj8.controllers.tables;
 
 import nl.hsleiden.svdj8.daos.AnswerDAO;
-import nl.hsleiden.svdj8.daos.CategoryDAO;
+import nl.hsleiden.svdj8.daos.AdviceDAO;
 import nl.hsleiden.svdj8.models.tables.Answer;
-import nl.hsleiden.svdj8.models.tables.Category;
+import nl.hsleiden.svdj8.models.tables.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,11 +16,11 @@ public class AnswerController {
     @Autowired
     public final AnswerDAO answerDAO;
 
-    public final CategoryDAO categoryDAO;
+    public final AdviceDAO adviceDAO;
 
-    public AnswerController(AnswerDAO answerDAO, CategoryDAO categoryDAO) {
+    public AnswerController(AnswerDAO answerDAO, AdviceDAO adviceDAO) {
         this.answerDAO = answerDAO;
-        this.categoryDAO = categoryDAO;
+        this.adviceDAO = adviceDAO;
     }
 
     @GetMapping(value = "/answer/all")
@@ -39,17 +39,12 @@ public class AnswerController {
         Answer returnAnswer = answerDAO.getByIdOptional(id)
                 .map(answer -> {
                     answer.setAnswerText(editAnswer.getAnswerText());
-                    answer.setQuestionID(editAnswer.getQuestionID());
-                    answer.setCategories(editAnswer.getCategories());
+                    answer.setParentQuestionID(editAnswer.getParentQuestionID());
+                    answer.setNextQuestion(editAnswer.getNextQuestion());
                     return answerDAO.addAnswer(answer);
                 })
                 .orElseThrow(() -> new Exception(
                         "No answer found with id " + id + "\""));
-        List<Category> categories = new ArrayList<>();
-        for (Category category : returnAnswer.getCategories()) {
-            categories.add(categoryDAO.getById(category.getCategoryID()));
-        }
-        returnAnswer.setCategories(categories);
         return returnAnswer;
     }
 

@@ -10,7 +10,7 @@ public class Result {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "result_id")
-    private Long resultID;
+    private long resultID;
 
     @Column(name = "amount_questions")
     private int amountQuestions;
@@ -18,11 +18,11 @@ public class Result {
     @Column(name = "total_time")
     private Time totalTime;
 
-    @ManyToOne(targetEntity = Grant.class)
-    @JoinColumn(name = "grant_id", nullable = false, referencedColumnName = "grant_id")
-    private Grant grant;
+    @ManyToOne(targetEntity = Advice.class)
+    @JoinColumn(name = "advice_id", nullable = false, referencedColumnName = "advice_id")
+    private Advice advice;
 
-    public Result(Long resultID, int amountQuestions, Time totalTime) {
+    public Result(long resultID, int amountQuestions, Time totalTime) {
         this.resultID = resultID;
         this.amountQuestions = amountQuestions;
         this.totalTime = totalTime;
@@ -32,11 +32,11 @@ public class Result {
 
     }
 
-    public void setResultID(Long resultID) {
+    public void setResultID(long resultID) {
         this.resultID = resultID;
     }
 
-    public Long getResultID() {
+    public long getResultID() {
         return resultID;
     }
 
@@ -56,11 +56,11 @@ public class Result {
         this.totalTime = totalTime;
     }
 
-    public Grant getGrant() {
-        return grant;
+    public Advice getAdvice() {
+        return advice;
     }
 
-    public void setGrant(Grant grant) {
-        this.grant = grant;
+    public void setAdvice(Advice advice) {
+        this.advice = advice;
     }
 }

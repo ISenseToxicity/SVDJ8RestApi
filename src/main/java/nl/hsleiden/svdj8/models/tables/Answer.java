@@ -1,31 +1,28 @@
 package nl.hsleiden.svdj8.models.tables;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "answer")
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "id_Sequence", sequenceName = "ID_SEQ")
     @Column(name = "answer_id")
-    private Long answerID;
+    private long answerID;
 
     @Column(name = "answer_text")
     private String answerText;
 
     @Column(name = "question_id")
-    private Long questionID;
+    private long parentQuestionID;
 
-    @ManyToMany
-    @JoinTable(
-            name = "answer_and_category",
-            joinColumns = @JoinColumn(name = "answer_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private List<Category> categories = new ArrayList<>();
 
-    public Answer(Long answerID, String answerText) {
+    @OneToOne(targetEntity = Question.class)
+    @JoinColumn(name = "next_question_id", referencedColumnName = "question_id")
+    private long next_question_id;
+
+    public Answer(java.lang.Long answerID, String answerText) {
         this.answerID = answerID;
         this.answerText = answerText;
     }
@@ -34,28 +31,20 @@ public class Answer {
 
     }
 
-    public Long getAnswerID() {
+    public java.lang.Long getAnswerID() {
         return answerID;
     }
 
-    public void setAnswerID(Long answerID) {
+    public void setAnswerID(java.lang.Long answerID) {
         this.answerID = answerID;
     }
 
-    public Long getQuestionID() {
-        return questionID;
+    public java.lang.Long getParentQuestionID() {
+        return parentQuestionID;
     }
 
-    public void setQuestionID(Long questionID) {
-        this.questionID = questionID;
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> category) {
-        this.categories = category;
+    public void setParentQuestionID(java.lang.Long parentLongID) {
+        this.parentQuestionID = parentLongID;
     }
 
     public String getAnswerText() {
@@ -66,4 +55,11 @@ public class Answer {
         this.answerText = answerText;
     }
 
+    public long getNextQuestion() {
+        return next_question_id;
+    }
+
+    public void setNextQuestion(long nextQuestion) {
+        this.next_question_id = nextQuestion;
+    }
 }

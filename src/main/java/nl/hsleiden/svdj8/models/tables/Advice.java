@@ -1,26 +1,28 @@
+//TODO: Delete
+
 package nl.hsleiden.svdj8.models.tables;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "category")
-public class Category {
+@Table(name = "advice")
+public class Advice {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
-    private Long categoryID;
+    @Column(name = "advice_id")
+    private long adviceID;
 
     private String name;
     private String description;
 
-    public Category(Long categoryID, String name, String description) {
-        this.categoryID = categoryID;
+    public Advice(long adviceID, String name, String description) {
+        this.adviceID = adviceID;
         this.name = name;
         this.description = description;
     }
 
-    public Category() {
+    public Advice() {
     }
 
     public String getName() {
@@ -39,11 +41,11 @@ public class Category {
         this.description = description;
     }
 
-    public void setCategoryID(Long categoryID) {
-        this.categoryID = categoryID;
+    public void setAdviceID(long adviceID) {
+        this.adviceID = adviceID;
     }
 
-    public Long getCategoryID() {
-        return categoryID;
+    public long getAdviceID() {
+        return adviceID;
     }
 }
